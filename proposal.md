@@ -13,6 +13,7 @@ What I plan on doing for my mayor project for computer science is to create a ga
 
 ## Nice to Have List
 - More than 10 Levels
+- Infinite Level
 - Inventory
 - Power Ups
 - Choose your Character (colour)
