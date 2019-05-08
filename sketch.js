@@ -166,35 +166,35 @@ function draw() {
 
   if (state === "Level1") {
     level1BallMovement();
-    background("white");
+    background(0, 255, 255);
     level1BallDisplay();
     itHitLevel1();  
   }
 
   if (state === "Level2") {
     level2BallMovement();
-    background("white");
+    background(0, 255, 255);
     level2BallDisplay();
     itHitLevel2();
   }
 
   if (state === "Level3") {
     level3BallMovement();
-    background("white");
+    background(0, 255, 255);
     level3BallDisplay();
     itHitLevel3();
   }
 
   if (state === "Level4") {
     Level4BallMovement();
-    background("white");
+    background(0, 255, 255);
     Level4BallDisplay();
     itHitLevel4();
   }
 
   if (state === "Level5") {
     Level5BallMovement();
-    background("white");
+    background(0, 255, 255);
     Level5BallDisplay();
     itHitLevel5();
   }
