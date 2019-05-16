@@ -4,6 +4,7 @@
 //
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
+
 class EnemyBall {
   constructor(x, y, dxSomeSpeed, dySomeSpeed) {
     this.x = x;
@@ -87,37 +88,40 @@ let enemyball4Level5;
 let enemyball5Level5;
 let enemyball6Level5;
 
-let state;
-let abilityButton;
-let gridSize = 3;
-let cellSize;
-let xOffset;
-let yOffset;
-let level;
-let cellPictureWidth;
-let cellPictureHeight;
-
-
 function setup() {
   createCanvas(500, 500);
-  
-  state = "menu";//Sets the first state as menu
-
-  cellSize = 100; // Cell size for the grid I'll use
-  xOffset = 50;
-  yOffset = 130;
-  level = "zero" //Variable which will change which power will be used
-  
-  abilityButton = {
-  x : 365,
-  y : 250,
-  width : 120,
-  height : 75,
-  // image : loadImage("assets/go.png"),
-  // image2 : loadImage("assets/go2.png")
+  state = "menu"
+  level1Button = {
+    x: 50,
+    y: 100,
+    width: 113,
+    height: 75,
+  }
+  level2Button = {
+    x: 200,
+    y: 100,
+    width: 113,
+    height: 75,
+  }
+  level3Button = {
+    x: 350,
+    y: 100,
+    width: 113,
+    height: 75,
+  }
+  level4Button = {
+    x: 50,
+    y: 200,
+    width: 113,
+    height: 75,
+  }
+  level5Button = {
+    x: 200,
+    y: 200,
+    width: 113,
+    height: 75,
   }
 
-  
   player1 = new PlayerBall(31, height / 1.5, 4, 0);
   player2 = new PlayerBall(31, height/1.5, 4, 4);
 
@@ -144,24 +148,56 @@ function setup() {
   enemyball5Level5 = new EnemyBall(width/2, height/2, 7, 0);
   enemyball6Level5 = new EnemyBall(width/2, 400, 12, 0);
 }
-  
+
 function draw() {
-  //Will Draw according to state
-  checkStates();
-  
-}
-
-function checkStates(){
-  // Will check the state at which we currently are and diplay accordingly
   if (state === "menu") {
-    displayGrid();  
+    background(80, 170, 200);
+    fill("white");
+    noStroke();
+    rect(level1Button.x, level1Button.y, level1Button.width, level1Button.height);
+    rect(level2Button.x, level2Button.y, level2Button.width, level2Button.height);
+    rect(level3Button.x, level3Button.y, level3Button.width, level3Button.height);
+    rect(level4Button.x, level4Button.y, level4Button.width, level4Button.height);
+    rect(level5Button.x, level5Button.y, level5Button.width, level5Button.height);
+    
     restartPositions();
+
   }
 
-  if (state === "levels") {
-    checkPowerScreen();
+  if (state === "Level1") {
+    level1BallMovement();
+    background(0, 255, 255);
+    level1BallDisplay();
+    itHitLevel1();  
   }
 
+  if (state === "Level2") {
+    level2BallMovement();
+    background(0, 255, 255);
+    level2BallDisplay();
+    itHitLevel2();
+  }
+
+  if (state === "Level3") {
+    level3BallMovement();
+    background(0, 255, 255);
+    level3BallDisplay();
+    itHitLevel3();
+  }
+
+  if (state === "Level4") {
+    Level4BallMovement();
+    background(0, 255, 255);
+    Level4BallDisplay();
+    itHitLevel4();
+  }
+
+  if (state === "Level5") {
+    Level5BallMovement();
+    background(0, 255, 255);
+    Level5BallDisplay();
+    itHitLevel5();
+  }
 }
 
 function restartPositions() {
@@ -179,96 +215,8 @@ function restartPositions() {
   enemyball1Level3.x = width/2;
   enemyball2Level3.x = width/2;
   enemyball3Level3.x = width/2;
-
 }
 
-function displayGrid() {
-  push();
-  translate(xOffset, yOffset);// Changes where the origin of the grid is
-  background(125, 75, 130)
-  fill(255);
-  for (let y = 0; y < gridSize; y++) {//2d array to create an array
-    for (let x = 0; x < gridSize; x++) {
-      stroke(0);
-      rect(x * cellSize, y * cellSize, cellSize, cellSize);
-    }
-  }
-  //Pictures inside of the grid
-  pop();// Stop translating, and get canvas back to normal
-
-  displayGridButton();
-}
-
-
-
-function checkPowerScreen() {
-  //Depending on which power the user chooses, it displays the according screen
-  if (level === "one" ) {
-    level1();
-  }
-  if (level === "two" ) {
-    level2();
-  }
-  if (level === "three" ) {
-    level3();
-  }
-  if (level === "four") {
-    level4();
-  }
-  if (level === "five") {
-    level5();
-  }
-  if (level === "six") {
-    level6();
-  }
-}
-
-function displayGridButton(){
-  fill("white")
-  rect(abilityButton.x, abilityButton.y, abilityButton.width, abilityButton.height)
-}
-
-function level1(){
-  level1BallMovement();
-  background(0, 255, 255);
-  level1BallDisplay();
-  itHitLevel1();
-}
-
-function level2(){
-  level2BallMovement();
-  background(0, 255, 255);
-  level2BallDisplay();
-  itHitLevel2();
-}
-
-function level3(){
-  level3BallMovement();
-  background(0, 255, 255);
-  level3BallDisplay();
-  itHitLevel3();
-}
-
-function level4(){
-  Level4BallMovement();
-  background(0, 255, 255);
-  Level4BallDisplay();
-  itHitLevel4();
-}
-
-function level5(){
-  Level5BallMovement();
-  background(0, 255, 255);
-  Level5BallDisplay();
-  itHitLevel5();
-}
-
-function level6(){
-  Level4BallMovement();
-  background(0, 255, 255);
-  Level4BallDisplay();
-  itHitLevel4();
-}
 
 function level1BallMovement() {
   enemyball1Level1.move();
@@ -434,67 +382,70 @@ function itHitLevel5() {
   }
 }
 
+function clickedOnButtonL1(x, y) {
+  return x >= level1Button.x &&
+    x <= level1Button.x + level1Button.width &&
+    y >= level1Button.y &&
+    y <= level1Button.y + level1Button.height;
+}
+
+function clickedOnButtonL2(x, y) {
+  return x >= level2Button.x &&
+    x <= level2Button.x + level2Button.width &&
+    y >= level2Button.y &&
+    y <= level2Button.y + level2Button.height;
+}
+
+function clickedOnButtonL3(x, y) {
+  return x >= level3Button.x &&
+    x <= level3Button.x + level3Button.width &&
+    y >= level3Button.y &&
+    y <= level3Button.y + level3Button.height;
+}
+
+function clickedOnButtonL4(x, y) {
+  return x >= level4Button.x &&
+    x <= level4Button.x + level4Button.width &&
+    y >= level4Button.y &&
+    y <= level4Button.y + level4Button.height;
+}
+
+function clickedOnButtonL5(x, y) {
+  return x >= level5Button.x &&
+    x <= level5Button.x + level5Button.width &&
+    y >= level5Button.y &&
+    y <= level5Button.y + level5Button.height;
+}
+
 function mousePressed() {
-  //Checks the state, and also if the mouse has clicked a button during that state,
-  // if so, it changes the state to a differnt, corresponding state
- checkGridLevel();
   if (state === "menu") {
-    if (clickedOnButtonAbility(mouseX, mouseY)) {
-      state = "levels";
+    if (clickedOnButtonL1(mouseX, mouseY)) {
+      state = "Level1";
+    }
+  }
+
+  if (state === "menu") {
+    if (clickedOnButtonL2(mouseX, mouseY)) {
+      state = "Level2";
+    }
+  }
+  
+  if (state === "menu") {
+    if (clickedOnButtonL3(mouseX, mouseY)) {
+      state = "Level3";
+    }
+  }
+
+  if (state === "menu") {
+    if (clickedOnButtonL4(mouseX, mouseY)) {
+      state = "Level4";
+    }
+  }
+
+  if (state === "menu") {
+    if (clickedOnButtonL5(mouseX, mouseY)) {
+      state = "Level5";
     }
   }
 }
-
-function checkGridLevel(){
-  let xcoord = floor((mouseX - xOffset) / cellSize);// makes coordinates on the grid
-  let ycoord = floor((mouseY - yOffset) / cellSize);
-  if (state === "menu"){
-    if (xcoord === 0 && ycoord === 0) {// Checks on which cell the user clicks, and changes the variable
-      level = "one";
-    }
-
-    if (xcoord === 1 && ycoord === 0) {
-      level = "two";
-    }
-
-    if (xcoord === 2 && ycoord === 0) {
-      level = "three";
-    }
-
-    if (xcoord === 0 && ycoord === 1) {
-      level = "four";
-    } 
-
-    if (xcoord === 1 && ycoord === 1) {
-      level = "five";
-    } 
-
-    if (xcoord === 2 && ycoord === 1) {
-      level = "six";
-    } 
-
-    if (xcoord === 0 && ycoord === 2) {
-      level = "one";
-    } 
-
-    if (xcoord === 1 && ycoord === 2) {
-      level = "one";
-    } 
-
-    if (xcoord === 2 && ycoord === 2) {
-      level = "one";
-    } 
-  }
-}
-
-function clickedOnButtonAbility(x, y) {
-  // Checks if user clicks on button then, changes state
-  if (state === "menu"){
-    return x >= abilityButton.x &&
-     x <= abilityButton.x + abilityButton.width &&
-      y >= abilityButton.y &&
-      y <= abilityButton.y + abilityButton.height;
-  }
-}
-
 
