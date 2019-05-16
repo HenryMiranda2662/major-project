@@ -230,42 +230,42 @@ function displayGridButton(){
 
 function level1(){
   level1BallMovement();
-  background(0, 255, 255);
+  background("white");
   level1BallDisplay();
   itHitLevel1();
 }
 
 function level2(){
   level2BallMovement();
-  background(0, 255, 255);
+  background("white");
   level2BallDisplay();
   itHitLevel2();
 }
 
 function level3(){
   level3BallMovement();
-  background(0, 255, 255);
+  background("white");
   level3BallDisplay();
   itHitLevel3();
 }
 
 function level4(){
   Level4BallMovement();
-  background(0, 255, 255);
+  background("white");
   Level4BallDisplay();
   itHitLevel4();
 }
 
 function level5(){
   Level5BallMovement();
-  background(0, 255, 255);
+  background("white");
   Level5BallDisplay();
   itHitLevel5();
 }
 
 function level6(){
   Level4BallMovement();
-  background(0, 255, 255);
+  background("white");
   Level4BallDisplay();
   itHitLevel4();
 }
