@@ -100,13 +100,24 @@ let cellPictureHeight;
 
 function setup() {
   createCanvas(500, 500);
+
+  backgroundImage = loadImage("assets/bckimg.png");
   
-  state = "menu";//Sets the first state as menu
+  state = "main_menu";//Sets the first state as menu
 
   cellSize = 100; // Cell size for the grid I'll use
   xOffset = 50;
   yOffset = 130;
   level = "zero" //Variable which will change which power will be used
+
+  playButton = {
+    x : width/2,
+    y : height/1.5,
+    width : 240,
+    height : 75,
+    image : loadImage("assets/playbutton.png"),   // Two images, which will switch back and forth when you  
+    image2 : loadImage ("assets/playbutton2.png"),// hover the mouse over them
+    }
   
   abilityButton = {
   x : 365,
@@ -148,14 +159,23 @@ function setup() {
 function draw() {
   //Will Draw according to state
   checkStates();
+  console.log(level)
   
 }
 
 function checkStates(){
   // Will check the state at which we currently are and diplay accordingly
+  if (state === "main_menu"){
+    imageMode(CORNERS);
+    background(backgroundImage);
+    displayMenu();
+    restartPositions();
+
+  }
+
   if (state === "menu") {
     displayGrid();  
-    restartPositions();
+    
   }
 
   if (state === "levels") {
@@ -195,11 +215,16 @@ function displayGrid() {
   }
   //Pictures inside of the grid
   pop();// Stop translating, and get canvas back to normal
-
   displayGridButton();
 }
 
-
+function displayMenu() {
+  // Creates a button during the first screen "menu"
+  
+  // rect(playButton.x, playButton.y, playButton.width, playButton.height);
+  imageMode(CENTER)
+  image(playButton.image, playButton.x, playButton.y, playButton.width, playButton.height);
+}
 
 function checkPowerScreen() {
   //Depending on which power the user chooses, it displays the according screen
@@ -360,7 +385,7 @@ function itHitLevel1() {
   if (distanceAwayFromCenter1  <= collitionDistance1 ||
       distanceAwayFromCenter2 <= collitionDistance1 || 
       distanceAwayFromCenter3  <= collitionDistance1)  {
-    state = "menu";
+    state = "main_menu";
   }
 }
 
@@ -376,7 +401,7 @@ function itHitLevel2() {
   if (distanceAwayFromCenter1  <= collitionDistance1 ||
       distanceAwayFromCenter2 <= collitionDistance1 || 
       distanceAwayFromCenter3  <= collitionDistance1)  {
-    state = "menu";
+    state = "main_menu";
   }
 }
 
@@ -392,7 +417,7 @@ function itHitLevel3() {
   if (distanceAwayFromCenter1  <= collitionDistance1 ||
       distanceAwayFromCenter2 <= collitionDistance1 || 
       distanceAwayFromCenter3  <= collitionDistance1)  {
-    state = "menu";
+    state = "main_menu";
   }
 }
 
@@ -408,7 +433,7 @@ function itHitLevel4() {
   if (distanceAwayFromCenter1  <= collitionDistance1 ||
       distanceAwayFromCenter2 <= collitionDistance1 || 
       distanceAwayFromCenter3  <= collitionDistance1)  {
-    state = "menu";
+    state = "main_menu";
   }
 }
 
@@ -430,7 +455,7 @@ function itHitLevel5() {
       distanceAwayFromCenter4 <= collitionDistance1 ||
       distanceAwayFromCenter5 <= collitionDistance1 ||
       distanceAwayFromCenter6 <= collitionDistance1) {
-    state = "menu";
+    state = "main_menu";
   }
 }
 
@@ -438,6 +463,11 @@ function mousePressed() {
   //Checks the state, and also if the mouse has clicked a button during that state,
   // if so, it changes the state to a differnt, corresponding state
  checkGridLevel();
+ if (state === "main_menu") {
+  if (clickedOnButton(mouseX, mouseY)) {
+    state = "menu";
+  }
+}
   if (state === "menu") {
     if (clickedOnButtonAbility(mouseX, mouseY)) {
       state = "levels";
@@ -495,6 +525,11 @@ function clickedOnButtonAbility(x, y) {
       y >= abilityButton.y &&
       y <= abilityButton.y + abilityButton.height;
   }
+}
+
+function clickedOnButton(x, y) {
+  // Checks if user clickes on the play button, if so changes state to "choseLevel"
+  return x >= playButton.x - playButton.width/2 && x <= playButton.x + playButton.width/2 && y >= playButton.y - playButton.height/2 && y <= playButton.y + playButton.height/2;
 }
 
 
