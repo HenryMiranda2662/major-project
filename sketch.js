@@ -102,6 +102,7 @@ function setup() {
   createCanvas(500, 500);
 
   backgroundImage = loadImage("assets/bckimg.png");
+  titleImage = loadImage("assets/title.png")
   
   state = "main_menu";//Sets the first state as menu
 
@@ -159,7 +160,7 @@ function setup() {
 function draw() {
   //Will Draw according to state
   checkStates();
-  console.log(level)
+  
   
 }
 
@@ -168,6 +169,8 @@ function checkStates(){
   if (state === "main_menu"){
     imageMode(CORNERS);
     background(backgroundImage);
+    imageMode(CENTER);
+    image(titleImage, 250, 100, 438, 86);
     displayMenu();
     restartPositions();
 
