@@ -170,8 +170,9 @@ function checkStates(){
     imageMode(CORNERS);
     background(backgroundImage);
     imageMode(CENTER);
-    image(titleImage, 250, 100, 438, 86);
+    image(titleImage, 250, 100, 440, 86);
     displayMenu();
+    checkCursorMenu();
     restartPositions();
 
   }
@@ -248,6 +249,24 @@ function checkPowerScreen() {
   }
   if (level === "six") {
     level6();
+  }
+}
+
+function checkCursorMenu(){
+  // During "menu", if the mouse hovers over the play button, the mouse will change from an arrow to a pointer
+  // and the play button will light-up (this is due to a change of image with a lighter colour) 
+  if ((mouseX > playButton.x - (playButton.width/2)) &&
+     (mouseX < playButton.x + (playButton.width/2)) && 
+     (mouseY > playButton.y - (playButton.height/2)) && 
+     (mouseY < playButton.y + (playButton.height/2))){
+
+    cursor("pointer");
+    imageMode(CENTER);
+    image(playButton.image2, playButton.x, playButton.y, playButton.width, playButton.height);
+  }
+
+  else {
+    cursor(ARROW); // if the mouse doesn't hover over the button, it remains an arrow
   }
 }
 
