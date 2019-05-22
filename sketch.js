@@ -107,8 +107,8 @@ function setup() {
   state = "main_menu";//Sets the first state as menu
 
   cellSize = 100; // Cell size for the grid I'll use
-  xOffset = 50;
-  yOffset = 130;
+  xOffset = 30;
+  yOffset = 110;
   level = "zero" //Variable which will change which power will be used
 
   playButton = {
@@ -125,8 +125,8 @@ function setup() {
   y : 250,
   width : 120,
   height : 75,
-  // image : loadImage("assets/go.png"),
-  // image2 : loadImage("assets/go2.png")
+  image : loadImage("assets/go.png"),
+  image2 : loadImage("assets/go2.png")
   }
 
   
@@ -160,6 +160,7 @@ function setup() {
 function draw() {
   //Will Draw according to state
   checkStates();
+  console.log(level)
   
   
 }
@@ -209,10 +210,10 @@ function restartPositions() {
 function displayGrid() {
   push();
   translate(xOffset, yOffset);// Changes where the origin of the grid is
-  background(125, 75, 130)
+  background(100, 175, 130)
   fill(255);
-  for (let y = 0; y < gridSize; y++) {//2d array to create an array
-    for (let x = 0; x < gridSize; x++) {
+  for (let y = 0; y < gridSize; y += 1.1) {//2d array to create an array
+    for (let x = 0; x < gridSize; x += 1.1) {
       stroke(0);
       rect(x * cellSize, y * cellSize, cellSize, cellSize);
     }
@@ -220,6 +221,7 @@ function displayGrid() {
   //Pictures inside of the grid
   pop();// Stop translating, and get canvas back to normal
   displayGridButton();
+  checkCursorAbility()
 }
 
 function displayMenu() {
@@ -271,8 +273,8 @@ function checkCursorMenu(){
 }
 
 function displayGridButton(){
-  fill("white")
-  rect(abilityButton.x, abilityButton.y, abilityButton.width, abilityButton.height)
+  imageMode(CORNER)
+  image(abilityButton.image, abilityButton.x, abilityButton.y, abilityButton.width, abilityButton.height)
 }
 
 function level1(){
@@ -393,6 +395,22 @@ function Level5BallDisplay(){
   enemyball5Level5.display();
   enemyball6Level5.display();
   player2.display();
+}
+
+function checkCursorAbility(){
+  //Similar to the "menu", the mouse and button will change if you hover over the button
+  if ((mouseX > abilityButton.x ) && 
+      (mouseX < abilityButton.x + abilityButton.width) && 
+      (mouseY > abilityButton.y ) && 
+      (mouseY < abilityButton.y + abilityButton.height)){
+    cursor("pointer");
+    imageMode(CORNER);
+    image(abilityButton.image2, abilityButton.x, abilityButton.y, abilityButton.width , abilityButton.height)
+  }
+
+  else {
+    cursor(ARROW);
+  } 
 }
 
 function itHitLevel1() {
