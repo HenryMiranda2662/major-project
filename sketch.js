@@ -89,7 +89,8 @@ let enemyball6Level5;
 
 let state;
 let abilityButton;
-let gridSize = 3;
+let gridSizeY = 4;
+let gridSizeX = 3;
 let cellSize;
 let xOffset;
 let yOffset;
@@ -108,7 +109,7 @@ function setup() {
 
   cellSize = 100; // Cell size for the grid I'll use
   xOffset = 30;
-  yOffset = 110;
+  yOffset = 65;
   level = "zero" //Variable which will change which power will be used
 
   playButton = {
@@ -212,8 +213,8 @@ function displayGrid() {
   translate(xOffset, yOffset);// Changes where the origin of the grid is
   background(100, 175, 130)
   fill(255);
-  for (let y = 0; y < gridSize; y += 1.1) {//2d array to create an array
-    for (let x = 0; x < gridSize; x += 1.1) {
+  for (let y = 0; y < gridSizeY; y ++ ) {//2d array to create an array
+    for (let x = 0; x < gridSizeX; x ++ ) {
       stroke(0);
       rect(x * cellSize, y * cellSize, cellSize, cellSize);
     }
@@ -251,6 +252,24 @@ function checkPowerScreen() {
   }
   if (level === "six") {
     level6();
+  }
+  if (level === "seven") {
+    level7();
+  }
+  if (level === "eight") {
+    level8();
+  }
+  if (level === "nine") {
+    level9();
+  }
+  if (level === "ten") {
+    level10();
+  }
+  if (level === "eleven") {
+    level11();
+  }
+  if (level === "twelve") {
+    level12();
   }
 }
 
@@ -318,6 +337,50 @@ function level6(){
   Level4BallDisplay();
   itHitLevel4();
 }
+
+function level7(){
+  Level4BallMovement();
+  background(190, 192, 190);
+  Level4BallDisplay();
+  itHitLevel4();
+}
+
+function level8(){
+  Level4BallMovement();
+  background(190, 192, 190);
+  Level4BallDisplay();
+  itHitLevel4();
+}
+
+function level9(){
+  Level4BallMovement();
+  background(190, 192, 190);
+  Level4BallDisplay();
+  itHitLevel4();
+}
+
+function level10(){
+  Level4BallMovement();
+  background(190, 192, 190);
+  Level4BallDisplay();
+  itHitLevel4();
+}
+
+function level11(){
+  Level4BallMovement();
+  background(190, 192, 190);
+  Level4BallDisplay();
+  itHitLevel4();
+}
+
+function level12(){
+  Level4BallMovement();
+  background(190, 192, 190);
+  Level4BallDisplay();
+  itHitLevel4();
+}
+
+
 
 function level1BallMovement() {
   enemyball1Level1.move();
@@ -516,8 +579,8 @@ function mousePressed() {
 }
 
 function checkGridLevel(){
-  let xcoord = floor((mouseX - xOffset) / cellSize);// makes coordinates on the grid
-  let ycoord = floor((mouseY - yOffset) / cellSize);
+  let xcoord = floor((mouseX - xOffset)  / cellSize);// makes coordinates on the grid
+  let ycoord = floor((mouseY - yOffset)  / cellSize);
   if (state === "menu"){
     if (xcoord === 0 && ycoord === 0) {// Checks on which cell the user clicks, and changes the variable
       level = "one";
@@ -544,15 +607,27 @@ function checkGridLevel(){
     } 
 
     if (xcoord === 0 && ycoord === 2) {
-      level = "one";
+      level = "seven";
     } 
 
     if (xcoord === 1 && ycoord === 2) {
-      level = "one";
+      level = "eight";
     } 
 
     if (xcoord === 2 && ycoord === 2) {
-      level = "one";
+      level = "nine";
+    } 
+
+    if (xcoord === 0 && ycoord === 3) {
+      level = "ten";
+    } 
+
+    if (xcoord === 1 && ycoord === 3) {
+      level = "eleven";
+    } 
+
+    if (xcoord === 2 && ycoord === 3) {
+      level = "twelve";
     } 
   }
 }
@@ -569,7 +644,10 @@ function clickedOnButtonAbility(x, y) {
 
 function clickedOnButton(x, y) {
   // Checks if user clickes on the play button, if so changes state to "choseLevel"
-  return x >= playButton.x - playButton.width/2 && x <= playButton.x + playButton.width/2 && y >= playButton.y - playButton.height/2 && y <= playButton.y + playButton.height/2;
+  return x >= playButton.x - playButton.width/2 && 
+  x <= playButton.x + playButton.width/2 && 
+  y >= playButton.y - playButton.height/2 && 
+  y <= playButton.y + playButton.height/2;
 }
 
 
