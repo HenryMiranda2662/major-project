@@ -95,8 +95,9 @@ let cellSize;
 let xOffset;
 let yOffset;
 let level;
-let cellPictureWidth;
-let cellPictureHeight;
+let cellPictureWidth = 100;
+let cellPictureHeight = 100;
+
 
 
 function setup() {
@@ -105,12 +106,25 @@ function setup() {
   backgroundImage = loadImage("assets/bckimg.png");
   titleImage = loadImage("assets/title.png")
   
+  level1 = loadImage("assets/1.png")
+  level2 = loadImage("assets/2.png")
+  level3 = loadImage("assets/3.png")
+  level4 = loadImage("assets/4.png")
+  level5 = loadImage("assets/5.png")
+  level6 = loadImage("assets/6.png")
+  level7 = loadImage("assets/7.png")
+  level8 = loadImage("assets/8.png")
+  level9 = loadImage("assets/9.png")
+  level10 = loadImage("assets/10.png")
+  level11 = loadImage("assets/11.png")
+  level12 = loadImage("assets/12.png")
+  
   state = "main_menu";//Sets the first state as menu
 
   cellSize = 100; // Cell size for the grid I'll use
   xOffset = 30;
   yOffset = 65;
-  level = "zero" //Variable which will change which power will be used
+  level = "one" //Variable which will change which power will be used
 
   playButton = {
     x : width/2,
@@ -161,9 +175,6 @@ function setup() {
 function draw() {
   //Will Draw according to state
   checkStates();
-  console.log(level)
-  
-  
 }
 
 function checkStates(){
@@ -174,7 +185,7 @@ function checkStates(){
     imageMode(CENTER);
     image(titleImage, 250, 100, 440, 86);
     displayMenu();
-    checkCursorMenu();
+    checkCursor();
     restartPositions();
 
   }
@@ -220,9 +231,22 @@ function displayGrid() {
     }
   }
   //Pictures inside of the grid
+  image(level1, 0, 0, cellPictureWidth, cellPictureHeight);
+  image(level2, 0, 1*cellSize, cellPictureWidth, cellPictureHeight);
+  image(level3, 0*cellSize, 2*cellSize, cellPictureWidth, cellPictureHeight);
+  image(level4, 0*cellSize , 3*cellSize , cellPictureWidth , cellPictureHeight );
+  image(level5, 1*cellSize, 0*cellSize, cellPictureWidth, cellPictureHeight);
+  image(level6, 1*cellSize, 1*cellSize, cellPictureWidth, cellPictureHeight);
+  image(level7, 1*cellSize, 2*cellSize, cellPictureWidth, cellPictureHeight);
+  image(level8, 1*cellSize, 3*cellSize, cellPictureWidth, cellPictureHeight);
+  image(level9, 2*cellSize, 0*cellSize, cellPictureWidth, cellPictureHeight);
+  image(level10, 2*cellSize, 1*cellSize, cellPictureWidth, cellPictureHeight);
+  image(level11, 2*cellSize, 2*cellSize, cellPictureWidth, cellPictureHeight);
+  image(level12, 2*cellSize, 3*cellSize, cellPictureWidth, cellPictureHeight);
+  
   pop();// Stop translating, and get canvas back to normal
   displayGridButton();
-  checkCursorAbility()
+  checkCursor()
 }
 
 function displayMenu() {
@@ -237,57 +261,51 @@ function checkPowerScreen() {
   //Depending on which power the user chooses, it displays the according screen
   if (level === "one" ) {
     level1();
+    noCursor();
   }
   if (level === "two" ) {
     level2();
+    noCursor();
   }
   if (level === "three" ) {
     level3();
+    noCursor();
   }
   if (level === "four") {
     level4();
+    noCursor();
   }
   if (level === "five") {
     level5();
+    noCursor();
   }
   if (level === "six") {
     level6();
+    noCursor();
   }
   if (level === "seven") {
     level7();
+    noCursor();
   }
   if (level === "eight") {
     level8();
+    noCursor();
   }
   if (level === "nine") {
     level9();
+    noCursor();
   }
   if (level === "ten") {
     level10();
+    noCursor();
   }
   if (level === "eleven") {
     level11();
+    noCursor();
   }
   if (level === "twelve") {
     level12();
-  }
-}
-
-function checkCursorMenu(){
-  // During "menu", if the mouse hovers over the play button, the mouse will change from an arrow to a pointer
-  // and the play button will light-up (this is due to a change of image with a lighter colour) 
-  if ((mouseX > playButton.x - (playButton.width/2)) &&
-     (mouseX < playButton.x + (playButton.width/2)) && 
-     (mouseY > playButton.y - (playButton.height/2)) && 
-     (mouseY < playButton.y + (playButton.height/2))){
-
-    cursor("pointer");
-    imageMode(CENTER);
-    image(playButton.image2, playButton.x, playButton.y, playButton.width, playButton.height);
-  }
-
-  else {
-    cursor(ARROW); // if the mouse doesn't hover over the button, it remains an arrow
+    noCursor();
   }
 }
 
@@ -460,20 +478,48 @@ function Level5BallDisplay(){
   player2.display();
 }
 
-function checkCursorAbility(){
+function checkCursor(){
   //Similar to the "menu", the mouse and button will change if you hover over the button
-  if ((mouseX > abilityButton.x ) && 
-      (mouseX < abilityButton.x + abilityButton.width) && 
-      (mouseY > abilityButton.y ) && 
-      (mouseY < abilityButton.y + abilityButton.height)){
-    cursor("pointer");
-    imageMode(CORNER);
-    image(abilityButton.image2, abilityButton.x, abilityButton.y, abilityButton.width , abilityButton.height)
+  if (state === "main_menu"){
+    // During "menu", if the mouse hovers over the play button, the mouse will change from an arrow to a pointer
+    // and the play button will light-up (this is due to a change of image with a lighter colour) 
+    if ((mouseX > playButton.x - (playButton.width/2)) &&
+       (mouseX < playButton.x + (playButton.width/2)) && 
+       (mouseY > playButton.y - (playButton.height/2)) && 
+       (mouseY < playButton.y + (playButton.height/2))){
+  
+      cursor("pointer");
+      imageMode(CENTER);
+      image(playButton.image2, playButton.x, playButton.y, playButton.width, playButton.height);
+    }
+  
+    else {
+      cursor(ARROW); // if the mouse doesn't hover over the button, it remains an arrow
+    }
   }
+  
+  if (state === "menu"){
+    if ((mouseX > abilityButton.x ) && 
+        (mouseX < abilityButton.x + abilityButton.width) && 
+        (mouseY > abilityButton.y ) && 
+        (mouseY < abilityButton.y + abilityButton.height)){
+      cursor("pointer");
+      imageMode(CORNER);
+      image(abilityButton.image2, abilityButton.x, abilityButton.y, abilityButton.width , abilityButton.height)
+    }
 
-  else {
-    cursor(ARROW);
-  } 
+    if ((mouseX > 30 ) && 
+    (mouseX < 330) && 
+    (mouseY > 65 ) && 
+    (mouseY < 465)){
+      cursor ("pointer");
+
+    }
+
+    else {
+      cursor(ARROW);
+    } 
+  }
 }
 
 function itHitLevel1() {
