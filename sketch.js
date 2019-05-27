@@ -95,8 +95,8 @@ let cellSize;
 let xOffset;
 let yOffset;
 let level;
-let cellPictureWidth = 100;
-let cellPictureHeight = 100;
+let cellPictureWidth = 90;
+let cellPictureHeight = 90;
 
 
 
@@ -106,18 +106,18 @@ function setup() {
   backgroundImage = loadImage("assets/bckimg.png");
   titleImage = loadImage("assets/title.png")
   
-  level1 = loadImage("assets/1.png")
-  level2 = loadImage("assets/2.png")
-  level3 = loadImage("assets/3.png")
-  level4 = loadImage("assets/4.png")
-  level5 = loadImage("assets/5.png")
-  level6 = loadImage("assets/6.png")
-  level7 = loadImage("assets/7.png")
-  level8 = loadImage("assets/8.png")
-  level9 = loadImage("assets/9.png")
-  level10 = loadImage("assets/10.png")
-  level11 = loadImage("assets/11.png")
-  level12 = loadImage("assets/12.png")
+  level1Picture = loadImage("assets/1.png")
+  level2Picture = loadImage("assets/2.png")
+  level3Picture = loadImage("assets/3.png")
+  level4Picture = loadImage("assets/4.png")
+  level5Picture = loadImage("assets/5.png")
+  level6Picture = loadImage("assets/6.png")
+  level7Picture = loadImage("assets/7.png")
+  level8Picture = loadImage("assets/8.png")
+  level9Picture = loadImage("assets/9.png")
+  level10Picture = loadImage("assets/10.png")
+  level11Picture = loadImage("assets/11.png")
+  level12Picture = loadImage("assets/12.png")
   
   state = "main_menu";//Sets the first state as menu
 
@@ -128,20 +128,29 @@ function setup() {
 
   playButton = {
     x : width/2,
-    y : height/1.5,
+    y : height/1.8,
     width : 240,
     height : 75,
     image : loadImage("assets/playbutton.png"),   // Two images, which will switch back and forth when you  
     image2 : loadImage ("assets/playbutton2.png"),// hover the mouse over them
-    }
+  }
+
+  instructionButton = {
+    x : width/2,
+    y : (height/1.8) + 100,
+    width : 240,
+    height : 75,
+    image : loadImage("assets/insbutton.png"),   // Two images, which will switch back and forth when you  
+    image2 : loadImage ("assets/insbutton2.png"),// hover the mouse over them
+  }
   
   abilityButton = {
-  x : 365,
-  y : 250,
-  width : 120,
-  height : 75,
-  image : loadImage("assets/go.png"),
-  image2 : loadImage("assets/go2.png")
+    x : 365,
+    y : 250,
+    width : 120,
+    height : 75,
+    image : loadImage("assets/go.png"),
+    image2 : loadImage("assets/go2.png")
   }
 
   
@@ -190,6 +199,12 @@ function checkStates(){
 
   }
 
+  if (state === "instructions"){
+    background("blue");
+    rect(100, 100, 100, 100);
+
+  }
+
   if (state === "menu") {
     displayGrid();  
     
@@ -231,18 +246,19 @@ function displayGrid() {
     }
   }
   //Pictures inside of the grid
-  image(level1, 0, 0, cellPictureWidth, cellPictureHeight);
-  image(level2, 0, 1*cellSize, cellPictureWidth, cellPictureHeight);
-  image(level3, 0*cellSize, 2*cellSize, cellPictureWidth, cellPictureHeight);
-  image(level4, 0*cellSize , 3*cellSize , cellPictureWidth , cellPictureHeight );
-  image(level5, 1*cellSize, 0*cellSize, cellPictureWidth, cellPictureHeight);
-  image(level6, 1*cellSize, 1*cellSize, cellPictureWidth, cellPictureHeight);
-  image(level7, 1*cellSize, 2*cellSize, cellPictureWidth, cellPictureHeight);
-  image(level8, 1*cellSize, 3*cellSize, cellPictureWidth, cellPictureHeight);
-  image(level9, 2*cellSize, 0*cellSize, cellPictureWidth, cellPictureHeight);
-  image(level10, 2*cellSize, 1*cellSize, cellPictureWidth, cellPictureHeight);
-  image(level11, 2*cellSize, 2*cellSize, cellPictureWidth, cellPictureHeight);
-  image(level12, 2*cellSize, 3*cellSize, cellPictureWidth, cellPictureHeight);
+  //imageMode(CENTER)
+  image(level1Picture, 5, 5, cellPictureWidth, cellPictureHeight);
+  image(level2Picture, 1*cellSize + 5, 0*cellSize + 5, cellPictureWidth, cellPictureHeight);
+  image(level3Picture, 2*cellSize + 5, 0*cellSize + 5, cellPictureWidth, cellPictureHeight);
+  image(level4Picture, 0*cellSize + 5, 1*cellSize + 5 , cellPictureWidth , cellPictureHeight );
+  image(level5Picture, 1*cellSize + 5, 1*cellSize + 5, cellPictureWidth, cellPictureHeight);
+  image(level6Picture, 2*cellSize + 5, 1*cellSize + 5, cellPictureWidth, cellPictureHeight);
+  image(level7Picture, 0*cellSize + 5, 2*cellSize + 5, cellPictureWidth, cellPictureHeight);
+  image(level8Picture, 1*cellSize + 5, 2*cellSize + 5, cellPictureWidth, cellPictureHeight);
+  image(level9Picture, 2*cellSize + 5, 2*cellSize + 5, cellPictureWidth, cellPictureHeight);
+  image(level10Picture, 0*cellSize + 5, 3*cellSize + 5, cellPictureWidth, cellPictureHeight);
+  image(level11Picture, 1*cellSize + 5, 3*cellSize + 5, cellPictureWidth, cellPictureHeight);
+  image(level12Picture, 2*cellSize + 5, 3*cellSize + 5, cellPictureWidth, cellPictureHeight);
   
   pop();// Stop translating, and get canvas back to normal
   displayGridButton();
@@ -255,6 +271,9 @@ function displayMenu() {
   // rect(playButton.x, playButton.y, playButton.width, playButton.height);
   imageMode(CENTER)
   image(playButton.image, playButton.x, playButton.y, playButton.width, playButton.height);
+
+  imageMode(CENTER)
+  image(instructionButton.image, instructionButton.x, instructionButton.y, instructionButton.width, instructionButton.height);
 }
 
 function checkPowerScreen() {
@@ -492,6 +511,16 @@ function checkCursor(){
       imageMode(CENTER);
       image(playButton.image2, playButton.x, playButton.y, playButton.width, playButton.height);
     }
+
+    else if ((mouseX > instructionButton.x - (instructionButton.width/2)) &&
+       (mouseX < instructionButton.x + (instructionButton.width/2)) && 
+       (mouseY > instructionButton.y - (instructionButton.height/2)) && 
+       (mouseY < instructionButton.y + (instructionButton.height/2))){
+  
+      cursor("pointer");
+      imageMode(CENTER);
+      image(instructionButton.image2, instructionButton.x, instructionButton.y, instructionButton.width, instructionButton.height);
+    }
   
     else {
       cursor(ARROW); // if the mouse doesn't hover over the button, it remains an arrow
@@ -613,10 +642,14 @@ function mousePressed() {
   // if so, it changes the state to a differnt, corresponding state
  checkGridLevel();
  if (state === "main_menu") {
-  if (clickedOnButton(mouseX, mouseY)) {
-    state = "menu";
+    if (clickedOnButton(mouseX, mouseY)) {
+      state = "menu";
+    }
+    if (clickedOnButtonInstructions(mouseX, mouseY)) {
+      state = "instructions";
+    }
   }
-}
+
   if (state === "menu") {
     if (clickedOnButtonAbility(mouseX, mouseY)) {
       state = "levels";
@@ -694,6 +727,14 @@ function clickedOnButton(x, y) {
   x <= playButton.x + playButton.width/2 && 
   y >= playButton.y - playButton.height/2 && 
   y <= playButton.y + playButton.height/2;
+}
+
+function clickedOnButtonInstructions(x, y) {
+  // Checks if user clickes on the play button, if so changes state to "choseLevel"
+  return x >= instructionButton.x - instructionButton.width/2 && 
+  x <= instructionButton.x + instructionButton.width/2 && 
+  y >= instructionButton.y - instructionButton.height/2 && 
+  y <= instructionButton.y + instructionButton.height/2;
 }
 
 
