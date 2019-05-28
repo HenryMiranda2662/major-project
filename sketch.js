@@ -88,7 +88,7 @@ let enemyball5Level5;
 let enemyball6Level5;
 
 let state;
-let abilityButton;
+let gridButton;
 let gridSizeY = 4;
 let gridSizeX = 3;
 let cellSize;
@@ -143,8 +143,17 @@ function setup() {
     image : loadImage("assets/insbutton.png"),   // Two images, which will switch back and forth when you  
     image2 : loadImage ("assets/insbutton2.png"),// hover the mouse over them
   }
+
+  levelButton = {
+    x: 175,   
+    y: 382,
+    width: 150,
+    height: 75,
+    image: loadImage("assets/insb.png"),
+    image2: loadImage("assets/insb2.png"),
+  }
   
-  abilityButton = {
+  gridButton = {
     x : 365,
     y : 250,
     width : 120,
@@ -200,8 +209,24 @@ function checkStates(){
   }
 
   if (state === "instructions"){
-    background("blue");
-    rect(100, 100, 100, 100);
+    let a = "For levels 1 to 3,  you  can use the right and left" 
+    let b = "arrows to move. For level 4 onwards, you can "
+    let c = "also use the up and down arrows. Collect all " 
+    let d = "three stars to pass to the next level "
+    background(197, 160, 229);
+    textAlign(CENTER, CENTER);
+    textSize(23);
+    fill("black");
+
+    text (a, 250, 100);
+    text (b, 250, 170);
+    text (c, 250, 240);
+    text (d, 250, 310);
+
+    rectMode(CORNER)
+    image(levelButton.image, levelButton.x, levelButton.y, levelButton.width, levelButton.height);
+
+    checkCursor();
 
   }
 
@@ -330,7 +355,7 @@ function checkPowerScreen() {
 
 function displayGridButton(){
   imageMode(CORNER)
-  image(abilityButton.image, abilityButton.x, abilityButton.y, abilityButton.width, abilityButton.height)
+  image(gridButton.image, gridButton.x, gridButton.y, gridButton.width, gridButton.height)
 }
 
 function level1(){
@@ -528,13 +553,13 @@ function checkCursor(){
   }
   
   if (state === "menu"){
-    if ((mouseX > abilityButton.x ) && 
-        (mouseX < abilityButton.x + abilityButton.width) && 
-        (mouseY > abilityButton.y ) && 
-        (mouseY < abilityButton.y + abilityButton.height)){
+    if ((mouseX > gridButton.x ) && 
+        (mouseX < gridButton.x + gridButton.width) && 
+        (mouseY > gridButton.y ) && 
+        (mouseY < gridButton.y + gridButton.height)){
       cursor("pointer");
       imageMode(CORNER);
-      image(abilityButton.image2, abilityButton.x, abilityButton.y, abilityButton.width , abilityButton.height)
+      image(gridButton.image2, gridButton.x, gridButton.y, gridButton.width , gridButton.height)
     }
 
     if ((mouseX > 30 ) && 
@@ -549,6 +574,23 @@ function checkCursor(){
       cursor(ARROW);
     } 
   }
+  if (state === "instructions"){
+
+    if ((mouseX > levelButton.x ) && 
+    (mouseX < levelButton.x + levelButton.width) && 
+    (mouseY > levelButton.y ) && 
+    (mouseY < levelButton.y + levelButton.height)){
+      cursor("pointer");
+      imageMode(CORNER);
+      image(levelButton.image2, levelButton.x, levelButton.y, levelButton.width , levelButton.height)
+    }
+
+    else {
+      cursor(ARROW);
+    } 
+
+  }
+
 }
 
 function itHitLevel1() {
@@ -641,12 +683,19 @@ function mousePressed() {
   //Checks the state, and also if the mouse has clicked a button during that state,
   // if so, it changes the state to a differnt, corresponding state
  checkGridLevel();
+
  if (state === "main_menu") {
     if (clickedOnButton(mouseX, mouseY)) {
       state = "menu";
     }
     if (clickedOnButtonInstructions(mouseX, mouseY)) {
       state = "instructions";
+    }
+  }
+
+  if (state === "instructions"){
+    if (clickedOnButtonLevel(mouseX, mouseY)) {
+      state = "menu";
     }
   }
 
@@ -714,10 +763,20 @@ function checkGridLevel(){
 function clickedOnButtonAbility(x, y) {
   // Checks if user clicks on button then, changes state
   if (state === "menu"){
-    return x >= abilityButton.x &&
-     x <= abilityButton.x + abilityButton.width &&
-      y >= abilityButton.y &&
-      y <= abilityButton.y + abilityButton.height;
+    return x >= gridButton.x &&
+     x <= gridButton.x + gridButton.width &&
+      y >= gridButton.y &&
+      y <= gridButton.y + gridButton.height;
+  }
+}
+
+function clickedOnButtonLevel(x, y) {
+  // Checks if user clicks on button then, changes state
+  if (state === "instructions"){
+    return x >= levelButton.x &&
+     x <= levelButton.x + levelButton.width &&
+      y >= levelButton.y &&
+      y <= levelButton.y + levelButton.height;
   }
 }
 
@@ -731,10 +790,12 @@ function clickedOnButton(x, y) {
 
 function clickedOnButtonInstructions(x, y) {
   // Checks if user clickes on the play button, if so changes state to "choseLevel"
+  if (state === "main_menu"){
   return x >= instructionButton.x - instructionButton.width/2 && 
   x <= instructionButton.x + instructionButton.width/2 && 
   y >= instructionButton.y - instructionButton.height/2 && 
   y <= instructionButton.y + instructionButton.height/2;
+  }
 }
 
 
