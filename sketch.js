@@ -145,8 +145,8 @@ function setup() {
   }
 
   levelButton = {
-    x: 175,   
-    y: 382,
+    x: 250,   
+    y: 250,
     width: 150,
     height: 75,
     image: loadImage("assets/insb.png"),
@@ -219,11 +219,11 @@ function checkStates(){
     fill("black");
 
     text (a, 250, 100);
-    text (b, 250, 170);
-    text (c, 250, 240);
-    text (d, 250, 310);
+    text (b, 250, 130);
+    text (c, 250, 160);
+    text (d, 250, 190);
 
-    rectMode(CORNER)
+    imageMode(CENTER)
     image(levelButton.image, levelButton.x, levelButton.y, levelButton.width, levelButton.height);
 
     checkCursor();
@@ -576,12 +576,12 @@ function checkCursor(){
   }
   if (state === "instructions"){
 
-    if ((mouseX > levelButton.x ) && 
-    (mouseX < levelButton.x + levelButton.width) && 
-    (mouseY > levelButton.y ) && 
-    (mouseY < levelButton.y + levelButton.height)){
+    if ((mouseX > levelButton.x - levelButton.width/2 ) && 
+    (mouseX < levelButton.x + levelButton.width/2) && 
+    (mouseY > levelButton.y - levelButton.height/2 ) && 
+    (mouseY < levelButton.y + levelButton.height/2)){
       cursor("pointer");
-      imageMode(CORNER);
+      imageMode(CENTER);
       image(levelButton.image2, levelButton.x, levelButton.y, levelButton.width , levelButton.height)
     }
 
@@ -773,10 +773,10 @@ function clickedOnButtonAbility(x, y) {
 function clickedOnButtonLevel(x, y) {
   // Checks if user clicks on button then, changes state
   if (state === "instructions"){
-    return x >= levelButton.x &&
-     x <= levelButton.x + levelButton.width &&
-      y >= levelButton.y &&
-      y <= levelButton.y + levelButton.height;
+    return x >= levelButton.x - levelButton.width/2 &&
+     x <= levelButton.x + levelButton.width/2 &&
+      y >= levelButton.y - levelButton.height/2 &&
+      y <= levelButton.y + levelButton.height/2 ;
   }
 }
 
