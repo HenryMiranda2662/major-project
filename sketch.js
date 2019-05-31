@@ -272,7 +272,7 @@ function displayGrid() {
   }
   //Pictures inside of the grid
   //imageMode(CENTER)
-  image(level1Picture, 5, 5, cellPictureWidth, cellPictureHeight);
+  image(level1Picture, 5, 5, cellPictureWidth , cellPictureHeight);
   image(level2Picture, 1*cellSize + 5, 0*cellSize + 5, cellPictureWidth, cellPictureHeight);
   image(level3Picture, 2*cellSize + 5, 0*cellSize + 5, cellPictureWidth, cellPictureHeight);
   image(level4Picture, 0*cellSize + 5, 1*cellSize + 5 , cellPictureWidth , cellPictureHeight );
