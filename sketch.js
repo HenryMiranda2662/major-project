@@ -66,6 +66,35 @@ class PlayerBall {
   }
 }
 
+class PointBall {
+  constructor(x, y, dxSomeSpeed, dySomeSpeed) {
+    this.x = x;
+    this.y = y;
+    this.color = [66, 134, 244];
+    this.radius = 10;
+    this.dx = dxSomeSpeed;
+    this.dy = dySomeSpeed;
+  }
+  display() {
+    fill(this.color);
+    noStroke();
+    ellipse(this.x, this.y, this.radius * 2);
+  }
+  move() {
+    this.x += this.dx;
+    this.y += this.dy;
+
+    if (this.x + this.radius >= width || this.x - this.radius <= 0) {
+      this.dx = -1 * this.dx;
+    }
+
+    if (this.y + this.radius >= height || this.y - this.radius <= 0) {
+      this.dy = -1 * this.dy;
+    }
+
+  }
+}
+
 let playerBall;
 let playerBall_2;
 let enemyball1Level1;
@@ -120,11 +149,14 @@ function setup() {
   level12Picture = loadImage("assets/12.png")
   
   state = "main_menu";//Sets the first state as menu
+  
+
 
   cellSize = 100; // Cell size for the grid I'll use
   xOffset = 30;
   yOffset = 65;
   level = "one" //Variable which will change which power will be used
+  
 
   playButton = {
     x : width/2,
@@ -229,6 +261,64 @@ function setup() {
   enemyball8Level11 = new EnemyBall(440, 270, 0, 0);
   enemyball9Level11 = new EnemyBall(340, 395, 0, 0);
   enemyball10Level11 = new EnemyBall(440, 395, 0, 0);
+
+  enemyball1Level12 = new EnemyBall(25, 270, 3, 0);
+  enemyball2Level12 = new EnemyBall(75, 270, -3, 0);
+  enemyball3Level12 = new EnemyBall(125, 270, 3, 0);
+  enemyball4Level12 = new EnemyBall(175, 270, -3, 0);
+  enemyball5Level12 = new EnemyBall(275, 270, -3, 0);
+  enemyball6Level12 = new EnemyBall(325, 270, 3, 0);
+  enemyball7Level12 = new EnemyBall(375, 270, -3, 0);
+  enemyball8Level12 = new EnemyBall(425, 270, 3, 0);
+  enemyball9Level12 = new EnemyBall(width/2, height/2, 0, 9);
+
+  point1Level1 = new PointBall (width/1.5, height/1.5, 0, 0);
+  point2Level1 = new PointBall (150, height/1.5, 0, 0);
+  point3Level1 = new PointBall (450, height/1.5, 0, 0);
+
+  point1Level2 = new PointBall (300, height/1.5, 0, 0);
+  point2Level2 = new PointBall (150, height/1.5, 0, 0);
+  point3Level2 = new PointBall (450, height/1.5, 0, 0);
+
+  point1Level3 = new PointBall (200, height/1.5, 0, 0);
+  point2Level3 = new PointBall (350, height/1.5, 0, 0);
+  point3Level3 = new PointBall (470, height/1.5, 0, 0);
+
+  point1Level4 = new PointBall (width/1.5, height/1.5, 0, 0);
+  point2Level4 = new PointBall (150, height/1.5, 0, 0);
+  point3Level4 = new PointBall (450, height/1.5, 0, 0);
+
+  point1Level5 = new PointBall (50, 30, 0, 0);
+  point2Level5 = new PointBall (50, 460, 0, 0);
+  point3Level5 = new PointBall (460, 250, 0, 0);
+
+  point1Level6 = new PointBall (30, 30, 0, 0);
+  point2Level6 = new PointBall (470, 470, 0, 0);
+  point3Level6 = new PointBall (250, 250, 0, 0);
+
+  point1Level7 = new PointBall (470, 100, 0, 0);
+  point2Level7 = new PointBall (30, 100, 0, 0);
+  point3Level7 = new PointBall (470, height/1.5, 0, 0);
+
+  point1Level8 = new PointBall (150, 470, 0, 0);
+  point2Level8 = new PointBall (350, 470, 0, 0);
+  point3Level8 = new PointBall (250, 250, 0, 5);
+
+  point1Level9 = new PointBall (width/1.5, height/1.5, 0, 0);
+  point2Level9 = new PointBall (150, height/1.5, 0, 0);
+  point3Level9 = new PointBall (450, height/1.5, 0, 0);
+
+  point1Level10 = new PointBall (width/1.5, height/1.5, 0, 0);
+  point2Level10 = new PointBall (150, height/1.5, 0, 0);
+  point3Level10 = new PointBall (450, height/1.5, 0, 0);
+
+  point1Level11 = new PointBall (width/1.5, height/1.5, 0, 0);
+  point2Level11 = new PointBall (150, height/1.5, 0, 0);
+  point3Level11 = new PointBall (450, height/1.5, 0, 0);
+
+  point1Level12 = new PointBall (width/1.5, height/1.5, 0, 0);
+  point2Level12 = new PointBall (150, height/1.5, 0, 0);
+  point3Level12 = new PointBall (450, height/1.5, 0, 0);
 }
   
 function draw() {
@@ -357,7 +447,7 @@ function checkPowerScreen() {
     noCursor();
   }
   if (level === "four") {
-    level4();
+    level1();
     noCursor();
   }
   if (level === "five") {
@@ -478,37 +568,51 @@ function level11(){
 }
 
 function level12(){
-  Level6BallMovement();
+  Level12BallMovement();
   background(190, 192, 190);
-  Level6BallDisplay();
-  itHitLevel6();
+  Level12BallDisplay();
+  itHitLevel12();
 }
 
 
 
 function level1BallMovement() {
+  point1Level1.move();
+  point2Level1.move();
+  point3Level1.move();
   enemyball1Level1.move();
   enemyball2Level1.move();
   enemyball3Level1.move(); 
   player1.move(); 
+  
 }
 
 function level1BallDisplay(){
+  point1Level1.display();
+  point2Level1.display();
+  point3Level1.display();
   enemyball1Level1.display();
   enemyball2Level1.display();
   enemyball3Level1.display();
   player1.display();
+ 
 }
 
-
 function level2BallMovement() {
+  point1Level2.move();
+  point2Level2.move();
+  point3Level2.move();
   enemyball1Level2.move();
   enemyball2Level2.move();
   enemyball3Level2.move();
   player1.move();
+  
 }
 
 function level2BallDisplay(){
+  point1Level2.display();
+  point2Level2.display();
+  point3Level2.display();
   enemyball1Level2.display();
   enemyball2Level2.display();
   enemyball3Level2.display();
@@ -516,6 +620,9 @@ function level2BallDisplay(){
 }
 
 function Level3BallMovement(){
+  point1Level3.move();
+  point2Level3.move();
+  point3Level3.move();
   enemyball1Level3.move();
   enemyball2Level3.move();
   enemyball3Level3.move();
@@ -525,6 +632,9 @@ function Level3BallMovement(){
 }
 
 function Level3BallDisplay(){
+  point1Level3.display();
+  point2Level3.display();
+  point3Level3.display();
   player1.display();
   enemyball1Level3.display();
   enemyball2Level3.display();
@@ -534,6 +644,9 @@ function Level3BallDisplay(){
 }
 
 function level5BallMovement() {
+  point1Level5.move();
+  point2Level5.move();
+  point3Level5.move();
   enemyball1Level5.move();
   enemyball2Level5.move();
   enemyball3Level5.move();
@@ -541,6 +654,9 @@ function level5BallMovement() {
 }
 
 function level5BallDisplay(){
+  point1Level5.display();
+  point2Level5.display();
+  point3Level5.display();
   enemyball1Level5.display();
   enemyball2Level5.display();
   enemyball3Level5.display();
@@ -548,6 +664,9 @@ function level5BallDisplay(){
 }
 
 function Level6BallMovement() {
+  point1Level6.move();
+  point2Level6.move();
+  point3Level6.move();
   enemyball1Level6.move();
   enemyball2Level6.move();
   enemyball3Level6.move();
@@ -555,6 +674,9 @@ function Level6BallMovement() {
 }
 
 function Level6BallDisplay(){
+  point1Level6.display();
+  point2Level6.display();
+  point3Level6.display();
   enemyball1Level6.display();
   enemyball2Level6.display();
   enemyball3Level6.display();
@@ -563,6 +685,9 @@ function Level6BallDisplay(){
 }
 
 function Level7BallMovement() {
+  point1Level7.move();
+  point2Level7.move();
+  point3Level7.move();
   enemyball1Level7.move();
   enemyball2Level7.move();
   enemyball3Level7.move();
@@ -573,6 +698,9 @@ function Level7BallMovement() {
 }
 
 function Level7BallDisplay(){
+  point1Level7.display();
+  point2Level7.display();
+  point3Level7.display();
   enemyball1Level7.display();
   enemyball2Level7.display();
   enemyball3Level7.display();
@@ -583,6 +711,9 @@ function Level7BallDisplay(){
 }
 
 function Level8BallMovement(){
+  point1Level8.move();
+  point2Level8.move();
+  point3Level8.move();
   enemyball1Level8.move();
   enemyball2Level8.move();
   enemyball3Level8.move();
@@ -590,6 +721,9 @@ function Level8BallMovement(){
 }
 
 function Level8BallDisplay(){
+  point1Level8.display();
+  point2Level8.display();
+  point3Level8.display();
   enemyball1Level8.display();
   enemyball2Level8.display();
   enemyball3Level8.display();
@@ -597,6 +731,9 @@ function Level8BallDisplay(){
 }
 
 function Level9BallMovement(){
+  point1Level9.move();
+  point2Level9.move();
+  point3Level9.move();
   enemyball1Level9.move();
   enemyball2Level9.move();
   enemyball3Level9.move();
@@ -614,6 +751,9 @@ function Level9BallMovement(){
 }
 
 function Level9BallDisplay(){
+  point1Level9.display();
+  point2Level9.display();
+  point3Level9.display();
   enemyball1Level9.display();
   enemyball2Level9.display();
   enemyball3Level9.display();
@@ -631,6 +771,9 @@ function Level9BallDisplay(){
 }
 
 function Level10BallMovement(){
+  point1Level10.move();
+  point2Level10.move();
+  point3Level10.move();
   enemyball1Level10.move();
   enemyball2Level10.move();
   enemyball3Level10.move();
@@ -640,6 +783,9 @@ function Level10BallMovement(){
 }
 
 function Level10BallDisplay(){  
+  point1Level10.display();
+  point2Level10.display();
+  point3Level10.display();
   enemyball1Level10.display();
   enemyball2Level10.display();
   enemyball3Level10.display();
@@ -649,6 +795,9 @@ function Level10BallDisplay(){
 }
 
 function Level11BallMovement(){
+  point1Level11.move();
+  point2Level11.move();
+  point3Level11.move();
   enemyball1Level11.move();
   enemyball2Level11.move();
   enemyball3Level11.move();
@@ -663,6 +812,9 @@ function Level11BallMovement(){
 }
 
 function Level11BallDisplay(){
+  point1Level11.display();
+  point2Level11.display();
+  point3Level11.display();
   enemyball1Level11.display();
   enemyball2Level11.display();
   enemyball3Level11.display();
@@ -675,6 +827,39 @@ function Level11BallDisplay(){
   enemyball10Level11.display();
   player2.display();
 }
+
+function Level12BallMovement(){
+  point1Level12.move();
+  point2Level12.move();
+  point3Level12.move();
+  enemyball1Level12.move();
+  enemyball2Level12.move();
+  enemyball3Level12.move();
+  enemyball4Level12.move();
+  enemyball5Level12.move();
+  enemyball6Level12.move();
+  enemyball7Level12.move();
+  enemyball8Level12.move();
+  enemyball9Level12.move();
+  player2.move();
+}
+
+function Level12BallDisplay(){
+  point1Level12.display();
+  point2Level12.display();
+  point3Level12.display();
+  enemyball1Level12.display();
+  enemyball2Level12.display();
+  enemyball3Level12.display();
+  enemyball4Level12.display();
+  enemyball5Level12.display();
+  enemyball6Level12.display();
+  enemyball7Level12.display();
+  enemyball8Level12.display();
+  enemyball9Level12.display();
+  player2.display();
+}
+
 
 function checkCursor(){
   //Similar to the "menu", the mouse and button will change if you hover over the button
@@ -945,6 +1130,33 @@ function itHitLevel11(){
       distanceAwayFromCenter8  <= collitionDistance ||
       distanceAwayFromCenter9  <= collitionDistance ||
       distanceAwayFromCenter10 <= collitionDistance )  {
+    state = "main_menu";
+  }
+}
+
+function itHitLevel12(){
+  distanceAwayFromCenter1 = int(dist(player2.x, player2.y, enemyball1Level12.x, enemyball1Level12.y));                   
+  distanceAwayFromCenter2 = int(dist(player2.x, player2.y, enemyball2Level12.x, enemyball2Level12.y));
+  distanceAwayFromCenter3 = int(dist(player2.x, player2.y, enemyball3Level12.x, enemyball3Level12.y));
+  distanceAwayFromCenter4 = int(dist(player2.x, player2.y, enemyball4Level12.x, enemyball4Level12.y));                   
+  distanceAwayFromCenter5 = int(dist(player2.x, player2.y, enemyball5Level12.x, enemyball5Level12.y));
+  distanceAwayFromCenter6 = int(dist(player2.x, player2.y, enemyball6Level12.x, enemyball6Level12.y));                   
+  distanceAwayFromCenter7 = int(dist(player2.x, player2.y, enemyball7Level12.x, enemyball7Level12.y));
+  distanceAwayFromCenter8 = int(dist(player2.x, player2.y, enemyball8Level12.x, enemyball8Level12.y));
+  distanceAwayFromCenter9 = int(dist(player2.x, player2.y, enemyball9Level12.x, enemyball9Level12.y));                   
+
+
+  collitionDistance = (player1.radius + enemyball1Level1.radius);
+
+  if (distanceAwayFromCenter1  <= collitionDistance ||
+      distanceAwayFromCenter2 <= collitionDistance || 
+      distanceAwayFromCenter3  <= collitionDistance ||
+      distanceAwayFromCenter4  <= collitionDistance ||
+      distanceAwayFromCenter5 <= collitionDistance ||
+      distanceAwayFromCenter6  <= collitionDistance ||
+      distanceAwayFromCenter7 <= collitionDistance || 
+      distanceAwayFromCenter8  <= collitionDistance ||
+      distanceAwayFromCenter9  <= collitionDistance )  {
     state = "main_menu";
   }
 }
