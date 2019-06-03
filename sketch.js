@@ -74,18 +74,18 @@ let enemyball3Level1;
 let enemyball1Level2;
 let enemyball2Level2;
 let enemyball3Level2;
-let enemyball1Level3;
-let enemyball2Level3;
-let enemyball3Level3;
-let enemyball1Level4;
-let enemyball2Level4;
-let enemyball3Level4;
 let enemyball1Level5;
 let enemyball2Level5;
 let enemyball3Level5;
-let enemyball4Level5;
-let enemyball5Level5;
-let enemyball6Level5;
+let enemyball1Level6;
+let enemyball2Level6;
+let enemyball3Level6;
+let enemyball1Level7;
+let enemyball2Level7;
+let enemyball3Level7;
+let enemyball4Level7;
+let enemyball5Level7;
+let enemyball6Level7;
 
 let state;
 let gridButton;
@@ -173,21 +173,62 @@ function setup() {
   enemyball1Level2 = new EnemyBall(100, height/2, random(5, 6), random(5, 6));
   enemyball2Level2 = new EnemyBall(width / 2, height/2, random(5, 6), random(5, 6));
   enemyball3Level2 = new EnemyBall(400, height/2, random(5, 6), random(5, 6));
+
+  enemyball1Level3 = new EnemyBall((width/2.95 - 55), height/2, 0, 7);
+  enemyball2Level3 = new EnemyBall((width / 2.95), height/2, 0, 7);
+  enemyball3Level3 = new EnemyBall((width / 2.95 + 55), height/2, 0, 7);
+  enemyball4Level3 = new EnemyBall((width / 2.95 + 110),height/2, 0, 7);
+  enemyball5Level3 = new EnemyBall(410, height/2, 0, 15)
   
-  enemyball1Level3 = new EnemyBall(width/2, 100, 12, 0);
-  enemyball2Level3 = new EnemyBall(width/2, height/2, 12, 0);
-  enemyball3Level3 = new EnemyBall(width/2, 400, 12, 0);
+  enemyball1Level5 = new EnemyBall(width/2, 100, 12, 0);
+  enemyball2Level5 = new EnemyBall(width/2, height/2, 12, 0);
+  enemyball3Level5 = new EnemyBall(width/2, 400, 12, 0);
 
-  enemyball1Level4 = new EnemyBall(width / 2, height/2, 5, -5);
-  enemyball2Level4 = new EnemyBall(width / 2, height/2, 0, 9);
-  enemyball3Level4 = new EnemyBall(width / 2, height/2, 5, 5);
+  enemyball1Level6 = new EnemyBall(width / 2, height/2, 5, -5);
+  enemyball2Level6 = new EnemyBall(width / 2, height/2, 0, 9);
+  enemyball3Level6 = new EnemyBall(width / 2, height/2, 5, 5);
 
-  enemyball1Level5 = new EnemyBall(100, height/2, 0, 7);
-  enemyball2Level5 = new EnemyBall(width / 2, height/2, 0, 12);
-  enemyball3Level5 = new EnemyBall(400, height/2, 0, 7);
-  enemyball4Level5 = new EnemyBall(width/2, 100, 12, 0);
-  enemyball5Level5 = new EnemyBall(width/2, height/2, 7, 0);
-  enemyball6Level5 = new EnemyBall(width/2, 400, 12, 0);
+  enemyball1Level7 = new EnemyBall(100, height/2, 0, 7);
+  enemyball2Level7 = new EnemyBall(width / 2, height/2, 0, 12);
+  enemyball3Level7 = new EnemyBall(400, height/2, 0, 7);
+  enemyball4Level7 = new EnemyBall(width/2, 100, 12, 0);
+  enemyball5Level7 = new EnemyBall(width/2, height/2, 7, 0);
+  enemyball6Level7 = new EnemyBall(width/2, 400, 12, 0);
+
+  enemyball1Level8 = new EnemyBall(50, 30, 10, 0);
+  enemyball2Level8 = new EnemyBall(50, 470, 10, 0);
+  enemyball3Level8 = new EnemyBall(width / 2, 50, 0, 15);
+
+  enemyball1Level9 = new EnemyBall(190, 215, 0, 0);
+  enemyball2Level9 = new EnemyBall(310, 215, 0, 0);
+  enemyball3Level9 = new EnemyBall(310, 145, 0, 0);
+  enemyball4Level9 = new EnemyBall(190, 145, 0, 0);
+  enemyball5Level9 = new EnemyBall(190, 335, 0, 0);
+  enemyball6Level9 = new EnemyBall(310, 335, 0, 0);
+  enemyball7Level9 = new EnemyBall(310, 405, 0, 0);
+  enemyball8Level9 = new EnemyBall(190, 405, 0, 0);
+  enemyball9Level9 = new EnemyBall(417, 335, 0, 0);
+  enemyball10Level9 = new EnemyBall(417, 215, 0, 0);
+  enemyball11Level9 = new EnemyBall(50, 140, 15, 0);
+  enemyball12Level9 = new EnemyBall(50, 410, 15, 0);
+  enemyball13Level9 = new EnemyBall(250, 210, 0, 10);
+
+  enemyball1Level10 = new EnemyBall(100, 25, 12, 0);
+  enemyball2Level10 = new EnemyBall(100, 200, 0, 12);
+  enemyball3Level10 = new EnemyBall(400, 200, 0, 12);
+  enemyball4Level10 = new EnemyBall(100, 475, 12, 0);
+  enemyball5Level10 = new EnemyBall(width/2, width/2, 6, 6);
+
+  enemyball1Level11 = new EnemyBall(55, 270, 0, 0);
+  enemyball2Level11 = new EnemyBall(155, 270, 0, 0);
+  enemyball3Level11 = new EnemyBall(155, 395, 0, 0);
+  enemyball4Level11 = new EnemyBall(55, 395, 0, 0);
+  enemyball5Level11 = new EnemyBall(width/2 + 25, 270, 0, 7);
+  enemyball6Level11 = new EnemyBall(width/2 - 25, 270, 0, 7);
+  enemyball7Level11 = new EnemyBall(340, 270, 0, 0);
+  enemyball8Level11 = new EnemyBall(440, 270, 0, 0);
+  enemyball9Level11 = new EnemyBall(340, 395, 0, 0);
+  enemyball10Level11 = new EnemyBall(440, 395, 0, 0);
 }
   
 function draw() {
@@ -253,9 +294,9 @@ function restartPositions() {
   enemyball3Level2.x = 400;
   enemyball3Level2.y = height/2;
 
-  enemyball1Level3.x = width/2;
-  enemyball2Level3.x = width/2;
-  enemyball3Level3.x = width/2;
+  enemyball1Level5.x = width/2;
+  enemyball2Level5.x = width/2;
+  enemyball3Level5.x = width/2;
 
 }
 
@@ -372,74 +413,75 @@ function level2(){
   itHitLevel2();
 }
 
-function level3(){
-  level3BallMovement();
-  background(190, 192, 190);
-  level3BallDisplay();
-  itHitLevel3();
-}
-
-function level4(){
-  Level4BallMovement();
-  background(190, 192, 190);
-  Level4BallDisplay();
-  itHitLevel4();
-}
-
 function level5(){
-  Level5BallMovement();
+  level5BallMovement();
   background(190, 192, 190);
-  Level5BallDisplay();
+  level5BallDisplay();
   itHitLevel5();
 }
 
 function level6(){
-  Level4BallMovement();
+  Level6BallMovement();
   background(190, 192, 190);
-  Level4BallDisplay();
-  itHitLevel4();
+  Level6BallDisplay();
+  itHitLevel6();
 }
 
 function level7(){
-  Level4BallMovement();
+  Level7BallMovement();
   background(190, 192, 190);
-  Level4BallDisplay();
-  itHitLevel4();
+  Level7BallDisplay();
+  itHitLevel7();
+}
+
+function level3(){
+  
+  Level3BallMovement();
+  background(190, 192, 190);
+  Level3BallDisplay();
+  itHitLevel3();
+}
+
+function level4(){
+  Level1BallMovement();
+  background(190, 192, 190);
+  Level1BallDisplay();
+  itHitLevel1();
 }
 
 function level8(){
-  Level4BallMovement();
+  Level8BallMovement();
   background(190, 192, 190);
-  Level4BallDisplay();
-  itHitLevel4();
+  Level8BallDisplay();
+  itHitLevel8();
 }
 
 function level9(){
-  Level4BallMovement();
+  Level9BallMovement();
   background(190, 192, 190);
-  Level4BallDisplay();
-  itHitLevel4();
+  Level9BallDisplay();
+  itHitLevel9();
 }
 
 function level10(){
-  Level4BallMovement();
+  Level10BallMovement();
   background(190, 192, 190);
-  Level4BallDisplay();
-  itHitLevel4();
+  Level10BallDisplay();
+  itHitLevel10();
 }
 
 function level11(){
-  Level4BallMovement();
+  Level11BallMovement();
   background(190, 192, 190);
-  Level4BallDisplay();
-  itHitLevel4();
+  Level11BallDisplay();
+  itHitLevel11();
 }
 
 function level12(){
-  Level4BallMovement();
+  Level6BallMovement();
   background(190, 192, 190);
-  Level4BallDisplay();
-  itHitLevel4();
+  Level6BallDisplay();
+  itHitLevel6();
 }
 
 
@@ -473,52 +515,164 @@ function level2BallDisplay(){
   player1.display();
 }
 
-function level3BallMovement() {
+function Level3BallMovement(){
   enemyball1Level3.move();
   enemyball2Level3.move();
   enemyball3Level3.move();
-  player2.move();
+  enemyball4Level3.move();
+  enemyball5Level3.move();
+  player1.move();
 }
 
-function level3BallDisplay(){
+function Level3BallDisplay(){
+  player1.display();
   enemyball1Level3.display();
   enemyball2Level3.display();
   enemyball3Level3.display();
-  player2.display();
+  enemyball4Level3.display();
+  enemyball5Level3.display();
 }
 
-function Level4BallMovement() {
-  enemyball1Level4.move();
-  enemyball2Level4.move();
-  enemyball3Level4.move();
-  player2.move();
-}
-
-function Level4BallDisplay(){
-  enemyball1Level4.display();
-  enemyball2Level4.display();
-  enemyball3Level4.display();
-  player2.display();
-
-}
-
-function Level5BallMovement() {
+function level5BallMovement() {
   enemyball1Level5.move();
   enemyball2Level5.move();
   enemyball3Level5.move();
-  enemyball4Level5.move();
-  enemyball5Level5.move();
-  enemyball6Level5.move();
   player2.move();
 }
 
-function Level5BallDisplay(){
+function level5BallDisplay(){
   enemyball1Level5.display();
   enemyball2Level5.display();
   enemyball3Level5.display();
-  enemyball4Level5.display();
-  enemyball5Level5.display();
-  enemyball6Level5.display();
+  player2.display();
+}
+
+function Level6BallMovement() {
+  enemyball1Level6.move();
+  enemyball2Level6.move();
+  enemyball3Level6.move();
+  player2.move();
+}
+
+function Level6BallDisplay(){
+  enemyball1Level6.display();
+  enemyball2Level6.display();
+  enemyball3Level6.display();
+  player2.display();
+
+}
+
+function Level7BallMovement() {
+  enemyball1Level7.move();
+  enemyball2Level7.move();
+  enemyball3Level7.move();
+  enemyball4Level7.move();
+  enemyball5Level7.move();
+  enemyball6Level7.move();
+  player2.move();
+}
+
+function Level7BallDisplay(){
+  enemyball1Level7.display();
+  enemyball2Level7.display();
+  enemyball3Level7.display();
+  enemyball4Level7.display();
+  enemyball5Level7.display();
+  enemyball6Level7.display();
+  player2.display();
+}
+
+function Level8BallMovement(){
+  enemyball1Level8.move();
+  enemyball2Level8.move();
+  enemyball3Level8.move();
+  player2.move();
+}
+
+function Level8BallDisplay(){
+  enemyball1Level8.display();
+  enemyball2Level8.display();
+  enemyball3Level8.display();
+  player2.display();
+}
+
+function Level9BallMovement(){
+  enemyball1Level9.move();
+  enemyball2Level9.move();
+  enemyball3Level9.move();
+  enemyball4Level9.move();
+  enemyball5Level9.move();
+  enemyball6Level9.move();
+  enemyball7Level9.move();
+  enemyball8Level9.move();
+  enemyball9Level9.move();
+  enemyball10Level9.move();
+  enemyball11Level9.move();
+  enemyball12Level9.move();
+  enemyball13Level9.move();
+  player2.move();
+}
+
+function Level9BallDisplay(){
+  enemyball1Level9.display();
+  enemyball2Level9.display();
+  enemyball3Level9.display();
+  enemyball4Level9.display();
+  enemyball5Level9.display();
+  enemyball6Level9.display();
+  enemyball7Level9.display();
+  enemyball8Level9.display();
+  enemyball9Level9.display();
+  enemyball10Level9.display();
+  enemyball11Level9.display();
+  enemyball12Level9.display();
+  enemyball13Level9.display();
+  player2.display();
+}
+
+function Level10BallMovement(){
+  enemyball1Level10.move();
+  enemyball2Level10.move();
+  enemyball3Level10.move();
+  enemyball4Level10.move();
+  enemyball5Level10.move();
+  player2.move();
+}
+
+function Level10BallDisplay(){  
+  enemyball1Level10.display();
+  enemyball2Level10.display();
+  enemyball3Level10.display();
+  enemyball4Level10.display();
+  enemyball5Level10.display();
+  player2.display();
+}
+
+function Level11BallMovement(){
+  enemyball1Level11.move();
+  enemyball2Level11.move();
+  enemyball3Level11.move();
+  enemyball4Level11.move();
+  enemyball5Level11.move();
+  enemyball6Level11.move();
+  enemyball7Level11.move();
+  enemyball8Level11.move();
+  enemyball9Level11.move();
+  enemyball10Level11.move();
+  player2.move();
+}
+
+function Level11BallDisplay(){
+  enemyball1Level11.display();
+  enemyball2Level11.display();
+  enemyball3Level11.display();
+  enemyball4Level11.display();
+  enemyball5Level11.display();
+  enemyball6Level11.display();
+  enemyball7Level11.display();
+  enemyball8Level11.display();
+  enemyball9Level11.display();
+  enemyball10Level11.display();
   player2.display();
 }
 
@@ -600,11 +754,11 @@ function itHitLevel1() {
   distanceAwayFromCenter2 = int(dist(player1.x, player1.y, enemyball2Level1.x, enemyball2Level1.y));
   distanceAwayFromCenter3 = int(dist(player1.x, player1.y, enemyball3Level1.x, enemyball3Level1.y));
   
-  collitionDistance1 = (player1.radius + enemyball1Level1.radius);
+  collitionDistance = (player1.radius + enemyball1Level1.radius);
   
-  if (distanceAwayFromCenter1  <= collitionDistance1 ||
-      distanceAwayFromCenter2 <= collitionDistance1 || 
-      distanceAwayFromCenter3  <= collitionDistance1)  {
+  if (distanceAwayFromCenter1  <= collitionDistance ||
+      distanceAwayFromCenter2 <= collitionDistance || 
+      distanceAwayFromCenter3  <= collitionDistance)  {
     state = "main_menu";
   }
 }
@@ -616,43 +770,32 @@ function itHitLevel2() {
   distanceAwayFromCenter2 = int(dist(player1.x, player1.y, enemyball2Level2.x, enemyball2Level2.y));
   distanceAwayFromCenter3 = int(dist(player1.x, player1.y, enemyball3Level2.x, enemyball3Level2.y));
   
-  collitionDistance1 = (player1.radius + enemyball1Level2.radius);
+  collitionDistance = (player1.radius + enemyball1Level2.radius);
   
-  if (distanceAwayFromCenter1  <= collitionDistance1 ||
-      distanceAwayFromCenter2 <= collitionDistance1 || 
-      distanceAwayFromCenter3  <= collitionDistance1)  {
+  if (distanceAwayFromCenter1  <= collitionDistance ||
+      distanceAwayFromCenter2 <= collitionDistance || 
+      distanceAwayFromCenter3  <= collitionDistance)  {
     state = "main_menu";
   }
 }
+
 
 function itHitLevel3() {
   // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
   // you lose and go back to the "menu"
-  distanceAwayFromCenter1 = int(dist(player2.x, player2.y, enemyball1Level3.x, enemyball1Level3.y));                   
-  distanceAwayFromCenter2 = int(dist(player2.x, player2.y, enemyball2Level3.x, enemyball2Level3.y));
-  distanceAwayFromCenter3 = int(dist(player2.x, player2.y, enemyball3Level3.x, enemyball3Level3.y));
+  distanceAwayFromCenter1 = int(dist(player1.x, player1.y, enemyball1Level3.x, enemyball1Level3.y));                   
+  distanceAwayFromCenter2 = int(dist(player1.x, player1.y, enemyball2Level3.x, enemyball2Level3.y));
+  distanceAwayFromCenter3 = int(dist(player1.x, player1.y, enemyball3Level3.x, enemyball3Level3.y));
+  distanceAwayFromCenter4 = int(dist(player1.x, player1.y, enemyball4Level3.x, enemyball4Level3.y));
+  distanceAwayFromCenter5 = int(dist(player1.x, player1.y, enemyball5Level3.x, enemyball5Level3.y));
   
-  collitionDistance1 = (player1.radius + enemyball1Level1.radius);
+  collitionDistance = (player1.radius + enemyball1Level7.radius);
   
-  if (distanceAwayFromCenter1  <= collitionDistance1 ||
-      distanceAwayFromCenter2 <= collitionDistance1 || 
-      distanceAwayFromCenter3  <= collitionDistance1)  {
-    state = "main_menu";
-  }
-}
-
-function itHitLevel4() {
-  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
-  // you lose and go back to the "menu"
-  distanceAwayFromCenter1 = int(dist(player2.x, player2.y, enemyball1Level4.x, enemyball1Level4.y));                   
-  distanceAwayFromCenter2 = int(dist(player2.x, player2.y, enemyball2Level4.x, enemyball2Level4.y));
-  distanceAwayFromCenter3 = int(dist(player2.x, player2.y, enemyball3Level4.x, enemyball3Level4.y));
-  
-  collitionDistance1 = (player1.radius + enemyball1Level4.radius);
-  
-  if (distanceAwayFromCenter1  <= collitionDistance1 ||
-      distanceAwayFromCenter2 <= collitionDistance1 || 
-      distanceAwayFromCenter3  <= collitionDistance1)  {
+  if (distanceAwayFromCenter1  <= collitionDistance ||
+      distanceAwayFromCenter2 <= collitionDistance || 
+      distanceAwayFromCenter3  <= collitionDistance ||
+      distanceAwayFromCenter4  <= collitionDistance ||
+      distanceAwayFromCenter5  <= collitionDistance)  {
     state = "main_menu";
   }
 }
@@ -663,18 +806,145 @@ function itHitLevel5() {
   distanceAwayFromCenter1 = int(dist(player2.x, player2.y, enemyball1Level5.x, enemyball1Level5.y));                   
   distanceAwayFromCenter2 = int(dist(player2.x, player2.y, enemyball2Level5.x, enemyball2Level5.y));
   distanceAwayFromCenter3 = int(dist(player2.x, player2.y, enemyball3Level5.x, enemyball3Level5.y));
-  distanceAwayFromCenter4 = int(dist(player2.x, player2.y, enemyball4Level5.x, enemyball4Level5.y));                   
-  distanceAwayFromCenter5 = int(dist(player2.x, player2.y, enemyball5Level5.x, enemyball5Level5.y));
-  distanceAwayFromCenter6 = int(dist(player2.x, player2.y, enemyball6Level5.x, enemyball6Level5.y));
   
-  collitionDistance1 = (player2.radius + enemyball1Level4.radius);
+  collitionDistance = (player1.radius + enemyball1Level1.radius);
   
-  if (distanceAwayFromCenter1  <= collitionDistance1 ||
-      distanceAwayFromCenter2 <= collitionDistance1 || 
-      distanceAwayFromCenter3  <= collitionDistance1 ||
-      distanceAwayFromCenter4 <= collitionDistance1 ||
-      distanceAwayFromCenter5 <= collitionDistance1 ||
-      distanceAwayFromCenter6 <= collitionDistance1) {
+  if (distanceAwayFromCenter1  <= collitionDistance ||
+      distanceAwayFromCenter2 <= collitionDistance || 
+      distanceAwayFromCenter3  <= collitionDistance)  {
+    state = "main_menu";
+  }
+}
+
+function itHitLevel6() {
+  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
+  // you lose and go back to the "menu"
+  distanceAwayFromCenter1 = int(dist(player2.x, player2.y, enemyball1Level6.x, enemyball1Level6.y));                   
+  distanceAwayFromCenter2 = int(dist(player2.x, player2.y, enemyball2Level6.x, enemyball2Level6.y));
+  distanceAwayFromCenter3 = int(dist(player2.x, player2.y, enemyball3Level6.x, enemyball3Level6.y));
+  
+  collitionDistance = (player1.radius + enemyball1Level6.radius);
+  
+  if (distanceAwayFromCenter1  <= collitionDistance ||
+      distanceAwayFromCenter2 <= collitionDistance || 
+      distanceAwayFromCenter3  <= collitionDistance)  {
+    state = "main_menu";
+  }
+}
+
+function itHitLevel7() {
+  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
+  // you lose and go back to the "menu"
+  distanceAwayFromCenter1 = int(dist(player2.x, player2.y, enemyball1Level7.x, enemyball1Level7.y));                   
+  distanceAwayFromCenter2 = int(dist(player2.x, player2.y, enemyball2Level7.x, enemyball2Level7.y));
+  distanceAwayFromCenter3 = int(dist(player2.x, player2.y, enemyball3Level7.x, enemyball3Level7.y));
+  distanceAwayFromCenter4 = int(dist(player2.x, player2.y, enemyball4Level7.x, enemyball4Level7.y));                   
+  distanceAwayFromCenter5 = int(dist(player2.x, player2.y, enemyball5Level7.x, enemyball5Level7.y));
+  distanceAwayFromCenter6 = int(dist(player2.x, player2.y, enemyball6Level7.x, enemyball6Level7.y));
+  
+  collitionDistance = (player2.radius + enemyball1Level6.radius);
+  
+  if (distanceAwayFromCenter1  <= collitionDistance ||
+      distanceAwayFromCenter2 <= collitionDistance || 
+      distanceAwayFromCenter3  <= collitionDistance ||
+      distanceAwayFromCenter4 <= collitionDistance ||
+      distanceAwayFromCenter5 <= collitionDistance ||
+      distanceAwayFromCenter6 <= collitionDistance) {
+    state = "main_menu";
+  }
+}
+
+function itHitLevel8(){
+  distanceAwayFromCenter1 = int(dist(player2.x, player2.y, enemyball1Level8.x, enemyball1Level8.y));                   
+  distanceAwayFromCenter2 = int(dist(player2.x, player2.y, enemyball2Level8.x, enemyball2Level8.y));
+  distanceAwayFromCenter3 = int(dist(player2.x, player2.y, enemyball3Level8.x, enemyball3Level8.y));
+  
+  collitionDistance = (player1.radius + enemyball1Level1.radius);
+  
+  if (distanceAwayFromCenter1  <= collitionDistance ||
+      distanceAwayFromCenter2 <= collitionDistance || 
+      distanceAwayFromCenter3  <= collitionDistance)  {
+    state = "main_menu";
+  }
+
+}
+
+function itHitLevel9(){
+  distanceAwayFromCenter1 = int(dist(player2.x, player2.y, enemyball1Level9.x, enemyball1Level9.y));                   
+  distanceAwayFromCenter2 = int(dist(player2.x, player2.y, enemyball2Level9.x, enemyball2Level9.y));
+  distanceAwayFromCenter3 = int(dist(player2.x, player2.y, enemyball3Level9.x, enemyball3Level9.y));
+  distanceAwayFromCenter4 = int(dist(player2.x, player2.y, enemyball4Level9.x, enemyball4Level9.y));                   
+  distanceAwayFromCenter5 = int(dist(player2.x, player2.y, enemyball5Level9.x, enemyball5Level9.y));
+  distanceAwayFromCenter6 = int(dist(player2.x, player2.y, enemyball6Level9.x, enemyball6Level9.y));
+  distanceAwayFromCenter7 = int(dist(player2.x, player2.y, enemyball7Level9.x, enemyball7Level9.y));                   
+  distanceAwayFromCenter8 = int(dist(player2.x, player2.y, enemyball8Level9.x, enemyball8Level9.y));
+  distanceAwayFromCenter9 = int(dist(player2.x, player2.y, enemyball9Level9.x, enemyball9Level9.y));
+  distanceAwayFromCenter10 = int(dist(player2.x, player2.y, enemyball10Level9.x, enemyball10Level9.y));                   
+  distanceAwayFromCenter11 = int(dist(player2.x, player2.y, enemyball11Level9.x, enemyball11Level9.y));
+  distanceAwayFromCenter12 = int(dist(player2.x, player2.y, enemyball12Level9.x, enemyball12Level9.y));
+  distanceAwayFromCenter13 = int(dist(player2.x, player2.y, enemyball13Level9.x, enemyball13Level9.y));
+
+  collitionDistance = (player1.radius + enemyball1Level1.radius);
+  
+  if (distanceAwayFromCenter1  <= collitionDistance ||
+      distanceAwayFromCenter2 <= collitionDistance || 
+      distanceAwayFromCenter3  <= collitionDistance ||
+      distanceAwayFromCenter4  <= collitionDistance ||
+      distanceAwayFromCenter5 <= collitionDistance || 
+      distanceAwayFromCenter6  <= collitionDistance ||
+      distanceAwayFromCenter7  <= collitionDistance ||
+      distanceAwayFromCenter8 <= collitionDistance || 
+      distanceAwayFromCenter9  <= collitionDistance ||
+      distanceAwayFromCenter10  <= collitionDistance ||
+      distanceAwayFromCenter11 <= collitionDistance || 
+      distanceAwayFromCenter12  <= collitionDistance ||
+      distanceAwayFromCenter13  <= collitionDistance)  {
+    state = "main_menu";
+  }  
+}
+
+function itHitLevel10(){
+  distanceAwayFromCenter1 = int(dist(player2.x, player2.y, enemyball1Level10.x, enemyball1Level10.y));                   
+  distanceAwayFromCenter2 = int(dist(player2.x, player2.y, enemyball2Level10.x, enemyball2Level10.y));
+  distanceAwayFromCenter3 = int(dist(player2.x, player2.y, enemyball3Level10.x, enemyball3Level10.y));
+  distanceAwayFromCenter4 = int(dist(player2.x, player2.y, enemyball4Level10.x, enemyball4Level10.y));                   
+  distanceAwayFromCenter5 = int(dist(player2.x, player2.y, enemyball5Level10.x, enemyball5Level10.y));
+
+  collitionDistance = (player1.radius + enemyball1Level1.radius);
+
+  if (distanceAwayFromCenter1  <= collitionDistance ||
+      distanceAwayFromCenter2 <= collitionDistance || 
+      distanceAwayFromCenter3  <= collitionDistance ||
+      distanceAwayFromCenter4  <= collitionDistance ||
+      distanceAwayFromCenter5 <= collitionDistance)  {
+    state = "main_menu";
+  }
+}
+
+function itHitLevel11(){
+  distanceAwayFromCenter1 = int(dist(player2.x, player2.y, enemyball1Level11.x, enemyball1Level11.y));                   
+  distanceAwayFromCenter2 = int(dist(player2.x, player2.y, enemyball2Level11.x, enemyball2Level11.y));
+  distanceAwayFromCenter3 = int(dist(player2.x, player2.y, enemyball3Level11.x, enemyball3Level11.y));
+  distanceAwayFromCenter4 = int(dist(player2.x, player2.y, enemyball4Level11.x, enemyball4Level11.y));                   
+  distanceAwayFromCenter5 = int(dist(player2.x, player2.y, enemyball5Level11.x, enemyball5Level11.y));
+  distanceAwayFromCenter6 = int(dist(player2.x, player2.y, enemyball6Level11.x, enemyball6Level11.y));                   
+  distanceAwayFromCenter7 = int(dist(player2.x, player2.y, enemyball7Level11.x, enemyball7Level11.y));
+  distanceAwayFromCenter8 = int(dist(player2.x, player2.y, enemyball8Level11.x, enemyball8Level11.y));
+  distanceAwayFromCenter9 = int(dist(player2.x, player2.y, enemyball9Level11.x, enemyball9Level11.y));                   
+  distanceAwayFromCenter10 = int(dist(player2.x, player2.y, enemyball10Level11.x, enemyball10Level11.y));
+
+  collitionDistance = (player1.radius + enemyball1Level1.radius);
+
+  if (distanceAwayFromCenter1  <= collitionDistance ||
+      distanceAwayFromCenter2 <= collitionDistance || 
+      distanceAwayFromCenter3  <= collitionDistance ||
+      distanceAwayFromCenter4  <= collitionDistance ||
+      distanceAwayFromCenter5 <= collitionDistance ||
+      distanceAwayFromCenter6  <= collitionDistance ||
+      distanceAwayFromCenter7 <= collitionDistance || 
+      distanceAwayFromCenter8  <= collitionDistance ||
+      distanceAwayFromCenter9  <= collitionDistance ||
+      distanceAwayFromCenter10 <= collitionDistance )  {
     state = "main_menu";
   }
 }
