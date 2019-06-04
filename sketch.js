@@ -127,8 +127,14 @@ let level;
 let cellPictureWidth = 90;
 let cellPictureHeight = 90;
 
+let timer;
+let currentTime;
+
 function setup() {
   createCanvas(500, 500);
+
+  timer = 0;
+  currentTime = -500;
 
   backgroundImage = loadImage("assets/bckimg.png");
   titleImage = loadImage("assets/title.png")
@@ -323,6 +329,12 @@ function setup() {
 function draw() {
   //Will Draw according to state
   checkStates();
+
+  if (frameCount % 60 === 0) {
+    timer++;
+  }
+
+
 }
 
 function checkStates(){
@@ -430,15 +442,16 @@ function restartPositions() {
   point2Level10.x = 25;
   point3Level10.x = 475
 
-  point1Level11 = new PointBall (500*1/3, 90, 0, 0);
-  point2Level11 = new PointBall (500*2/3, 90, 0, 0);
-  point3Level11 = new PointBall (450, height/1.5, 0, 0);
+  point1Level11.x = 500*1/3;
+  point2Level11.x = 500*2/3;
+  point3Level11.x = 450;
 
-  point1Level12 = new PointBall (25, 260, 0, 0);
-  point2Level12 = new PointBall (475, 260, 0, 0);
-  point3Level12 = new PointBall (250, 60, 0, 0);
+  point1Level12.x = 25;
+  point2Level12.x = 475;
+  point3Level12.x = 250;
 
-  
+  timer = 0;
+  currentTime = -500;
 
 }
 
@@ -546,19 +559,16 @@ function level1(){
   level1BallDisplay();
   itHitLevel1();
   collectingPointsLevel1();
-  if (score === 3){
-    state === "levels"
-    level === "two"
-    console.log("yeet")
-  }
+  switchLevel1to2();
 }
 
 function level2(){
   level2BallMovement();
   background(190, 192, 190);
   level2BallDisplay();
-  itHitLevel2();
+  //itHitLevel2();
   collectingPointsLevel2();
+  switchLevel2to3();
 }
 
 function level3(){
@@ -567,6 +577,7 @@ function level3(){
   Level3BallDisplay();
   itHitLevel3();
   collectingPointsLevel3();
+  switchLevel3to4();
 }
 
 function level4(){
@@ -575,6 +586,7 @@ function level4(){
   Level1BallDisplay();
   itHitLevel1();
   collectingPointsLevel1();
+  switchLevel1to2();
 }
 
 function level5(){
@@ -583,6 +595,7 @@ function level5(){
   level5BallDisplay();
   itHitLevel5();
   collectingPointsLevel5();
+  switchLevel5to6();
 }
 
 function level6(){
@@ -591,6 +604,7 @@ function level6(){
   Level6BallDisplay();
   itHitLevel6();
   collectingPointsLevel6();
+  switchLevel6to7();
 }
 
 function level7(){
@@ -599,6 +613,7 @@ function level7(){
   Level7BallDisplay();
   itHitLevel7();
   collectingPointsLevel7();
+  switchLevel7to8();
 }
 
 function level8(){
@@ -607,6 +622,7 @@ function level8(){
   Level8BallDisplay();
   itHitLevel8();
   collectingPointsLevel8();
+  switchLevel8to9();
 }
 
 function level9(){
@@ -615,6 +631,7 @@ function level9(){
   Level9BallDisplay();
   itHitLevel9();
   collectingPointsLevel9();
+  switchLevel9to10();
 }
 
 function level10(){
@@ -623,6 +640,7 @@ function level10(){
   Level10BallDisplay();
   itHitLevel10();
   collectingPointsLevel10();
+  switchLevel10to11();
 }
 
 function level11(){
@@ -631,6 +649,7 @@ function level11(){
   Level11BallDisplay();
   itHitLevel11();
   collectingPointsLevel11();
+  switchLevel11to12();
 }
 
 function level12(){
@@ -639,6 +658,7 @@ function level12(){
   Level12BallDisplay();
   itHitLevel12();
   collectingPointsLevel12();
+  switchLevel12();
 }
 
 function level1BallMovement() {
@@ -649,7 +669,6 @@ function level1BallMovement() {
   enemyball2Level1.move();
   enemyball3Level1.move(); 
   player1.move(); 
-  
 }
 
 function level1BallDisplay(){
@@ -660,7 +679,28 @@ function level1BallDisplay(){
   enemyball2Level1.display();
   enemyball3Level1.display();
   player1.display();
- 
+}
+
+function switchLevel1to2(){
+  if (score === 3) {
+    if (currentTime === -500) {
+      currentTime = timer;
+    }
+    textAlign(CENTER);
+    textSize(28);
+    text("Going to the Next Level", 250, 200);
+
+    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
+
+    if (3 - (timer - currentTime) === 0 ) {
+
+      level = "two";
+      score = 0;
+      player1.x = 25;
+      currentTime = -500;
+
+    }
+  }
 }
 
 function level2BallMovement() {
@@ -682,6 +722,28 @@ function level2BallDisplay(){
   enemyball2Level2.display();
   enemyball3Level2.display();
   player1.display();
+}
+
+
+function switchLevel2to3(){
+  if (score === 3) {
+    if (currentTime === -500) {
+      currentTime = timer;
+    }
+    textAlign(CENTER);
+    textSize(28);
+    text("Going to the Next Level", 250, 200);
+
+    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
+
+    if (3 - (timer - currentTime) === 0 ) {
+
+     level = "three";
+     score = 0;
+     player1.x = 25;
+     currentTime = -500;
+    }
+  }
 }
 
 function Level3BallMovement(){
@@ -708,6 +770,29 @@ function Level3BallDisplay(){
   enemyball5Level3.display();
 }
 
+function switchLevel3to4(){
+  if (score === 3) {
+    if (currentTime === -500) {
+      currentTime = timer;
+    }
+    textAlign(CENTER);
+    textSize(28);
+    text("Going to the Next Level", 250, 200);
+
+    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
+
+    if (3 - (timer - currentTime) === 0 ) {
+
+     level = "four";
+     score = 0;
+     player1.x = 31;
+     player2.x = 31;
+     player2.y = height/1.5;
+     currentTime = -500;
+    }
+  }
+}
+
 function level5BallMovement() {
   point1Level5.move();
   point2Level5.move();
@@ -728,6 +813,29 @@ function level5BallDisplay(){
   player2.display();
 }
 
+function switchLevel5to6(){
+  if (score === 3) {
+    if (currentTime === -500) {
+      currentTime = timer;
+    }
+    textAlign(CENTER);
+    textSize(28);
+    text("Going to the Next Level", 250, 200);
+
+    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
+
+    if (3 - (timer - currentTime) === 0 ) {
+
+     level = "six";
+     score = 0;
+     player1.x = 31;
+     player2.x = 31;
+     player2.y = height/1.5;
+     currentTime = -500;
+    }
+  }
+}
+
 function Level6BallMovement() {
   point1Level6.move();
   point2Level6.move();
@@ -746,7 +854,29 @@ function Level6BallDisplay(){
   enemyball2Level6.display();
   enemyball3Level6.display();
   player2.display();
+}
 
+function switchLevel6to7(){
+  if (score === 3) {
+    if (currentTime === -500) {
+      currentTime = timer;
+    }
+    textAlign(CENTER);
+    textSize(28);
+    text("Going to the Next Level", 250, 200);
+
+    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
+
+    if (3 - (timer - currentTime) === 0 ) {
+
+     level = "seven";
+     score = 0;
+     player1.x = 31;
+     player2.x = 31;
+     player2.y = height/1.5;
+     currentTime = -500;
+    }
+  }
 }
 
 function Level7BallMovement() {
@@ -775,6 +905,29 @@ function Level7BallDisplay(){
   player2.display();
 }
 
+function switchLevel7to8(){
+  if (score === 3) {
+    if (currentTime === -500) {
+      currentTime = timer;
+    }
+    textAlign(CENTER);
+    textSize(28);
+    text("Going to the Next Level", 250, 200);
+
+    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
+
+    if (3 - (timer - currentTime) === 0 ) {
+
+     level = "eight";
+     score = 0;
+     player1.x = 31;
+     player2.x = 31;
+     player2.y = height/1.5;
+     currentTime = -500;
+    }
+  }
+}
+
 function Level8BallMovement(){
   point1Level8.move();
   point2Level8.move();
@@ -793,6 +946,29 @@ function Level8BallDisplay(){
   enemyball2Level8.display();
   enemyball3Level8.display();
   player2.display();
+}
+
+function switchLevel8to9(){
+  if (score === 3) {
+    if (currentTime === -500) {
+      currentTime = timer;
+    }
+    textAlign(CENTER);
+    textSize(28);
+    text("Going to the Next Level", 250, 200);
+
+    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
+
+    if (3 - (timer - currentTime) === 0 ) {
+
+     level = "nine";
+     score = 0;
+     player1.x = 31;
+     player2.x = 31;
+     player2.y = height/1.5;
+     currentTime = -500;
+    }
+  }
 }
 
 function Level9BallMovement(){
@@ -835,6 +1011,29 @@ function Level9BallDisplay(){
   player2.display();
 }
 
+function switchLevel9to10(){
+  if (score === 3) {
+    if (currentTime === -500) {
+      currentTime = timer;
+    }
+    textAlign(CENTER);
+    textSize(28);
+    text("Going to the Next Level", 250, 200);
+
+    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
+
+    if (3 - (timer - currentTime) === 0 ) {
+
+     level = "ten";
+     score = 0;
+     player1.x = 31;
+     player2.x = 31;
+     player2.y = height/1.5;
+     currentTime = -500;
+    }
+  }
+}
+
 function Level10BallMovement(){
   point1Level10.move();
   point2Level10.move();
@@ -857,6 +1056,29 @@ function Level10BallDisplay(){
   enemyball4Level10.display();
   enemyball5Level10.display();
   player2.display();
+}
+
+function switchLevel10to11(){
+  if (score === 3) {
+    if (currentTime === -500) {
+      currentTime = timer;
+    }
+    textAlign(CENTER);
+    textSize(28);
+    text("Going to the Next Level", 250, 200);
+
+    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
+
+    if (3 - (timer - currentTime) === 0 ) {
+
+     level = "eleven";
+     score = 0;
+     player1.x = 31;
+     player2.x = 31;
+     player2.y = height/1.5;
+     currentTime = -500;
+    }
+  }
 }
 
 function Level11BallMovement(){
@@ -893,6 +1115,29 @@ function Level11BallDisplay(){
   player2.display();
 }
 
+function switchLevel11to12(){
+  if (score === 3) {
+    if (currentTime === -500) {
+      currentTime = timer;
+    }
+    textAlign(CENTER);
+    textSize(28);
+    text("Going to the Next Level", 250, 200);
+
+    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
+
+    if (3 - (timer - currentTime) === 0 ) {
+
+     level = "twelve";
+     score = 0;
+     player1.x = 31;
+     player2.x = 31;
+     player2.y = height/1.5;
+     currentTime = -500;
+    }
+  }
+}
+
 function Level12BallMovement(){
   point1Level12.move();
   point2Level12.move();
@@ -923,6 +1168,29 @@ function Level12BallDisplay(){
   enemyball8Level12.display();
   enemyball9Level12.display();
   player2.display();
+}
+
+function switchLevel12(){
+  if (score === 3) {
+    if (currentTime === -500) {
+      currentTime = timer;
+    }
+    textAlign(CENTER);
+    textSize(28);
+    text("Going to the Next Level", 250, 200);
+
+    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
+
+    if (3 - (timer - currentTime) === 0 ) {
+
+     level = "one";
+     score = 0;
+     player1.x = 31;
+     player2.x = 31;
+     player2.y = height/1.5;
+     currentTime = -500;
+    }
+  }
 }
 
 
@@ -1009,7 +1277,7 @@ function itHitLevel1() {
   if (distanceAwayFromCenter1  <= collitionDistance ||
       distanceAwayFromCenter2 <= collitionDistance || 
       distanceAwayFromCenter3  <= collitionDistance)  {
-    if (lives > 0){
+    if (lives > 0 && score !== 3){
       lives --
       player1.x = 31;
     }
@@ -1054,7 +1322,7 @@ function itHitLevel2() {
   if (distanceAwayFromCenter1  <= collitionDistance ||
       distanceAwayFromCenter2 <= collitionDistance || 
       distanceAwayFromCenter3  <= collitionDistance)  {
-    if (lives > 0){
+    if (lives > 0 && score !== 3){
       lives --
       player1.x = 31;
     }
@@ -1105,7 +1373,7 @@ function itHitLevel3() {
       distanceAwayFromCenter3  <= collitionDistance ||
       distanceAwayFromCenter4  <= collitionDistance ||
       distanceAwayFromCenter5  <= collitionDistance)  {
-    if (lives > 0){
+    if (lives > 0 && score !== 3){
       lives --
       player1.x = 31;
     }
@@ -1152,7 +1420,7 @@ function itHitLevel5() {
   if (distanceAwayFromCenter1  <= collitionDistance ||
       distanceAwayFromCenter2 <= collitionDistance || 
       distanceAwayFromCenter3  <= collitionDistance)  {
-    if (lives > 0){
+    if (lives > 0 && score !== 3){
       lives --
       player2.x = 31;
       player2.y = height/1.5
@@ -1200,7 +1468,7 @@ function itHitLevel6() {
   if (distanceAwayFromCenter1  <= collitionDistance ||
       distanceAwayFromCenter2 <= collitionDistance || 
       distanceAwayFromCenter3  <= collitionDistance)  {
-        if (lives > 0){
+        if (lives > 0 && score !== 3){
           lives --
           player2.x = 31;
           player2.y = height/1.5
@@ -1254,7 +1522,7 @@ function itHitLevel7() {
       distanceAwayFromCenter4 <= collitionDistance ||
       distanceAwayFromCenter5 <= collitionDistance ||
       distanceAwayFromCenter6 <= collitionDistance) {
-        if (lives > 0){
+        if (lives > 0 && score !== 3){
           lives --
           player2.x = 31;
           player2.y = height/1.5
@@ -1300,7 +1568,7 @@ function itHitLevel8(){
   if (distanceAwayFromCenter1  <= collitionDistance ||
       distanceAwayFromCenter2 <= collitionDistance || 
       distanceAwayFromCenter3  <= collitionDistance)  {
-        if (lives > 0){
+        if (lives > 0 && score !== 3){
           lives --
           player2.x = 31;
           player2.y = height/1.5
@@ -1367,7 +1635,7 @@ function itHitLevel9(){
       distanceAwayFromCenter11 <= collitionDistance || 
       distanceAwayFromCenter12  <= collitionDistance ||
       distanceAwayFromCenter13  <= collitionDistance)  {
-        if (lives > 0){
+        if (lives > 0 && score !== 3){
           lives --
           player2.x = 31;
           player2.y = height/1.5
@@ -1417,7 +1685,7 @@ function itHitLevel10(){
       distanceAwayFromCenter3  <= collitionDistance ||
       distanceAwayFromCenter4  <= collitionDistance ||
       distanceAwayFromCenter5 <= collitionDistance)  {
-        if (lives > 0){
+        if (lives > 0 && score !== 3){
           lives --
           player2.x = 31;
           player2.y = height/1.5
@@ -1477,7 +1745,7 @@ function itHitLevel11(){
       distanceAwayFromCenter8  <= collitionDistance ||
       distanceAwayFromCenter9  <= collitionDistance ||
       distanceAwayFromCenter10 <= collitionDistance )  {
-        if (lives > 0){
+        if (lives > 0 && score !== 3){
           lives --
           player2.x = 31;
           player2.y = height/1.5
@@ -1536,7 +1804,7 @@ function itHitLevel12(){
       distanceAwayFromCenter7 <= collitionDistance || 
       distanceAwayFromCenter8  <= collitionDistance ||
       distanceAwayFromCenter9  <= collitionDistance )  {
-        if (lives > 0){
+        if (lives > 0 && score !== 3){
           lives --
           player2.x = 31;
           player2.y = height/1.5
