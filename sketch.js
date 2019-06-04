@@ -546,10 +546,11 @@ function level1(){
   level1BallDisplay();
   itHitLevel1();
   collectingPointsLevel1();
-  // if (score === 3){
-  //   state === "levels"
-  //   level === "two"
-  // }
+  if (score === 3){
+    state === "levels"
+    level === "two"
+    console.log("yeet")
+  }
 }
 
 function level2(){
