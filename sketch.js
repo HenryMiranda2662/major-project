@@ -127,8 +127,6 @@ let level;
 let cellPictureWidth = 90;
 let cellPictureHeight = 90;
 
-
-
 function setup() {
   createCanvas(500, 500);
 
@@ -150,7 +148,8 @@ function setup() {
   
   state = "main_menu";//Sets the first state as menu
   
-
+  score = 0;
+  lives = 3;
 
   cellSize = 100; // Cell size for the grid I'll use
   xOffset = 30;
@@ -161,7 +160,7 @@ function setup() {
   playButton = {
     x : width/2,
     y : height/1.8,
-    width : 240,
+    width : 220,
     height : 75,
     image : loadImage("assets/playbutton.png"),   // Two images, which will switch back and forth when you  
     image2 : loadImage ("assets/playbutton2.png"),// hover the mouse over them
@@ -304,21 +303,21 @@ function setup() {
   point2Level8 = new PointBall (350, 470, 0, 0);
   point3Level8 = new PointBall (250, 250, 0, 5);
 
-  point1Level9 = new PointBall (width/1.5, height/1.5, 0, 0);
-  point2Level9 = new PointBall (150, height/1.5, 0, 0);
-  point3Level9 = new PointBall (450, height/1.5, 0, 0);
+  point1Level9 = new PointBall (460, 75, 0, 0);
+  point2Level9 = new PointBall (460, 275, 0, 0);
+  point3Level9 = new PointBall (460, 460, 0, 0);
 
-  point1Level10 = new PointBall (width/1.5, height/1.5, 0, 0);
-  point2Level10 = new PointBall (150, height/1.5, 0, 0);
-  point3Level10 = new PointBall (450, height/1.5, 0, 0);
+  point1Level10 = new PointBall (250, 250, -5, 5);
+  point2Level10 = new PointBall (25, 25, 0, 0);
+  point3Level10 = new PointBall (475, 475, 0, 0);
 
-  point1Level11 = new PointBall (width/1.5, height/1.5, 0, 0);
-  point2Level11 = new PointBall (150, height/1.5, 0, 0);
+  point1Level11 = new PointBall (500*1/3, 90, 0, 0);
+  point2Level11 = new PointBall (500*2/3, 90, 0, 0);
   point3Level11 = new PointBall (450, height/1.5, 0, 0);
 
-  point1Level12 = new PointBall (width/1.5, height/1.5, 0, 0);
-  point2Level12 = new PointBall (150, height/1.5, 0, 0);
-  point3Level12 = new PointBall (450, height/1.5, 0, 0);
+  point1Level12 = new PointBall (25, 260, 0, 0);
+  point2Level12 = new PointBall (475, 260, 0, 0);
+  point3Level12 = new PointBall (250, 60, 0, 0);
 }
   
 function draw() {
@@ -367,7 +366,7 @@ function checkStates(){
   }
 
   if (state === "levels") {
-    checkPowerScreen();
+    checkLevelScreen();
   }
 
 }
@@ -387,6 +386,59 @@ function restartPositions() {
   enemyball1Level5.x = width/2;
   enemyball2Level5.x = width/2;
   enemyball3Level5.x = width/2;
+
+  score = 0;
+  lives = 3;
+
+  point1Level1.x = width/1.5
+  point2Level1.x = 150
+  point3Level1.x = 450
+  
+  point1Level2.x = 300;
+  point2Level2.x = 150;
+  point3Level2.x = 450;
+
+  point1Level3.x = 200;
+  point2Level3.x = 350;
+  point3Level3.x = 470;
+
+  point1Level4.x = width/1.5;
+  point2Level4.x = 150;
+  point3Level4.x = 450;
+
+  point1Level5.x = 50;
+  point2Level5.x = 50;
+  point3Level5.x = 460;
+
+  point1Level6.x = 30;
+  point2Level6.x = 470;
+  point3Level6.x = 250;
+
+  point1Level7.x = 470;
+  point2Level7.x = 30;
+  point3Level7.x = 470;
+
+  point1Level8.x = 150;
+  point2Level8.x = 350;
+  point3Level8.x = 250;
+
+  point1Level9.x = 460;
+  point2Level9.x = 460;
+  point3Level9.x = 460;
+
+  point1Level10.x = 250;
+  point2Level10.x = 25;
+  point3Level10.x = 475
+
+  point1Level11 = new PointBall (500*1/3, 90, 0, 0);
+  point2Level11 = new PointBall (500*2/3, 90, 0, 0);
+  point3Level11 = new PointBall (450, height/1.5, 0, 0);
+
+  point1Level12 = new PointBall (25, 260, 0, 0);
+  point2Level12 = new PointBall (475, 260, 0, 0);
+  point3Level12 = new PointBall (250, 60, 0, 0);
+
+  
 
 }
 
@@ -423,7 +475,6 @@ function displayGrid() {
 
 function displayMenu() {
   // Creates a button during the first screen "menu"
-  
   // rect(playButton.x, playButton.y, playButton.width, playButton.height);
   imageMode(CENTER)
   image(playButton.image, playButton.x, playButton.y, playButton.width, playButton.height);
@@ -432,7 +483,7 @@ function displayMenu() {
   image(instructionButton.image, instructionButton.x, instructionButton.y, instructionButton.width, instructionButton.height);
 }
 
-function checkPowerScreen() {
+function checkLevelScreen() {
   //Depending on which power the user chooses, it displays the according screen
   if (level === "one" ) {
     level1();
@@ -494,6 +545,11 @@ function level1(){
   background(190, 192, 190);
   level1BallDisplay();
   itHitLevel1();
+  collectingPointsLevel1();
+  // if (score === 3){
+  //   state === "levels"
+  //   level === "two"
+  // }
 }
 
 function level2(){
@@ -501,35 +557,15 @@ function level2(){
   background(190, 192, 190);
   level2BallDisplay();
   itHitLevel2();
-}
-
-function level5(){
-  level5BallMovement();
-  background(190, 192, 190);
-  level5BallDisplay();
-  itHitLevel5();
-}
-
-function level6(){
-  Level6BallMovement();
-  background(190, 192, 190);
-  Level6BallDisplay();
-  itHitLevel6();
-}
-
-function level7(){
-  Level7BallMovement();
-  background(190, 192, 190);
-  Level7BallDisplay();
-  itHitLevel7();
+  collectingPointsLevel2();
 }
 
 function level3(){
-  
   Level3BallMovement();
   background(190, 192, 190);
   Level3BallDisplay();
   itHitLevel3();
+  collectingPointsLevel3();
 }
 
 function level4(){
@@ -537,6 +573,31 @@ function level4(){
   background(190, 192, 190);
   Level1BallDisplay();
   itHitLevel1();
+  collectingPointsLevel1();
+}
+
+function level5(){
+  level5BallMovement();
+  background(190, 192, 190);
+  level5BallDisplay();
+  itHitLevel5();
+  collectingPointsLevel5();
+}
+
+function level6(){
+  Level6BallMovement();
+  background(190, 192, 190);
+  Level6BallDisplay();
+  itHitLevel6();
+  collectingPointsLevel6();
+}
+
+function level7(){
+  Level7BallMovement();
+  background(190, 192, 190);
+  Level7BallDisplay();
+  itHitLevel7();
+  collectingPointsLevel7();
 }
 
 function level8(){
@@ -544,6 +605,7 @@ function level8(){
   background(190, 192, 190);
   Level8BallDisplay();
   itHitLevel8();
+  collectingPointsLevel8();
 }
 
 function level9(){
@@ -551,6 +613,7 @@ function level9(){
   background(190, 192, 190);
   Level9BallDisplay();
   itHitLevel9();
+  collectingPointsLevel9();
 }
 
 function level10(){
@@ -558,6 +621,7 @@ function level10(){
   background(190, 192, 190);
   Level10BallDisplay();
   itHitLevel10();
+  collectingPointsLevel10();
 }
 
 function level11(){
@@ -565,6 +629,7 @@ function level11(){
   background(190, 192, 190);
   Level11BallDisplay();
   itHitLevel11();
+  collectingPointsLevel11();
 }
 
 function level12(){
@@ -572,9 +637,8 @@ function level12(){
   background(190, 192, 190);
   Level12BallDisplay();
   itHitLevel12();
+  collectingPointsLevel12();
 }
-
-
 
 function level1BallMovement() {
   point1Level1.move();
@@ -901,7 +965,7 @@ function checkCursor(){
       image(gridButton.image2, gridButton.x, gridButton.y, gridButton.width , gridButton.height)
     }
 
-    if ((mouseX > 30 ) && 
+    else if ((mouseX > 30 ) && 
     (mouseX < 330) && 
     (mouseY > 65 ) && 
     (mouseY < 465)){
@@ -944,7 +1008,36 @@ function itHitLevel1() {
   if (distanceAwayFromCenter1  <= collitionDistance ||
       distanceAwayFromCenter2 <= collitionDistance || 
       distanceAwayFromCenter3  <= collitionDistance)  {
-    state = "main_menu";
+    if (lives > 0){
+      lives --
+      player1.x = 31;
+    }
+    else if (lives === 0){
+      state = "main_menu"
+    }
+  }
+}
+
+function collectingPointsLevel1() {
+  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
+  // you lose and go back to the "menu"
+  ballDistanceToPoint1 = int(dist(player1.x, player1.y, point1Level1.x, point1Level1.y));                   
+  ballDistanceToPoint2 = int(dist(player1.x, player1.y,  point2Level1.x, point2Level1.y));
+  ballDistanceToPoint3 = int(dist(player1.x, player1.y, point3Level1.x, point3Level1.y));
+  
+  collectionDistance = (player1.radius + point1Level1.radius);
+  
+  if (ballDistanceToPoint1  <= collectionDistance )  {
+    point1Level1.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint2 <= collectionDistance )  {
+    point2Level1.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint3  <= collectionDistance)  {
+    point3Level1.x = -100;
+    score ++;
   }
 }
 
@@ -960,10 +1053,40 @@ function itHitLevel2() {
   if (distanceAwayFromCenter1  <= collitionDistance ||
       distanceAwayFromCenter2 <= collitionDistance || 
       distanceAwayFromCenter3  <= collitionDistance)  {
-    state = "main_menu";
+    if (lives > 0){
+      lives --
+      player1.x = 31;
+    }
+    else if (lives === 0){
+      state = "main_menu"
+    }
   }
 }
 
+function collectingPointsLevel2() {
+  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
+  // you lose and go back to the "menu"
+  
+  ballDistanceToPoint1 = int(dist(player1.x, player1.y, point1Level2.x, point1Level2.y));                   
+  ballDistanceToPoint2 = int(dist(player1.x, player1.y,  point2Level2.x, point2Level2.y));
+  ballDistanceToPoint3 = int(dist(player1.x, player1.y, point3Level2.x, point3Level2.y));
+  
+  collectionDistance = (player1.radius + point1Level2.radius);
+  
+  if (ballDistanceToPoint1  <= collectionDistance )  {
+    point1Level2.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint2 <= collectionDistance )  {
+    point2Level2.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint3  <= collectionDistance)  {
+    point3Level2.x = -100;
+    score ++;
+  }
+  
+}
 
 function itHitLevel3() {
   // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
@@ -981,8 +1104,39 @@ function itHitLevel3() {
       distanceAwayFromCenter3  <= collitionDistance ||
       distanceAwayFromCenter4  <= collitionDistance ||
       distanceAwayFromCenter5  <= collitionDistance)  {
-    state = "main_menu";
+    if (lives > 0){
+      lives --
+      player1.x = 31;
+    }
+    else if (lives === 0){
+      state = "main_menu"
+    }
   }
+}
+
+function collectingPointsLevel3() {
+  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
+  // you lose and go back to the "menu"
+  
+  ballDistanceToPoint1 = int(dist(player1.x, player1.y, point1Level3.x, point1Level3.y));                   
+  ballDistanceToPoint2 = int(dist(player1.x, player1.y,  point2Level3.x, point2Level3.y));
+  ballDistanceToPoint3 = int(dist(player1.x, player1.y, point3Level3.x, point3Level3.y));
+  
+  collectionDistance = (player1.radius + point1Level2.radius);
+  
+  if (ballDistanceToPoint1  <= collectionDistance )  {
+    point1Level3.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint2 <= collectionDistance )  {
+    point2Level3.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint3  <= collectionDistance)  {
+    point3Level3.x = -100;
+    score ++;
+  }
+  
 }
 
 function itHitLevel5() {
@@ -997,8 +1151,40 @@ function itHitLevel5() {
   if (distanceAwayFromCenter1  <= collitionDistance ||
       distanceAwayFromCenter2 <= collitionDistance || 
       distanceAwayFromCenter3  <= collitionDistance)  {
-    state = "main_menu";
+    if (lives > 0){
+      lives --
+      player2.x = 31;
+      player2.y = height/1.5
+    }
+    else if (lives === 0){
+      state = "main_menu"
+    }
   }
+}
+
+function collectingPointsLevel5() {
+  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
+  // you lose and go back to the "menu"
+  
+  ballDistanceToPoint1 = int(dist(player2.x, player2.y, point1Level5.x, point1Level5.y));                   
+  ballDistanceToPoint2 = int(dist(player2.x, player2.y,  point2Level5.x, point2Level5.y));
+  ballDistanceToPoint3 = int(dist(player2.x, player2.y, point3Level5.x, point3Level5.y));
+  
+  collectionDistance = (player2.radius + point1Level2.radius);
+  
+  if (ballDistanceToPoint1  <= collectionDistance )  {
+    point1Level5.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint2 <= collectionDistance )  {
+    point2Level5.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint3  <= collectionDistance)  {
+    point3Level5.x = -100;
+    score ++;
+  }
+  
 }
 
 function itHitLevel6() {
@@ -1013,8 +1199,40 @@ function itHitLevel6() {
   if (distanceAwayFromCenter1  <= collitionDistance ||
       distanceAwayFromCenter2 <= collitionDistance || 
       distanceAwayFromCenter3  <= collitionDistance)  {
-    state = "main_menu";
+        if (lives > 0){
+          lives --
+          player2.x = 31;
+          player2.y = height/1.5
+        }
+        else if (lives === 0){
+          state = "main_menu"
+        }
   }
+}
+
+function collectingPointsLevel6() {
+  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
+  // you lose and go back to the "menu"
+  
+  ballDistanceToPoint1 = int(dist(player2.x, player2.y, point1Level6.x, point1Level6.y));                   
+  ballDistanceToPoint2 = int(dist(player2.x, player2.y,  point2Level6.x, point2Level6.y));
+  ballDistanceToPoint3 = int(dist(player2.x, player2.y, point3Level6.x, point3Level6.y));
+  
+  collectionDistance = (player2.radius + point1Level2.radius);
+  
+  if (ballDistanceToPoint1  <= collectionDistance )  {
+    point1Level6.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint2 <= collectionDistance )  {
+    point2Level6.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint3  <= collectionDistance)  {
+    point3Level6.x = -100;
+    score ++;
+  }
+  
 }
 
 function itHitLevel7() {
@@ -1035,8 +1253,40 @@ function itHitLevel7() {
       distanceAwayFromCenter4 <= collitionDistance ||
       distanceAwayFromCenter5 <= collitionDistance ||
       distanceAwayFromCenter6 <= collitionDistance) {
-    state = "main_menu";
+        if (lives > 0){
+          lives --
+          player2.x = 31;
+          player2.y = height/1.5
+        }
+        else if (lives === 0){
+          state = "main_menu"
+        }
   }
+}
+
+function collectingPointsLevel7() {
+  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
+  // you lose and go back to the "menu"
+  
+  ballDistanceToPoint1 = int(dist(player2.x, player2.y, point1Level7.x, point1Level7.y));                   
+  ballDistanceToPoint2 = int(dist(player2.x, player2.y,  point2Level7.x, point2Level7.y));
+  ballDistanceToPoint3 = int(dist(player2.x, player2.y, point3Level7.x, point3Level7.y));
+  
+  collectionDistance = (player1.radius + point1Level2.radius);
+  
+  if (ballDistanceToPoint1  <= collectionDistance )  {
+    point1Level7.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint2 <= collectionDistance )  {
+    point2Level7.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint3  <= collectionDistance)  {
+    point3Level7.x = -100;
+    score ++;
+  }
+  
 }
 
 function itHitLevel8(){
@@ -1049,9 +1299,41 @@ function itHitLevel8(){
   if (distanceAwayFromCenter1  <= collitionDistance ||
       distanceAwayFromCenter2 <= collitionDistance || 
       distanceAwayFromCenter3  <= collitionDistance)  {
-    state = "main_menu";
+        if (lives > 0){
+          lives --
+          player2.x = 31;
+          player2.y = height/1.5
+        }
+        else if (lives === 0){
+          state = "main_menu"
+        }
   }
 
+}
+
+function collectingPointsLevel8() {
+  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
+  // you lose and go back to the "menu"
+  
+  ballDistanceToPoint1 = int(dist(player2.x, player2.y, point1Level8.x, point1Level8.y));                   
+  ballDistanceToPoint2 = int(dist(player2.x, player2.y,  point2Level8.x, point2Level8.y));
+  ballDistanceToPoint3 = int(dist(player2.x, player2.y, point3Level8.x, point3Level8.y));
+  
+  collectionDistance = (player1.radius + point1Level2.radius);
+  
+  if (ballDistanceToPoint1  <= collectionDistance )  {
+    point1Level8.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint2 <= collectionDistance )  {
+    point2Level8.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint3  <= collectionDistance)  {
+    point3Level8.x = -100;
+    score ++;
+  }
+  
 }
 
 function itHitLevel9(){
@@ -1084,8 +1366,40 @@ function itHitLevel9(){
       distanceAwayFromCenter11 <= collitionDistance || 
       distanceAwayFromCenter12  <= collitionDistance ||
       distanceAwayFromCenter13  <= collitionDistance)  {
-    state = "main_menu";
+        if (lives > 0){
+          lives --
+          player2.x = 31;
+          player2.y = height/1.5
+        }
+        else if (lives === 0){
+          state = "main_menu"
+        }
   }  
+}
+
+function collectingPointsLevel9() {
+  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
+  // you lose and go back to the "menu"
+  
+  ballDistanceToPoint1 = int(dist(player2.x, player2.y, point1Level9.x, point1Level9.y));                   
+  ballDistanceToPoint2 = int(dist(player2.x, player2.y,  point2Level9.x, point2Level9.y));
+  ballDistanceToPoint3 = int(dist(player2.x, player2.y, point3Level9.x, point3Level9.y));
+  
+  collectionDistance = (player1.radius + point1Level2.radius);
+  
+  if (ballDistanceToPoint1  <= collectionDistance )  {
+    point1Level9.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint2 <= collectionDistance )  {
+    point2Level9.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint3  <= collectionDistance)  {
+    point3Level9.x = -100;
+    score ++;
+  }
+  
 }
 
 function itHitLevel10(){
@@ -1102,8 +1416,40 @@ function itHitLevel10(){
       distanceAwayFromCenter3  <= collitionDistance ||
       distanceAwayFromCenter4  <= collitionDistance ||
       distanceAwayFromCenter5 <= collitionDistance)  {
-    state = "main_menu";
+        if (lives > 0){
+          lives --
+          player2.x = 31;
+          player2.y = height/1.5
+        }
+        else if (lives === 0){
+          state = "main_menu"
+        }
   }
+}
+
+function collectingPointsLevel10() {
+  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
+  // you lose and go back to the "menu"
+  
+  ballDistanceToPoint1 = int(dist(player2.x, player2.y, point1Level10.x, point1Level10.y));                   
+  ballDistanceToPoint2 = int(dist(player2.x, player2.y,  point2Level10.x, point2Level10.y));
+  ballDistanceToPoint3 = int(dist(player2.x, player2.y, point3Level10.x, point3Level10.y));
+  
+  collectionDistance = (player1.radius + point1Level2.radius);
+  
+  if (ballDistanceToPoint1  <= collectionDistance )  {
+    point1Level10.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint2 <= collectionDistance )  {
+    point2Level10.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint3  <= collectionDistance)  {
+    point3Level10.x = -100;
+    score ++;
+  }
+  
 }
 
 function itHitLevel11(){
@@ -1130,8 +1476,40 @@ function itHitLevel11(){
       distanceAwayFromCenter8  <= collitionDistance ||
       distanceAwayFromCenter9  <= collitionDistance ||
       distanceAwayFromCenter10 <= collitionDistance )  {
-    state = "main_menu";
+        if (lives > 0){
+          lives --
+          player2.x = 31;
+          player2.y = height/1.5
+        }
+        else if (lives === 0){
+          state = "main_menu"
+        }
   }
+}
+
+function collectingPointsLevel11() {
+  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
+  // you lose and go back to the "menu"
+  
+  ballDistanceToPoint1 = int(dist(player2.x, player2.y, point1Level11.x, point1Level11.y));                   
+  ballDistanceToPoint2 = int(dist(player2.x, player2.y,  point2Level11.x, point2Level11.y));
+  ballDistanceToPoint3 = int(dist(player2.x, player2.y, point3Level11.x, point3Level11.y));
+  
+  collectionDistance = (player1.radius + point1Level2.radius);
+  
+  if (ballDistanceToPoint1  <= collectionDistance )  {
+    point1Level11.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint2 <= collectionDistance )  {
+    point2Level11.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint3  <= collectionDistance)  {
+    point3Level11.x = -100;
+    score ++;
+  }
+  
 }
 
 function itHitLevel12(){
@@ -1157,8 +1535,40 @@ function itHitLevel12(){
       distanceAwayFromCenter7 <= collitionDistance || 
       distanceAwayFromCenter8  <= collitionDistance ||
       distanceAwayFromCenter9  <= collitionDistance )  {
-    state = "main_menu";
+        if (lives > 0){
+          lives --
+          player2.x = 31;
+          player2.y = height/1.5
+        }
+        else if (lives === 0){
+          state = "main_menu"
+        }
   }
+}
+
+function collectingPointsLevel12() {
+  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
+  // you lose and go back to the "menu"
+  
+  ballDistanceToPoint1 = int(dist(player2.x, player2.y, point1Level12.x, point1Level12.y));                   
+  ballDistanceToPoint2 = int(dist(player2.x, player2.y,  point2Level12.x, point2Level12.y));
+  ballDistanceToPoint3 = int(dist(player2.x, player2.y, point3Level12.x, point3Level12.y));
+  
+  collectionDistance = (player1.radius + point1Level2.radius);
+  
+  if (ballDistanceToPoint1  <= collectionDistance )  {
+    point1Level12.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint2 <= collectionDistance )  {
+    point2Level12.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint3  <= collectionDistance)  {
+    point3Level12.x = -100;
+    score ++;
+  }
+  
 }
 
 function mousePressed() {
