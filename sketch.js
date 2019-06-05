@@ -201,7 +201,7 @@ function setup() {
 
   menuButton = {
     x : 250,
-    y : 210,
+    y : 275,
     width : 150,
     height : 75,
     image : loadImage("assets/menu.png"),
@@ -388,9 +388,12 @@ function checkStates(){
 
 function writeText(){
   // This function will write something on the scree, the text is already pre-determinate 
+  txt2 = "Congratulations"
   textSize(40);
   fill("black")
-  text(txt, 35, 130);// "txt" is the variable which holds the string, followed by x and y coordinates
+  textAlign(CENTER, CENTER);
+  text(txt2, 250, 130)
+  text(txt, 250, 190);// "txt" is the variable which holds the string, followed by x and y coordinates
 }
 
 function displayEndScreen(){
@@ -399,10 +402,10 @@ function displayEndScreen(){
 }
 
 function instructionsText(){
-  let a = "For levels 1 to 4,  you  can use the right and left" 
-  let b = "arrows to move. For level 5 onwards, you can "
-  let c = "also use the up and down arrows. Collect all " 
-  let d = "three stars to pass to the next level "
+  let a = "For levels 1 to 4,  you  can use the Right and Left" 
+  let b = "arrows to move. From level 5 onwards, you can "
+  let c = "also use the Up and UDown arrows. Collect all " 
+  let d = "three points to pass to the next level "
   background(197, 160, 229);
   textAlign(CENTER, CENTER);
   textSize(23);
@@ -1206,88 +1209,6 @@ function switchLevel12(){
   }
 }
 
-function checkCursor(){
-  //Similar to the "menu", the mouse and button will change if you hover over the button
-  if (state === "main_menu"){
-    // During "menu", if the mouse hovers over the play button, the mouse will change from an arrow to a pointer
-    // and the play button will light-up (this is due to a change of image with a lighter colour) 
-    if ((mouseX > playButton.x - (playButton.width/2)) &&
-       (mouseX < playButton.x + (playButton.width/2)) && 
-       (mouseY > playButton.y - (playButton.height/2)) && 
-       (mouseY < playButton.y + (playButton.height/2))){
-  
-      cursor("pointer");
-      imageMode(CENTER);
-      image(playButton.image2, playButton.x, playButton.y, playButton.width, playButton.height);
-    }
-
-    else if ((mouseX > instructionButton.x - (instructionButton.width/2)) &&
-       (mouseX < instructionButton.x + (instructionButton.width/2)) && 
-       (mouseY > instructionButton.y - (instructionButton.height/2)) && 
-       (mouseY < instructionButton.y + (instructionButton.height/2))){
-  
-      cursor("pointer");
-      imageMode(CENTER);
-      image(instructionButton.image2, instructionButton.x, instructionButton.y, instructionButton.width, instructionButton.height);
-    }
-  
-    else {
-      cursor(ARROW); // if the mouse doesn't hover over the button, it remains an arrow
-    }
-  }
-  
-  if (state === "menu"){
-    if ((mouseX > gridButton.x ) && 
-        (mouseX < gridButton.x + gridButton.width) && 
-        (mouseY > gridButton.y ) && 
-        (mouseY < gridButton.y + gridButton.height)){
-      cursor("pointer");
-      imageMode(CORNER);
-      image(gridButton.image2, gridButton.x, gridButton.y, gridButton.width , gridButton.height)
-    }
-
-    else if ((mouseX > 30 ) && 
-    (mouseX < 330) && 
-    (mouseY > 65 ) && 
-    (mouseY < 465)){
-      cursor ("pointer");
-
-    }
-
-    else {
-      cursor(ARROW);
-    } 
-  }
-  if (state === "instructions"){
-
-    if ((mouseX > levelButton.x - levelButton.width/2 ) && 
-    (mouseX < levelButton.x + levelButton.width/2) && 
-    (mouseY > levelButton.y - levelButton.height/2 ) && 
-    (mouseY < levelButton.y + levelButton.height/2)){
-      cursor("pointer");
-      imageMode(CENTER);
-      image(levelButton.image2, levelButton.x, levelButton.y, levelButton.width , levelButton.height)
-    }
-
-    else {
-      cursor(ARROW);
-    } 
-  }
-
-  if (state === "final_screen"){
-    if ((mouseX > menuButton.x - (menuButton.width/2)) && (mouseX < menuButton.x + (menuButton.width/2)) && (mouseY > menuButton.y - (menuButton.height/2)) && (mouseY < menuButton.y + (menuButton.height/2))){
-      cursor("pointer");
-      imageMode(CENTER);
-      image(menuButton.image2, menuButton.x, menuButton.y, menuButton.width, menuButton.height);
-   }
-
-    else {
-      cursor(ARROW);
-    }
-  }
-
-}
-
 function itHitLevel1() {
   // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
   // you lose and go back to the "menu"
@@ -1943,6 +1864,88 @@ function mousePressed() {
   }
 }
 
+function checkCursor(){
+  //Similar to the "menu", the mouse and button will change if you hover over the button
+  if (state === "main_menu"){
+    // During "menu", if the mouse hovers over the play button, the mouse will change from an arrow to a pointer
+    // and the play button will light-up (this is due to a change of image with a lighter colour) 
+    if ((mouseX > playButton.x - (playButton.width/2)) &&
+       (mouseX < playButton.x + (playButton.width/2)) && 
+       (mouseY > playButton.y - (playButton.height/2)) && 
+       (mouseY < playButton.y + (playButton.height/2))){
+  
+      cursor("pointer");
+      imageMode(CENTER);
+      image(playButton.image2, playButton.x, playButton.y, playButton.width, playButton.height);
+    }
+
+    else if ((mouseX > instructionButton.x - (instructionButton.width/2)) &&
+       (mouseX < instructionButton.x + (instructionButton.width/2)) && 
+       (mouseY > instructionButton.y - (instructionButton.height/2)) && 
+       (mouseY < instructionButton.y + (instructionButton.height/2))){
+  
+      cursor("pointer");
+      imageMode(CENTER);
+      image(instructionButton.image2, instructionButton.x, instructionButton.y, instructionButton.width, instructionButton.height);
+    }
+  
+    else {
+      cursor(ARROW); // if the mouse doesn't hover over the button, it remains an arrow
+    }
+  }
+  
+  if (state === "menu"){
+    if ((mouseX > gridButton.x ) && 
+        (mouseX < gridButton.x + gridButton.width) && 
+        (mouseY > gridButton.y ) && 
+        (mouseY < gridButton.y + gridButton.height)){
+      cursor("pointer");
+      imageMode(CORNER);
+      image(gridButton.image2, gridButton.x, gridButton.y, gridButton.width , gridButton.height)
+    }
+
+    else if ((mouseX > 30 ) && 
+    (mouseX < 330) && 
+    (mouseY > 65 ) && 
+    (mouseY < 465)){
+      cursor ("pointer");
+
+    }
+
+    else {
+      cursor(ARROW);
+    } 
+  }
+  if (state === "instructions"){
+
+    if ((mouseX > levelButton.x - levelButton.width/2 ) && 
+    (mouseX < levelButton.x + levelButton.width/2) && 
+    (mouseY > levelButton.y - levelButton.height/2 ) && 
+    (mouseY < levelButton.y + levelButton.height/2)){
+      cursor("pointer");
+      imageMode(CENTER);
+      image(levelButton.image2, levelButton.x, levelButton.y, levelButton.width , levelButton.height)
+    }
+
+    else {
+      cursor(ARROW);
+    } 
+  }
+
+  if (state === "final_screen"){
+    if ((mouseX > menuButton.x - (menuButton.width/2)) && (mouseX < menuButton.x + (menuButton.width/2)) && (mouseY > menuButton.y - (menuButton.height/2)) && (mouseY < menuButton.y + (menuButton.height/2))){
+      cursor("pointer");
+      imageMode(CENTER);
+      image(menuButton.image2, menuButton.x, menuButton.y, menuButton.width, menuButton.height);
+   }
+
+    else {
+      cursor(ARROW);
+    }
+  }
+
+}
+
 function checkGridLevel(){
   let xcoord = floor((mouseX - xOffset)  / cellSize);// makes coordinates on the grid
   let ycoord = floor((mouseY - yOffset)  / cellSize);
@@ -2036,5 +2039,8 @@ function clickedOnButtonInstructions(x, y) {
 }
 
 function clickedOnButtonMenu(x,y){
-  return x >= menuButton.x - menuButton.width/2 && x <= menuButton.x + menuButton.width/2 && y >= menuButton.y - menuButton.height/2 && y <= menuButton.y + menuButton.height/2;
+  return x >= menuButton.x - menuButton.width/2 && 
+         x <= menuButton.x + menuButton.width/2 && 
+         y >= menuButton.y - menuButton.height/2 && 
+         y <= menuButton.y + menuButton.height/2;
 }
