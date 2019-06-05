@@ -155,13 +155,13 @@ function setup() {
   state = "main_menu";//Sets the first state as menu
   
   score = 0;
-  lives = 3;
+  lives = 10;
 
   cellSize = 100; // Cell size for the grid I'll use
   xOffset = 30;
   yOffset = 65;
   level = "one" //Variable which will change which power will be used
-  
+  txt = "You Finished the Game";  
 
   playButton = {
     x : width/2,
@@ -199,6 +199,15 @@ function setup() {
     image2 : loadImage("assets/go2.png")
   }
 
+  menuButton = {
+    x : 250,
+    y : 210,
+    width : 150,
+    height : 75,
+    image : loadImage("assets/menu.png"),
+    image2: loadImage("assets/menu2.png"),
+  }
+
   
   player1 = new PlayerBall(31, height / 1.5, 4, 0);
   player2 = new PlayerBall(31, height/1.5, 4, 4);
@@ -216,6 +225,10 @@ function setup() {
   enemyball3Level3 = new EnemyBall((width / 2.95 + 55), height/2, 0, 7);
   enemyball4Level3 = new EnemyBall((width / 2.95 + 110),height/2, 0, 7);
   enemyball5Level3 = new EnemyBall(410, height/2, 0, 15)
+
+  enemyball1Level4 = new EnemyBall(150, 250, 0, 7);
+  enemyball2Level4 = new EnemyBall(width / 2, 250, random(6,7), 7);
+  enemyball3Level4 = new EnemyBall(350,250,  0, 7);
   
   enemyball1Level5 = new EnemyBall(width/2, 100, 12, 0);
   enemyball2Level5 = new EnemyBall(width/2, height/2, 12, 0);
@@ -329,12 +342,13 @@ function setup() {
 function draw() {
   //Will Draw according to state
   checkStates();
+  timeKeeping();
+}
 
+function timeKeeping(){
   if (frameCount % 60 === 0) {
     timer++;
   }
-
-
 }
 
 function checkStates(){
@@ -347,40 +361,62 @@ function checkStates(){
     displayMenu();
     checkCursor();
     restartPositions();
-
   }
 
   if (state === "instructions"){
-    let a = "For levels 1 to 3,  you  can use the right and left" 
-    let b = "arrows to move. For level 4 onwards, you can "
-    let c = "also use the up and down arrows. Collect all " 
-    let d = "three stars to pass to the next level "
-    background(197, 160, 229);
-    textAlign(CENTER, CENTER);
-    textSize(23);
-    fill("black");
-
-    text (a, 250, 100);
-    text (b, 250, 130);
-    text (c, 250, 160);
-    text (d, 250, 190);
-
-    imageMode(CENTER)
-    image(levelButton.image, levelButton.x, levelButton.y, levelButton.width, levelButton.height);
-
+    instructionsText();
+    displayInstructionsButton();
     checkCursor();
-
   }
 
   if (state === "menu") {
     displayGrid();  
-    
   }
 
   if (state === "levels") {
     checkLevelScreen();
   }
 
+  if (state === "final_screen"){
+    background(135, 198, 209);
+    writeText();
+    displayEndScreen();
+    checkCursor();
+  }
+
+}
+
+function writeText(){
+  // This function will write something on the scree, the text is already pre-determinate 
+  textSize(40);
+  fill("black")
+  text(txt, 35, 130);// "txt" is the variable which holds the string, followed by x and y coordinates
+}
+
+function displayEndScreen(){
+  imageMode(CENTER);
+  image(menuButton.image, menuButton.x, menuButton.y, menuButton.width, menuButton.height);// Super-imposes a picture over that rectangle
+}
+
+function instructionsText(){
+  let a = "For levels 1 to 4,  you  can use the right and left" 
+  let b = "arrows to move. For level 5 onwards, you can "
+  let c = "also use the up and down arrows. Collect all " 
+  let d = "three stars to pass to the next level "
+  background(197, 160, 229);
+  textAlign(CENTER, CENTER);
+  textSize(23);
+  fill("black");
+
+  text (a, 250, 100);
+  text (b, 250, 130);
+  text (c, 250, 160);
+  text (d, 250, 190);
+}
+
+function displayInstructionsButton(){
+  imageMode(CENTER)
+  image(levelButton.image, levelButton.x, levelButton.y, levelButton.width, levelButton.height);
 }
 
 function restartPositions() {
@@ -400,7 +436,7 @@ function restartPositions() {
   enemyball3Level5.x = width/2;
 
   score = 0;
-  lives = 3;
+  lives = 10;
 
   point1Level1.x = width/1.5
   point2Level1.x = 150
@@ -511,7 +547,7 @@ function checkLevelScreen() {
     noCursor();
   }
   if (level === "four") {
-    level1();
+    level4();//777
     noCursor();
   }
   if (level === "five") {
@@ -566,7 +602,7 @@ function level2(){
   level2BallMovement();
   background(190, 192, 190);
   level2BallDisplay();
-  //itHitLevel2();
+  itHitLevel2();
   collectingPointsLevel2();
   switchLevel2to3();
 }
@@ -581,12 +617,12 @@ function level3(){
 }
 
 function level4(){
-  Level1BallMovement();
+  level4BallMovement();
   background(190, 192, 190);
-  Level1BallDisplay();
-  itHitLevel1();
-  collectingPointsLevel1();
-  switchLevel1to2();
+  level4BallDisplay();
+  itHitLevel4();
+  collectingPointsLevel4();
+  switchLevel4to5();
 }
 
 function level5(){
@@ -661,6 +697,14 @@ function level12(){
   switchLevel12();
 }
 
+function nextLevelText(){
+  fill("black");
+  textAlign(CENTER);
+  textSize(28);
+  text("Going to the Next Level", 250, 200);
+  text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 300);
+}
+
 function level1BallMovement() {
   point1Level1.move();
   point2Level1.move();
@@ -686,19 +730,12 @@ function switchLevel1to2(){
     if (currentTime === -500) {
       currentTime = timer;
     }
-    textAlign(CENTER);
-    textSize(28);
-    text("Going to the Next Level", 250, 200);
-
-    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
-
+    nextLevelText();
     if (3 - (timer - currentTime) === 0 ) {
-
       level = "two";
       score = 0;
       player1.x = 25;
       currentTime = -500;
-
     }
   }
 }
@@ -724,18 +761,12 @@ function level2BallDisplay(){
   player1.display();
 }
 
-
 function switchLevel2to3(){
   if (score === 3) {
     if (currentTime === -500) {
       currentTime = timer;
     }
-    textAlign(CENTER);
-    textSize(28);
-    text("Going to the Next Level", 250, 200);
-
-    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
-
+    nextLevelText();
     if (3 - (timer - currentTime) === 0 ) {
 
      level = "three";
@@ -775,15 +806,48 @@ function switchLevel3to4(){
     if (currentTime === -500) {
       currentTime = timer;
     }
-    textAlign(CENTER);
-    textSize(28);
-    text("Going to the Next Level", 250, 200);
-
-    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
-
+    nextLevelText();
     if (3 - (timer - currentTime) === 0 ) {
 
      level = "four";
+     score = 0;
+     player1.x = 31;
+     player2.x = 31;
+     player2.y = height/1.5;
+     currentTime = -500;
+    }
+  }
+}
+
+function level4BallMovement(){
+  point1Level4.move();
+  point2Level4.move();
+  point3Level4.move();
+  enemyball1Level4.move();
+  enemyball2Level4.move();
+  enemyball3Level4.move();
+  player1.move();
+}
+
+function level4BallDisplay(){
+  point1Level4.display();
+  point2Level4.display();
+  point3Level4.display();
+  enemyball1Level4.display();
+  enemyball2Level4.display();
+  enemyball3Level4.display();
+  player1.display();
+}
+
+function switchLevel4to5(){
+  if (score === 3) {
+    if (currentTime === -500) {
+      currentTime = timer;
+    }
+    nextLevelText();
+    if (3 - (timer - currentTime) === 0 ) {
+
+     level = "five";
      score = 0;
      player1.x = 31;
      player2.x = 31;
@@ -818,12 +882,7 @@ function switchLevel5to6(){
     if (currentTime === -500) {
       currentTime = timer;
     }
-    textAlign(CENTER);
-    textSize(28);
-    text("Going to the Next Level", 250, 200);
-
-    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
-
+    nextLevelText();
     if (3 - (timer - currentTime) === 0 ) {
 
      level = "six";
@@ -861,12 +920,7 @@ function switchLevel6to7(){
     if (currentTime === -500) {
       currentTime = timer;
     }
-    textAlign(CENTER);
-    textSize(28);
-    text("Going to the Next Level", 250, 200);
-
-    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
-
+    nextLevelText();
     if (3 - (timer - currentTime) === 0 ) {
 
      level = "seven";
@@ -910,12 +964,7 @@ function switchLevel7to8(){
     if (currentTime === -500) {
       currentTime = timer;
     }
-    textAlign(CENTER);
-    textSize(28);
-    text("Going to the Next Level", 250, 200);
-
-    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
-
+    nextLevelText();
     if (3 - (timer - currentTime) === 0 ) {
 
      level = "eight";
@@ -953,12 +1002,7 @@ function switchLevel8to9(){
     if (currentTime === -500) {
       currentTime = timer;
     }
-    textAlign(CENTER);
-    textSize(28);
-    text("Going to the Next Level", 250, 200);
-
-    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
-
+    nextLevelText();
     if (3 - (timer - currentTime) === 0 ) {
 
      level = "nine";
@@ -1016,12 +1060,7 @@ function switchLevel9to10(){
     if (currentTime === -500) {
       currentTime = timer;
     }
-    textAlign(CENTER);
-    textSize(28);
-    text("Going to the Next Level", 250, 200);
-
-    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
-
+    nextLevelText();
     if (3 - (timer - currentTime) === 0 ) {
 
      level = "ten";
@@ -1063,12 +1102,7 @@ function switchLevel10to11(){
     if (currentTime === -500) {
       currentTime = timer;
     }
-    textAlign(CENTER);
-    textSize(28);
-    text("Going to the Next Level", 250, 200);
-
-    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
-
+    nextLevelText();
     if (3 - (timer - currentTime) === 0 ) {
 
      level = "eleven";
@@ -1120,11 +1154,7 @@ function switchLevel11to12(){
     if (currentTime === -500) {
       currentTime = timer;
     }
-    textAlign(CENTER);
-    textSize(28);
-    text("Going to the Next Level", 250, 200);
-
-    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
+    nextLevelText();
 
     if (3 - (timer - currentTime) === 0 ) {
 
@@ -1172,27 +1202,9 @@ function Level12BallDisplay(){
 
 function switchLevel12(){
   if (score === 3) {
-    if (currentTime === -500) {
-      currentTime = timer;
-    }
-    textAlign(CENTER);
-    textSize(28);
-    text("Going to the Next Level", 250, 200);
-
-    text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 350);
-
-    if (3 - (timer - currentTime) === 0 ) {
-
-     level = "one";
-     score = 0;
-     player1.x = 31;
-     player2.x = 31;
-     player2.y = height/1.5;
-     currentTime = -500;
-    }
+    state = "final_screen"
   }
 }
-
 
 function checkCursor(){
   //Similar to the "menu", the mouse and button will change if you hover over the button
@@ -1260,7 +1272,18 @@ function checkCursor(){
     else {
       cursor(ARROW);
     } 
+  }
 
+  if (state === "final_screen"){
+    if ((mouseX > menuButton.x - (menuButton.width/2)) && (mouseX < menuButton.x + (menuButton.width/2)) && (mouseY > menuButton.y - (menuButton.height/2)) && (mouseY < menuButton.y + (menuButton.height/2))){
+      cursor("pointer");
+      imageMode(CENTER);
+      image(menuButton.image2, menuButton.x, menuButton.y, menuButton.width, menuButton.height);
+   }
+
+    else {
+      cursor(ARROW);
+    }
   }
 
 }
@@ -1403,6 +1426,53 @@ function collectingPointsLevel3() {
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
     point3Level3.x = -100;
+    score ++;
+  }
+  
+}
+
+function itHitLevel4() {
+  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
+  // you lose and go back to the "menu"
+  distanceAwayFromCenter1 = int(dist(player1.x, player1.y, enemyball1Level4.x, enemyball1Level4.y));                   
+  distanceAwayFromCenter2 = int(dist(player1.x, player1.y, enemyball2Level4.x, enemyball2Level4.y));
+  distanceAwayFromCenter3 = int(dist(player1.x, player1.y, enemyball3Level4.x, enemyball3Level4.y));
+  
+  collitionDistance = (player1.radius + enemyball1Level2.radius);
+  
+  if (distanceAwayFromCenter1  <= collitionDistance ||
+      distanceAwayFromCenter2 <= collitionDistance || 
+      distanceAwayFromCenter3  <= collitionDistance)  {
+    if (lives > 0 && score !== 3){
+      lives --
+      player1.x = 31;
+    }
+    else if (lives === 0){
+      state = "main_menu"
+    }
+  }
+}
+
+function collectingPointsLevel4() {
+  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
+  // you lose and go back to the "menu"
+  
+  ballDistanceToPoint1 = int(dist(player1.x, player1.y, point1Level4.x, point1Level4.y));                   
+  ballDistanceToPoint2 = int(dist(player1.x, player1.y,  point2Level4.x, point2Level4.y));
+  ballDistanceToPoint3 = int(dist(player1.x, player1.y, point3Level4.x, point3Level4.y));
+  
+  collectionDistance = (player1.radius + point1Level2.radius);
+  
+  if (ballDistanceToPoint1  <= collectionDistance )  {
+    point1Level4.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint2 <= collectionDistance )  {
+    point2Level4.x = -100;
+    score ++;
+  }
+  if (ballDistanceToPoint3  <= collectionDistance)  {
+    point3Level4.x = -100;
     score ++;
   }
   
@@ -1865,6 +1935,12 @@ function mousePressed() {
       state = "levels";
     }
   }
+
+  if (state === "final_screen"){
+    if (clickedOnButtonMenu (mouseX, mouseY) ) {
+      state = "main_menu";
+    }
+  }
 }
 
 function checkGridLevel(){
@@ -1959,4 +2035,6 @@ function clickedOnButtonInstructions(x, y) {
   }
 }
 
-
+function clickedOnButtonMenu(x,y){
+  return x >= menuButton.x - menuButton.width/2 && x <= menuButton.x + menuButton.width/2 && y >= menuButton.y - menuButton.height/2 && y <= menuButton.y + menuButton.height/2;
+}
