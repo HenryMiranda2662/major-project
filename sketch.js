@@ -705,7 +705,7 @@ function nextLevelText(){
   textAlign(CENTER);
   textSize(28);
   text("Going to the Next Level", 250, 200);
-  text("in " + str(3 - (timer - currentTime)) + " seconds", 250, 300);
+  text("in " + str(3 - (timer - currentTime)) + " second(s)", 250, 300);
 }
 
 function level1BallMovement() {
@@ -1266,11 +1266,16 @@ function itHitLevel2() {
   if (distanceAwayFromCenter1  <= collitionDistance ||
       distanceAwayFromCenter2 <= collitionDistance || 
       distanceAwayFromCenter3  <= collitionDistance)  {
-    if (lives > 0 && score !== 3){
-      lives --
-      player1.x = 31;
-    }
-    else if (lives === 0){
+      if (lives > 0 && score !== 3){
+        lives --
+        player1.x = 31;
+        
+        enemyball1Level2.y = height/2;
+        enemyball2Level2.y = height/2;
+        enemyball3Level2.y = height/2;
+      }
+    
+      else if (lives === 0){
       state = "main_menu"
     }
   }
