@@ -1231,6 +1231,13 @@ function switchLevel12(){
   }
 }
 
+function moveAgain(){
+  player1.dx = 4;
+  player2.dx = 4;
+  player2.dy = 4;
+  
+}
+
 function itHitLevel1() {
   // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
   // you lose and go back to the "menu"
@@ -1246,12 +1253,16 @@ function itHitLevel1() {
     if (lives > 0 && score !== 3){
       lives --
       player1.x = 31;
+      player1.dx = 0;
+      setTimeout(moveAgain, 1500)
     }
     else if (lives === 0){
       state = "main_menu"
     }
   }
 }
+
+
 
 function collectingPointsLevel1() {
   // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
@@ -1297,6 +1308,8 @@ function itHitLevel2() {
         enemyball2Level2.y = height/2;
         enemyball3Level2.y = height/2;
         player1.x = 31;
+        player1.dx = 0;
+        setTimeout(moveAgain, 1500)
       }
     
       else if (lives === 0){
@@ -1349,6 +1362,8 @@ function itHitLevel3() {
     if (lives > 0 && score !== 3){
       lives --
       player1.x = 31;
+      player1.dx = 0;
+      setTimeout(moveAgain, 1500)
     }
     else if (lives === 0){
       state = "main_menu"
@@ -1396,6 +1411,8 @@ function itHitLevel4() {
     if (lives > 0 && score !== 3){
       lives --
       player1.x = 31;
+      player1.dx = 0;
+      setTimeout(moveAgain, 1500)
     }
     else if (lives === 0){
       state = "main_menu"
@@ -1444,6 +1461,9 @@ function itHitLevel5() {
       lives --
       player2.x = 31;
       player2.y = height/1.5
+      player2.dx = 0;
+      player2.dy = 0;
+      setTimeout(moveAgain, 1500)
     }
     else if (lives === 0){
       state = "main_menu"
@@ -1492,6 +1512,9 @@ function itHitLevel6() {
           lives --
           player2.x = 31;
           player2.y = height/1.5
+          player2.dx = 0;
+          player2.dy = 0;
+          setTimeout(moveAgain, 1500)
         }
         else if (lives === 0){
           state = "main_menu"
@@ -1546,6 +1569,9 @@ function itHitLevel7() {
           lives --
           player2.x = 31;
           player2.y = height/1.5
+          player2.dx = 0;
+          player2.dy = 0;
+          setTimeout(moveAgain, 1500)
         }
         else if (lives === 0){
           state = "main_menu"
@@ -1592,6 +1618,9 @@ function itHitLevel8(){
           lives --
           player2.x = 31;
           player2.y = height/1.5
+          player2.dx = 0;
+          player2.dy = 0;
+          setTimeout(moveAgain, 1500)
         }
         else if (lives === 0){
           state = "main_menu"
@@ -1659,6 +1688,9 @@ function itHitLevel9(){
           lives --
           player2.x = 31;
           player2.y = height/1.5
+          player2.dx = 0;
+          player2.dy = 0;
+          setTimeout(moveAgain, 1500)
         }
         else if (lives === 0){
           state = "main_menu"
@@ -1709,6 +1741,9 @@ function itHitLevel10(){
           lives --
           player2.x = 31;
           player2.y = height/1.5
+          player2.dx = 0;
+          player2.dy = 0;
+          setTimeout(moveAgain, 1500)
         }
         else if (lives === 0){
           state = "main_menu"
@@ -1769,6 +1804,9 @@ function itHitLevel11(){
           lives --
           player2.x = 31;
           player2.y = height/1.5
+          player2.dx = 0;
+          player2.dy = 0;
+          setTimeout(moveAgain, 1500)
         }
         else if (lives === 0){
           state = "main_menu"
@@ -1828,6 +1866,9 @@ function itHitLevel12(){
           lives --
           player2.x = 31;
           player2.y = height/1.5
+          player2.dx = 0;
+          player2.dy = 0;
+          setTimeout(moveAgain, 1500)
         }
         else if (lives === 0){
           state = "main_menu"
