@@ -1290,11 +1290,13 @@ function itHitLevel2() {
       distanceAwayFromCenter3  <= collitionDistance)  {
       if (lives > 0 && score !== 3){
         lives --
-        player1.x = 31;
         
+        level = "three"
+        level = "two"
         enemyball1Level2.y = height/2;
         enemyball2Level2.y = height/2;
         enemyball3Level2.y = height/2;
+        player1.x = 31;
       }
     
       else if (lives === 0){
@@ -1442,6 +1444,7 @@ function itHitLevel5() {
       lives --
       player2.x = 31;
       player2.y = height/1.5
+      enemyball2Level4.y = 300;
     }
     else if (lives === 0){
       state = "main_menu"
