@@ -535,54 +535,73 @@ function displayMenu() {
   image(instructionButton.image, instructionButton.x, instructionButton.y, instructionButton.width, instructionButton.height);
 }
 
+function livesText(){
+  fill("black");
+  textAlign(CENTER);
+  textSize(28);
+  text("lives = " + str(lives), 430, 50)
+}
+
 function checkLevelScreen() {
   //Depending on which power the user chooses, it displays the according screen
   if (level === "one" ) {
     level1();
+    livesText();
     noCursor();
   }
   if (level === "two" ) {
     level2();
+    livesText();
     noCursor();
   }
   if (level === "three" ) {
     level3();
+    livesText();
     noCursor();
   }
   if (level === "four") {
-    level4();//777
+    level4();
+    livesText();
     noCursor();
   }
   if (level === "five") {
     level5();
+    livesText();
     noCursor();
   }
   if (level === "six") {
     level6();
+    livesText();
     noCursor();
   }
   if (level === "seven") {
     level7();
+    livesText();
     noCursor();
   }
   if (level === "eight") {
     level8();
+    livesText();
     noCursor();
   }
   if (level === "nine") {
     level9();
+    livesText();
     noCursor();
   }
   if (level === "ten") {
     level10();
+    livesText();
     noCursor();
   }
   if (level === "eleven") {
     level11();
+    livesText();
     noCursor();
   }
   if (level === "twelve") {
     level12();
+    livesText();
     noCursor();
   }
 }
@@ -705,7 +724,7 @@ function nextLevelText(){
   textAlign(CENTER);
   textSize(28);
   text("Going to the Next Level", 250, 200);
-  text("in " + str(3 - (timer - currentTime)) + " second(s)", 250, 300);
+  text("in " + str(3 - (timer - currentTime)) + " second(s)", 250, 270);
 }
 
 function level1BallMovement() {
