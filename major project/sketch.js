@@ -154,6 +154,19 @@ function setup() {
   level10Picture = loadImage("assets/10.png")
   level11Picture = loadImage("assets/11.png")
   level12Picture = loadImage("assets/12.png")
+
+  level1Picture2 = loadImage("assets/1-2.png")
+  level2Picture2 = loadImage("assets/2-2.png")
+  level3Picture2 = loadImage("assets/3-2.png")
+  level4Picture2 = loadImage("assets/4-2.png")
+  level5Picture2 = loadImage("assets/5-2.png")
+  level6Picture2 = loadImage("assets/6-2.png")
+  level7Picture2 = loadImage("assets/7-2.png")
+  level8Picture2 = loadImage("assets/8-2.png")
+  level9Picture2 = loadImage("assets/9-2.png")
+  level10Picture2 = loadImage("assets/10-2.png")
+  level11Picture2 = loadImage("assets/11-2.png")
+  level12Picture2 = loadImage("assets/12-2.png")
   
   state = "main_menu";//Sets the first state as menu
   
@@ -522,10 +535,18 @@ function displayGrid() {
   image(level10Picture, 0*cellSize + 5, 3*cellSize + 5, cellPictureWidth, cellPictureHeight);
   image(level11Picture, 1*cellSize + 5, 3*cellSize + 5, cellPictureWidth, cellPictureHeight);
   image(level12Picture, 2*cellSize + 5, 3*cellSize + 5, cellPictureWidth, cellPictureHeight);
-  
+  checkImageCursor();
   pop();// Stop translating, and get canvas back to normal
   displayGridButton();
   checkCursor()
+}
+
+function checkImageCursor(){
+  if (state === "levels"){
+    if (xcoord === 0 && ycoord === 0 && mouseX === xcoord && mouseY === ycoord){
+      image(level1Picture2, 5, 5, cellPictureWidth , cellPictureHeight)
+    }
+  }
 }
 
 function displayMenu() {
