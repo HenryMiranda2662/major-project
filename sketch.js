@@ -130,6 +130,9 @@ let cellPictureHeight = 90;
 let timer;
 let currentTime;
 
+
+
+
 function setup() {
   createCanvas(500, 500);
 
@@ -227,7 +230,7 @@ function setup() {
   enemyball5Level3 = new EnemyBall(410, height/2, 0, 15)
 
   enemyball1Level4 = new EnemyBall(150, 250, 0, 7);
-  enemyball2Level4 = new EnemyBall(width / 2, 250, random(6,7), 7);
+  enemyball2Level4 = new EnemyBall(width / 2, 250, random(3,6), random(3,6));
   enemyball3Level4 = new EnemyBall(350,250,  0, 7);
   
   enemyball1Level5 = new EnemyBall(width/2, 100, 12, 0);
