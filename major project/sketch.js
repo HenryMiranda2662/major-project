@@ -9,7 +9,7 @@ class EnemyBall {
     this.x = x;
     this.y = y;
     this.color = [255, 15, 30];
-    this.radius = 25/500 * width;
+    this.radius = width/20;
     this.dx = dxSomeSpeed;
     this.dy = dySomeSpeed;
   }
@@ -39,7 +39,7 @@ class PlayerBall {
     this.x = x;
     this.y = y;
     this.color = [5, 255, 57];
-    this.radius = 30/500 * width;
+    this.radius = 3/50 * width;
     this.dx = dxSomeSpeed;
     this.dy = dySomeSpeed;
   }
@@ -71,7 +71,7 @@ class PointBall {
     this.x = x;
     this.y = y;
     this.color = [66, 134, 244];
-    this.radius = 10/500 * width;
+    this.radius = width/50;
     this.dx = dxSomeSpeed;
     this.dy = dySomeSpeed;
   }
@@ -173,79 +173,79 @@ function setup() {
   level11Picture2 = loadImage("assets/11-2.png")
   level12Picture2 = loadImage("assets/12-2.png")
   
-  state = "main_menu";//Sets the first state as menu
+  state = "levels";//Sets the first state as menu
   
   score = 0;
   lives = 15;
 
-  cellSize = 100/500 * width; // Cell size for the grid I'll use
-  xOffset = 30/500 * width;
-  yOffset = 65/500 * width;
-  level = "one" //Variable which will change which power will be used
+  cellSize = width/5; // Cell size for the grid I'll use
+  xOffset = 3/50 * width;
+  yOffset = 13/100 * width;
+  level = "three" //Variable which will change which power will be used
   txt = "You Finished the Game";  
 
   playButton = {
     x : width/2,
     y : width/1.8,
-    width : 220/500 * width,
-    height : 75/500 * width,
+    width : 11/25 * width,
+    height : 3/20 * width,
     image : loadImage("assets/playbutton.png"),   // Two images, which will switch back and forth when you  
     image2 : loadImage ("assets/playbutton2.png"),// hover the mouse over them
   }
 
   instructionButton = {
     x : width/2,
-    y : ((height/1.8) + 100)/500 * width,
-    width : 240/500 * width,
-    height : 75/500 * width,
+    y : 37/50 * width,
+    width : 12/25 * width,
+    height : 3/20 * width,
     image : loadImage("assets/insbutton.png"),   // Two images, which will switch back and forth when you  
     image2 : loadImage ("assets/insbutton2.png"),// hover the mouse over them
   }
 
   levelButton = {
-    x: 250/500 * width,   
-    y: 250/500 * width,
-    width: 150/500 * width,
-    height: 75/500 * width,
+    x: width/2,   
+    y: width/2,
+    width: 3/10 * width,
+    height: 3/20 * width,
     image: loadImage("assets/insb.png"),
     image2: loadImage("assets/insb2.png"),
   }
   
   gridButton = {
-    x : 365/500 * width,
-    y : 250/500 * width,
-    width : 120/500 * width,
-    height : 75/500 * width,
+    x : 73/100 * width,
+    y : width/2,
+    width : 6/25 * width,
+    height : 3/20 * width,
     image : loadImage("assets/go.png"),
     image2 : loadImage("assets/go2.png")
   }
 
   menuButton = {
-    x : 250/500 * width,
-    y : 275/500 * width,
-    width : 150/500 * width,
-    height : 75/500 * width,
+    x : width/2,
+    y : 11/20 * width,
+    width : 3/10 * width,
+    height : 3/20 * width,
     image : loadImage("assets/menu.png"),
     image2: loadImage("assets/menu2.png"),
   }
 
   
-  player1 = new PlayerBall(31/500 * width, width/1.5, 4/500 * width, 0);
-  player2 = new PlayerBall(31/500 * width, width/1.5, 4/500 * width, 4/500 * width);
+  player1 = new PlayerBall(31/500 * width, width/1.5, width/125, 0);
+  player2 = new PlayerBall(31/500 * width, width/1.5, width/125, width/125);
 
-  enemyball1Level1 = new EnemyBall(100/500 * width, width/2, 0, 17/500 * width);
-  enemyball2Level1 = new EnemyBall(width / 2, width/2, 0, 9/500 * width);
-  enemyball3Level1 = new EnemyBall(400/500 * width, width/2, 0, 5/500 * width);
+  enemyball1Level1 = new EnemyBall(width/5, width/2, 0, 17/500 * width);
+  enemyball2Level1 = new EnemyBall(width/2, width/2, 0, 9/500 * width);
+  enemyball3Level1 = new EnemyBall(4/5 * width, width/2, 0, width/100);
 
-  enemyball1Level2 = new EnemyBall(100/500 * width, width/2, random(4/500 * width, 7/500 * width), random(4/500 * width, 7/500 * width));
-  enemyball2Level2 = new EnemyBall(width / 2, width/2, random(4/500 * width, 7/500 * width), random(4/500 * width, 7/500 * width));
-  enemyball3Level2 = new EnemyBall(400/500 * width, width/2, random(4/500 * width, 7/500 * width), random(4/500 * width, 7/500 * width));
+  enemyball1Level2 = new EnemyBall(width/5, width/2, random(width/125, 7/500 * width), random(width/125, 7/500 * width));
+  enemyball2Level2 = new EnemyBall(width/2, width/2, random(width/125, 7/500 * width), random(width/125, 7/500 * width));
+  enemyball3Level2 = new EnemyBall(4/5 * width, width/2, random(width/125, 7/500 * width), random(width/125, 7/500 * width));
 
-  enemyball1Level3 = new EnemyBall((width/2.95 - 55), width/2, 0, 7/500 * width);
+  enemyball1Level3 = new EnemyBall(width/4.25, width/2, 0, 7/500 * width);
   enemyball2Level3 = new EnemyBall((width / 2.95), width/2, 0, 7/500 * width);
-  enemyball3Level3 = new EnemyBall((width / 2.95 + 55), width/2, 0, 7/500 * width);
-  enemyball4Level3 = new EnemyBall((width / 2.95 + 110),width/2, 0, 7/500 * width);
-  enemyball5Level3 = new EnemyBall(410/500 * width, width/2, 0, 15/500 * width)
+  enemyball3Level3 = new EnemyBall((width / 2.95 + 11/100 * width), width/2, 0, 7/500 * width);
+  enemyball4Level3 = new EnemyBall((width / 2.95 + 110/500 * width),width/2, 0, 7/500 * width);
+  enemyball5Level3 = new EnemyBall(41/50 * width, width/2, 0, 3/100 * width)
 
   enemyball1Level4 = new EnemyBall(150/500 * width, 250/500 * width, 0, 7/500 * width);
   enemyball2Level4 = new EnemyBall(width / 2, 250/500 * width, random(3/500 * width,6/500 * width), random(3/500 * width,6/500 * width));
@@ -371,6 +371,17 @@ function timeKeeping(){
     timer++;
   }
 }
+
+// function windowResized(){
+//   if (windowWidth > windowHeight){
+//     resizeCanvas(windowHeight, windowHeight);
+//   }
+
+//   else {
+//     resizeCanvas(windowWidth, windowWidth);
+//   }
+  
+// }
 
 function checkStates(){
   // Will check the state at which we currently are and diplay accordingly
