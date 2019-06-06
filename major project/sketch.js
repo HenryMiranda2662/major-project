@@ -130,10 +130,14 @@ let timer;
 let currentTime;
 
 
-
-
 function setup() {
-  createCanvas(700, 700);
+  if (windowWidth > windowHeight){
+    createCanvas (windowHeight, windowHeight);
+  }
+  else {
+      createCanvas (windowWidth, windowWidth);
+  }
+
   cellPictureWidth = 90/500 * width;
   cellPictureHeight = 90/500 * width;
 
