@@ -135,7 +135,7 @@ function setup() {
     createCanvas (windowHeight, windowHeight);
   }
   else {
-      createCanvas (windowWidth, windowWidth);
+    createCanvas (windowWidth, windowWidth);
   }
 
   cellPictureWidth = 90/500 * width;
