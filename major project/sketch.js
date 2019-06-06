@@ -171,7 +171,7 @@ function setup() {
   state = "main_menu";//Sets the first state as menu
   
   score = 0;
-  lives = 10;
+  lives = 15;
 
   cellSize = 100; // Cell size for the grid I'll use
   xOffset = 30;
@@ -232,9 +232,9 @@ function setup() {
   enemyball2Level1 = new EnemyBall(width / 2, height/2, 0, 9);
   enemyball3Level1 = new EnemyBall(400, height/2, 0, 5);
 
-  enemyball1Level2 = new EnemyBall(100, height/2, random(5, 6), random(5, 6));
-  enemyball2Level2 = new EnemyBall(width / 2, height/2, random(5, 6), random(5, 6));
-  enemyball3Level2 = new EnemyBall(400, height/2, random(5, 6), random(5, 6));
+  enemyball1Level2 = new EnemyBall(100, height/2, random(4, 7), random(4, 7));
+  enemyball2Level2 = new EnemyBall(width / 2, height/2, random(4, 7), random(4, 7));
+  enemyball3Level2 = new EnemyBall(400, height/2, random(4, 7), random(4, 7));
 
   enemyball1Level3 = new EnemyBall((width/2.95 - 55), height/2, 0, 7);
   enemyball2Level3 = new EnemyBall((width / 2.95), height/2, 0, 7);
@@ -418,9 +418,9 @@ function displayEndScreen(){
 }
 
 function instructionsText(){
-  let a = "For levels 1 to 4,  you  can use the Right and Left" 
+  let a = "For levels 1 to 4,  you  can use the RIGHT and LEFT" 
   let b = "arrows to move. From level 5 onwards, you can "
-  let c = "also use the Up and UDown arrows. Collect all " 
+  let c = "also use the UP and DOWN arrows. Collect all " 
   let d = "three points to pass to the next level "
   background(197, 160, 229);
   textAlign(CENTER, CENTER);
@@ -455,7 +455,7 @@ function restartPositions() {
   enemyball3Level5.x = width/2;
 
   score = 0;
-  lives = 10;
+  lives = 15;
 
   point1Level1.x = width/1.5
   point2Level1.x = 150
@@ -1325,18 +1325,39 @@ function itHitLevel2() {
         
         level = "three"
         level = "two"
-        enemyball1Level2.y = height/2;
-        enemyball2Level2.y = height/2;
-        enemyball3Level2.y = height/2;
+        enemyball1Level2.y = 30;
+        enemyball2Level2.y = 30;
+        enemyball3Level2.y = 30;
+        enemyball1Level2.x = 100;
+        enemyball2Level2.x = 250;
+        enemyball3Level2.x = 400;
+        enemyball1Level2.dx = 0;
+        enemyball1Level2.dy = 0;
+        enemyball2Level2.dx = 0;
+        enemyball2Level2.dy = 0;
+        enemyball3Level2.dx = 0;
+        enemyball3Level2.dy = 0;
+
         player1.x = 31;
         player1.dx = 0;
-        setTimeout(moveAgain, 1500)
+        setTimeout(moveAgain, 900)
+        setTimeout(startLevel2, 909);
       }
     
       else if (lives === 0){
       state = "main_menu"
     }
   }
+}
+
+function startLevel2(){
+  enemyball1Level2.dx = random(4,7);
+  enemyball1Level2.dy = random(4,7);
+  enemyball2Level2.dx = random(4,7);
+  enemyball2Level2.dy = random(4,7);
+  enemyball3Level2.dx = random(4,7);
+  enemyball3Level2.dy = random(4,7);
+
 }
 
 function collectingPointsLevel2() {
@@ -1433,6 +1454,9 @@ function itHitLevel4() {
       lives --
       player1.x = 31;
       player1.dx = 0;
+      enemyball1Level4.y = 30;
+      enemyball2Level4.y = 30;
+      enemyball3Level4.y = 30;
       setTimeout(moveAgain, 1500)
     }
     else if (lives === 0){
