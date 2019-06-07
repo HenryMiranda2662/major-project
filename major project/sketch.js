@@ -129,8 +129,20 @@ let cellPictureHeight;
 let timer;
 let currentTime;
 
+function preload(){
+  soundFormats("mp3");
+  bell = loadSound("assets/bell.mp3");
+  laugh = loadSound("assets/laugh.mp3")
+  sound = loadSound("assets/sound.mp3")
+  click = loadSound("assets/click.mp3")
+  whoosh = loadSound("assets/flyby.mp3")
+}
 
 function setup() {
+  sound.loop();
+  sound.setVolume(0.3);
+whoosh.setVolume(0.1);
+click.setVolume(0.6)
   if (windowWidth > windowHeight){
     createCanvas (windowHeight, windowHeight);
   }
@@ -245,7 +257,7 @@ function setup() {
   enemyball1Level3 = new EnemyBall(width/4.25, width/2, 0, 7/500 * width);
   enemyball2Level3 = new EnemyBall((width / 2.95), width/2, 0, 7/500 * width);
   enemyball3Level3 = new EnemyBall((width / 2.95 + 11/100 * width), width/2, 0, 7/500 * width);
-  enemyball4Level3 = new EnemyBall((width / 2.95 + 110/500 * width),width/2, 0, 7/500 * width);
+  enemyball4Level3 = new EnemyBall((width / 2.95 + 11/50 * width),width/2, 0, 7/500 * width);
   enemyball5Level3 = new EnemyBall(41/50 * width, width/2, 0, 3/100 * width)
 
   enemyball1Level4 = new EnemyBall(3/10 * width, width/2, 0, 7/500 * width);
@@ -1284,6 +1296,7 @@ function itHitLevel1() {
       distanceAwayFromCenter3  <= collitionDistance)  {
     if (lives > 0 && score !== 3){
       lives --
+      laugh.play();
       player1.x = 31/500 * width;
       player1.dx = 0;
       setTimeout(moveAgain, 1500)
@@ -1308,14 +1321,17 @@ function collectingPointsLevel1() {
   if (ballDistanceToPoint1  <= collectionDistance )  {
     point1Level1.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
     point2Level1.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
     point3Level1.x = -width/5;
     score ++;
+    bell.play();
   }
 }
 
@@ -1333,7 +1349,7 @@ function itHitLevel2() {
       distanceAwayFromCenter3  <= collitionDistance)  {
       if (lives > 0 && score !== 3){
         lives --
-        
+        laugh.play();
         level = "three"
         level = "two"
         enemyball1Level2.y = 3/50 * width;
@@ -1384,14 +1400,17 @@ function collectingPointsLevel2() {
   if (ballDistanceToPoint1  <= collectionDistance )  {
     point1Level2.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
     point2Level2.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
     point3Level2.x = -width/5;
     score ++;
+    bell.play();
   }
   
 }
@@ -1414,6 +1433,7 @@ function itHitLevel3() {
       distanceAwayFromCenter5  <= collitionDistance)  {
     if (lives > 0 && score !== 3){
       lives --
+      laugh.play();
       player1.x = 31/500 * width;
       player1.dx = 0;
       setTimeout(moveAgain, 1500)
@@ -1437,14 +1457,17 @@ function collectingPointsLevel3() {
   if (ballDistanceToPoint1  <= collectionDistance )  {
     point1Level3.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
     point2Level3.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
     point3Level3.x = -width/5;
     score ++;
+    bell.play();
   }
   
 }
@@ -1463,6 +1486,7 @@ function itHitLevel4() {
       distanceAwayFromCenter3  <= collitionDistance)  {
     if (lives > 0 && score !== 3){
       lives --
+      laugh.play();
       player1.x = 31/500 * width;
       player1.dx = 0;
       enemyball1Level4.y = 3/50 * width;
@@ -1489,14 +1513,17 @@ function collectingPointsLevel4() {
   if (ballDistanceToPoint1  <= collectionDistance )  {
     point1Level4.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
     point2Level4.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
     point3Level4.x = -width/5;
     score ++;
+    bell.play();
   }
   
 }
@@ -1515,6 +1542,7 @@ function itHitLevel5() {
       distanceAwayFromCenter3  <= collitionDistance)  {
     if (lives > 0 && score !== 3){
       lives --
+      laugh.play();
       player2.x = 31/500 * width;
       player2.y = width/1.5
       player2.dx = 0;
@@ -1540,14 +1568,17 @@ function collectingPointsLevel5() {
   if (ballDistanceToPoint1  <= collectionDistance )  {
     point1Level5.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
     point2Level5.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
     point3Level5.x = -width/5;
     score ++;
+    bell.play();
   }
   
 }
@@ -1566,6 +1597,7 @@ function itHitLevel6() {
       distanceAwayFromCenter3  <= collitionDistance)  {
         if (lives > 0 && score !== 3){
           lives --
+          laugh.play();
           player2.x = 31/500 * width;
           player2.y = width/1.5
           player2.dx = 0;
@@ -1591,14 +1623,17 @@ function collectingPointsLevel6() {
   if (ballDistanceToPoint1  <= collectionDistance )  {
     point1Level6.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
     point2Level6.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
     point3Level6.x = -width/5;
     score ++;
+    bell.play();
   }
   
 }
@@ -1623,6 +1658,7 @@ function itHitLevel7() {
       distanceAwayFromCenter6 <= collitionDistance) {
         if (lives > 0 && score !== 3){
           lives --
+          laugh.play();
           player2.x = 31/500 * width;
           player2.y = width/1.5
           player2.dx = 0;
@@ -1648,14 +1684,17 @@ function collectingPointsLevel7() {
   if (ballDistanceToPoint1  <= collectionDistance )  {
     point1Level7.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
     point2Level7.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
     point3Level7.x = -width/5;
     score ++;
+    bell.play();
   }
   
 }
@@ -1672,6 +1711,7 @@ function itHitLevel8(){
       distanceAwayFromCenter3  <= collitionDistance)  {
         if (lives > 0 && score !== 3){
           lives --
+          laugh.play();
           player2.x = 31/500 * width;
           player2.y = width/1.5
           player2.dx = 0;
@@ -1698,14 +1738,17 @@ function collectingPointsLevel8() {
   if (ballDistanceToPoint1  <= collectionDistance )  {
     point1Level8.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
     point2Level8.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
     point3Level8.x = -width/5;
     score ++;
+    bell.play();
   }
   
 }
@@ -1742,6 +1785,7 @@ function itHitLevel9(){
       distanceAwayFromCenter13  <= collitionDistance)  {
         if (lives > 0 && score !== 3){
           lives --
+          laugh.play();
           player2.x = 31/500 * width;
           player2.y = width/1.5
           player2.dx = 0;
@@ -1767,14 +1811,17 @@ function collectingPointsLevel9() {
   if (ballDistanceToPoint1  <= collectionDistance )  {
     point1Level9.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
     point2Level9.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
     point3Level9.x = -width/5;
     score ++;
+    bell.play();
   }
   
 }
@@ -1795,6 +1842,7 @@ function itHitLevel10(){
       distanceAwayFromCenter5 <= collitionDistance)  {
         if (lives > 0 && score !== 3){
           lives --
+          laugh.play();
           player2.x = 31/500 * width;
           player2.y = width/1.5
           player2.dx = 0;
@@ -1820,14 +1868,17 @@ function collectingPointsLevel10() {
   if (ballDistanceToPoint1  <= collectionDistance )  {
     point1Level10.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
     point2Level10.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
     point3Level10.x = -width/5;
     score ++;
+    bell.play();
   }
   
 }
@@ -1858,6 +1909,7 @@ function itHitLevel11(){
       distanceAwayFromCenter10 <= collitionDistance )  {
         if (lives > 0 && score !== 3){
           lives --
+          laugh.play();
           player2.x = 31/500 * width;
           player2.y = width/1.5
           player2.dx = 0;
@@ -1883,14 +1935,17 @@ function collectingPointsLevel11() {
   if (ballDistanceToPoint1  <= collectionDistance )  {
     point1Level11.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
     point2Level11.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
     point3Level11.x = -width/5;
     score ++;
+    bell.play();
   }
   
 }
@@ -1920,6 +1975,7 @@ function itHitLevel12(){
       distanceAwayFromCenter9  <= collitionDistance )  {
         if (lives > 0 && score !== 3){
           lives --
+          laugh.play();
           player2.x = 31/500 * width;
           player2.y = width/1.5
           player2.dx = 0;
@@ -1945,14 +2001,17 @@ function collectingPointsLevel12() {
   if (ballDistanceToPoint1  <= collectionDistance )  {
     point1Level12.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
     point2Level12.x = -width/5;
     score ++;
+    bell.play();
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
     point3Level12.x = -width/5;
     score ++;
+    bell.play();
   }
   
 }
@@ -1964,6 +2023,7 @@ function mousePressed() {
 
  if (state === "main_menu") {
     if (clickedOnButton(mouseX, mouseY)) {
+      click.play();
       state = "menu";
     }
     if (clickedOnButtonInstructions(mouseX, mouseY)) {
@@ -1973,18 +2033,21 @@ function mousePressed() {
 
   if (state === "instructions"){
     if (clickedOnButtonLevel(mouseX, mouseY)) {
+      click.play();
       state = "menu";
     }
   }
 
   if (state === "menu") {
     if (clickedOnButtonAbility(mouseX, mouseY)) {
+      click.play();
       state = "levels";
     }
   }
 
   if (state === "final_screen"){
     if (clickedOnButtonMenu (mouseX, mouseY) ) {
+      click.play();
       state = "main_menu";
     }
   }
@@ -2003,6 +2066,8 @@ function checkCursor(){
       cursor("pointer");
       imageMode(CENTER);
       image(playButton.image2, playButton.x, playButton.y, playButton.width, playButton.height);
+      whoosh.play();
+      whoosh.stop();
     }
 
     else if ((mouseX > instructionButton.x - (instructionButton.width/2)) &&
@@ -2011,6 +2076,8 @@ function checkCursor(){
        (mouseY < instructionButton.y + (instructionButton.height/2))){
   
       cursor("pointer");
+      whoosh.play();
+      whoosh.stop();
       imageMode(CENTER);
       image(instructionButton.image2, instructionButton.x, instructionButton.y, instructionButton.width, instructionButton.height);
     }
@@ -2026,6 +2093,8 @@ function checkCursor(){
         (mouseY > gridButton.y ) && 
         (mouseY < gridButton.y + gridButton.height)){
       cursor("pointer");
+      whoosh.play();
+      whoosh.stop();
       imageMode(CORNER);
       image(gridButton.image2, gridButton.x, gridButton.y, gridButton.width , gridButton.height)
     }
@@ -2048,6 +2117,8 @@ function checkCursor(){
     (mouseY > levelButton.y - levelButton.height/2 ) && 
     (mouseY < levelButton.y + levelButton.height/2)){
       cursor("pointer");
+      whoosh.play();
+      whoosh.stop();
       imageMode(CENTER);
       image(levelButton.image2, levelButton.x, levelButton.y, levelButton.width , levelButton.height)
     }
@@ -2060,6 +2131,8 @@ function checkCursor(){
   if (state === "final_screen"){
     if ((mouseX > menuButton.x - (menuButton.width/2)) && (mouseX < menuButton.x + (menuButton.width/2)) && (mouseY > menuButton.y - (menuButton.height/2)) && (mouseY < menuButton.y + (menuButton.height/2))){
       cursor("pointer");
+      whoosh.play();
+      whoosh.stop();
       imageMode(CENTER);
       image(menuButton.image2, menuButton.x, menuButton.y, menuButton.width, menuButton.height);
    }
