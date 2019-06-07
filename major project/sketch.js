@@ -138,8 +138,8 @@ function setup() {
     createCanvas (windowWidth, windowWidth);
   }
 
-  cellPictureWidth = 90/500 * width;
-  cellPictureHeight = 90/500 * width;
+  cellPictureWidth = 9/50 * width;
+  cellPictureHeight = 9/50 * width;
 
   timer = 0;
   currentTime = -500;
@@ -173,7 +173,7 @@ function setup() {
   level11Picture2 = loadImage("assets/11-2.png")
   level12Picture2 = loadImage("assets/12-2.png")
   
-  state = "levels";//Sets the first state as menu
+  state = "main_menu";//Sets the first state as menu
   
   score = 0;
   lives = 15;
@@ -181,7 +181,7 @@ function setup() {
   cellSize = width/5; // Cell size for the grid I'll use
   xOffset = 3/50 * width;
   yOffset = 13/100 * width;
-  level = "three" //Variable which will change which power will be used
+  level = "one" //Variable which will change which power will be used
   txt = "You Finished the Game";  
 
   playButton = {
@@ -247,117 +247,117 @@ function setup() {
   enemyball4Level3 = new EnemyBall((width / 2.95 + 110/500 * width),width/2, 0, 7/500 * width);
   enemyball5Level3 = new EnemyBall(41/50 * width, width/2, 0, 3/100 * width)
 
-  enemyball1Level4 = new EnemyBall(150/500 * width, 250/500 * width, 0, 7/500 * width);
-  enemyball2Level4 = new EnemyBall(width / 2, 250/500 * width, random(3/500 * width,6/500 * width), random(3/500 * width,6/500 * width));
-  enemyball3Level4 = new EnemyBall(350/500 * width, 250/500 * width,  0, 7/500 * width);
+  enemyball1Level4 = new EnemyBall(3/10 * width, width/2, 0, 7/500 * width);
+  enemyball2Level4 = new EnemyBall(width/2, width/2, random(3/500 * width, 3/250 * width), random(3/500 * width,3/250 * width));
+  enemyball3Level4 = new EnemyBall(7/10 * width, width/2,  0, 7/500 * width);
   
-  enemyball1Level5 = new EnemyBall(width/2, 100/500 * width, 12/500 * width, 0);
-  enemyball2Level5 = new EnemyBall(width/2, width/2, 12/500 * width, 0);
-  enemyball3Level5 = new EnemyBall(width/2, 400/500 * width, 12/500 * width, 0);
+  enemyball1Level5 = new EnemyBall(width/2, width/5, 3/125 * width, 0);
+  enemyball2Level5 = new EnemyBall(width/2, width/2, 3/125 * width, 0);
+  enemyball3Level5 = new EnemyBall(width/2, 4/5 * width, 3/125 * width, 0);
 
-  enemyball1Level6 = new EnemyBall(width / 2, width/2, 5/500 * width, -5/500 * width);
-  enemyball2Level6 = new EnemyBall(width / 2, width/2, 0, 9/500 * width);
-  enemyball3Level6 = new EnemyBall(width / 2, width/2, 5/500 * width, 5/500 * width);
+  enemyball1Level6 = new EnemyBall(width/2, width/2, width/100, -width/100);
+  enemyball2Level6 = new EnemyBall(width/2, width/2, 0, 9/500 * width);
+  enemyball3Level6 = new EnemyBall(width/2, width/2, width/100, width/100);
 
-  enemyball1Level7 = new EnemyBall(100/500 * width, width/2, 0, 7/500 * width);
-  enemyball2Level7 = new EnemyBall(width/2, width/2, 0, 12/500 * width);
-  enemyball3Level7 = new EnemyBall(400/500 * width, width/2, 0, 7/500 * width);
-  enemyball4Level7 = new EnemyBall(width/2, 100/500 * width, 12/500 * width, 0);
+  enemyball1Level7 = new EnemyBall(width/5, width/2, 0, 7/500 * width);
+  enemyball2Level7 = new EnemyBall(width/2, width/2, 0, 3/125 * width);
+  enemyball3Level7 = new EnemyBall(4/5 * width, width/2, 0, 7/500 * width);
+  enemyball4Level7 = new EnemyBall(width/2, width/5, 3/125 * width, 0);
   enemyball5Level7 = new EnemyBall(width/2, width/2, 7/500 * width, 0);
-  enemyball6Level7 = new EnemyBall(width/2, 400/500 * width, 12/500 * width, 0);
+  enemyball6Level7 = new EnemyBall(width/2, 4/5 * width, 3/125 * width, 0);
 
-  enemyball1Level8 = new EnemyBall(50/500 * width, 30/500 * width, 10/500 * width, 0);
-  enemyball2Level8 = new EnemyBall(50/500 * width, 470/500 * width, 10/500 * width, 0);
-  enemyball3Level8 = new EnemyBall(width / 2, 50/500 * width, 0, 15/500 * width);
+  enemyball1Level8 = new EnemyBall(width/10, 3/50 * width, width/50, 0);
+  enemyball2Level8 = new EnemyBall(width/10, 47/50 * width, width/50, 0);
+  enemyball3Level8 = new EnemyBall(width/2, width/10, 0, 3/100 * width);
 
-  enemyball1Level9 = new EnemyBall(190/500 * width, 215/500 * width, 0, 0);
-  enemyball2Level9 = new EnemyBall(310/500 * width, 215/500 * width, 0, 0);
-  enemyball3Level9 = new EnemyBall(310/500 * width, 145/500 * width, 0, 0);
-  enemyball4Level9 = new EnemyBall(190/500 * width, 145/500 * width, 0, 0);
-  enemyball5Level9 = new EnemyBall(190/500 * width, 335/500 * width, 0, 0);
-  enemyball6Level9 = new EnemyBall(310/500 * width, 335/500 * width, 0, 0);
-  enemyball7Level9 = new EnemyBall(310/500 * width, 405/500 * width, 0, 0);
-  enemyball8Level9 = new EnemyBall(190/500 * width, 405/500 * width, 0, 0);
-  enemyball9Level9 = new EnemyBall(417/500 * width, 335/500 * width, 0, 0);
-  enemyball10Level9 = new EnemyBall(417/500 * width, 215/500 * width, 0, 0);
-  enemyball11Level9 = new EnemyBall(50/500 * width, 140/500 * width, 15/500 * width, 0);
-  enemyball12Level9 = new EnemyBall(50/500 * width, 410/500 * width, 15/500 * width, 0);
-  enemyball13Level9 = new EnemyBall(250/500 * width, 210/500 * width, 0, 10/500 * width);
+  enemyball1Level9 = new EnemyBall(19/50 * width, 43/100 * width, 0, 0);
+  enemyball2Level9 = new EnemyBall(31/50 * width, 43/100 * width, 0, 0);
+  enemyball3Level9 = new EnemyBall(31/50 * width, 29/100 * width, 0, 0);
+  enemyball4Level9 = new EnemyBall(19/50 * width, 29/100 * width, 0, 0);
+  enemyball5Level9 = new EnemyBall(19/50 * width, 67/100 * width, 0, 0);
+  enemyball6Level9 = new EnemyBall(31/50 * width, 67/100 * width, 0, 0);
+  enemyball7Level9 = new EnemyBall(31/50 * width, 81/100 * width, 0, 0);
+  enemyball8Level9 = new EnemyBall(19/50 * width, 81/100 * width, 0, 0);
+  enemyball9Level9 = new EnemyBall(417/500 * width, 67/100 * width, 0, 0);
+  enemyball10Level9 = new EnemyBall(417/500 * width, 43/100 * width, 0, 0);
+  enemyball11Level9 = new EnemyBall(width/10, 7/25 * width, 3/100 * width, 0);
+  enemyball12Level9 = new EnemyBall(width/10 , 41/50 * width, 3/100 * width, 0);
+  enemyball13Level9 = new EnemyBall(width/2, 21/50 * width, 0, width/50);
 
-  enemyball1Level10 = new EnemyBall(100/500 * width, 25/500 * width, 12/500 * width, 0);
-  enemyball2Level10 = new EnemyBall(100/500 * width, 200/500 * width, 0, 12/500 * width);
-  enemyball3Level10 = new EnemyBall(400/500 * width, 200/500 * width, 0, 12/500 * width);
-  enemyball4Level10 = new EnemyBall(100/500 * width, 475/500 * width, 12/500 * width, 0);
-  enemyball5Level10 = new EnemyBall(width/2, width/2, 6/500 * width, 6/500 * width);
+  enemyball1Level10 = new EnemyBall(width/5, width/20, 3/125 * width, 0);
+  enemyball2Level10 = new EnemyBall(width/5, 2/5 * width, 0, 3/125 * width);
+  enemyball3Level10 = new EnemyBall(4/5 * width, 2/5 * width, 0, 3/125 * width);
+  enemyball4Level10 = new EnemyBall(width/5, 19/20 * width, 3/125 * width, 0);
+  enemyball5Level10 = new EnemyBall(width/2, width/2, 3/250 * width, 3/250 * width);
 
-  enemyball1Level11 = new EnemyBall(55/500 * width, 270/500 * width, 0, 0);
-  enemyball2Level11 = new EnemyBall(155/500 * width, 270/500 * width, 0, 0);
-  enemyball3Level11 = new EnemyBall(155/500 * width, 395/500 * width, 0, 0);
-  enemyball4Level11 = new EnemyBall(55/500 * width, 395/500 * width, 0, 0);
-  enemyball5Level11 = new EnemyBall(width/2 + 25, 270/500 * width, 0, 7/500 * width);
-  enemyball6Level11 = new EnemyBall(width/2 - 25, 270/500 * width, 0, 7/500 * width);
-  enemyball7Level11 = new EnemyBall(340/500 * width, 270/500 * width, 0, 0);
-  enemyball8Level11 = new EnemyBall(440/500 * width, 270/500 * width, 0, 0);
-  enemyball9Level11 = new EnemyBall(340/500 * width, 395/500 * width, 0, 0);
-  enemyball10Level11 = new EnemyBall(440/500 * width, 395/500 * width, 0, 0);
+  enemyball1Level11 = new EnemyBall(11/100 * width, 27/50 * width, 0, 0);
+  enemyball2Level11 = new EnemyBall(31/100 * width, 27/50 * width, 0, 0);
+  enemyball3Level11 = new EnemyBall(31/100 * width, 79/100 * width, 0, 0);
+  enemyball4Level11 = new EnemyBall(11/100 * width, 79/100 * width, 0, 0);
+  enemyball5Level11 = new EnemyBall(width/2 + width/20, 27/50 * width, 0, 7/500 * width);
+  enemyball6Level11 = new EnemyBall(width/2 - width/20, 27/50 * width, 0, 7/500 * width);
+  enemyball7Level11 = new EnemyBall(17/25 * width, 27/50 * width, 0, 0);
+  enemyball8Level11 = new EnemyBall(22/25 * width, 27/50 * width, 0, 0);
+  enemyball9Level11 = new EnemyBall(17/25 * width, 79/100 * width, 0, 0);
+  enemyball10Level11 = new EnemyBall(22/25 * width, 79/100 * width, 0, 0);
 
-  enemyball1Level12 = new EnemyBall(25/500 * width, 270/500 * width, 3/500 * width, 0);
-  enemyball2Level12 = new EnemyBall(75/500 * width, 270/500 * width, -3/500 * width, 0);
-  enemyball3Level12 = new EnemyBall(125/500 * width, 270/500 * width, 3/500 * width, 0);
-  enemyball4Level12 = new EnemyBall(175/500 * width, 270/500 * width, -3/500 * width, 0);
-  enemyball5Level12 = new EnemyBall(275/500 * width, 270/500 * width, -3/500 * width, 0);
-  enemyball6Level12 = new EnemyBall(325/500 * width, 270/500 * width, 3/500 * width, 0);
-  enemyball7Level12 = new EnemyBall(375/500 * width, 270/500 * width, -3/500 * width, 0);
-  enemyball8Level12 = new EnemyBall(425/500 * width, 270/500 * width, 3/500 * width, 0);
+  enemyball1Level12 = new EnemyBall(width/20, 27/50 * width, 3/500 * width, 0);
+  enemyball2Level12 = new EnemyBall(3/20 * width, 27/50 * width, -3/500 * width, 0);
+  enemyball3Level12 = new EnemyBall(width/4, 27/50 * width, 3/500 * width, 0);
+  enemyball4Level12 = new EnemyBall(7/20 * width, 27/50 * width, -3/500 * width, 0);
+  enemyball5Level12 = new EnemyBall(11/20 * width, 27/50 * width, -3/500 * width, 0);
+  enemyball6Level12 = new EnemyBall(13/20 * width, 27/50 * width, 3/500 * width, 0);
+  enemyball7Level12 = new EnemyBall(13/20 * width, 27/50 * width, -3/500 * width, 0);
+  enemyball8Level12 = new EnemyBall(17/20 * width, 27/50 * width, 3/500 * width, 0);
   enemyball9Level12 = new EnemyBall(width/2, width/2, 0, 9/500 * width);
 
   point1Level1 = new PointBall (width/1.5, width/1.5, 0, 0);
-  point2Level1 = new PointBall (150/500 * width, width/1.5, 0, 0);
-  point3Level1 = new PointBall (450/500 * width, width/1.5, 0, 0);
+  point2Level1 = new PointBall (3/10 * width, width/1.5, 0, 0);
+  point3Level1 = new PointBall (9/10 * width, width/1.5, 0, 0);
 
-  point1Level2 = new PointBall (300/500 * width, width/1.5, 0, 0);
-  point2Level2 = new PointBall (150/500 * width, width/1.5, 0, 0);
-  point3Level2 = new PointBall (450/500 * width, width/1.5, 0, 0);
+  point1Level2 = new PointBall (3/50 * width, width/1.5, 0, 0);
+  point2Level2 = new PointBall (3/10 * width, width/1.5, 0, 0);
+  point3Level2 = new PointBall (9/10 * width, width/1.5, 0, 0);
 
-  point1Level3 = new PointBall (200/500 * width, width/1.5, 0, 0);
-  point2Level3 = new PointBall (350/500 * width, width/1.5, 0, 0);
-  point3Level3 = new PointBall (470/500 * width, width/1.5, 0, 0);
+  point1Level3 = new PointBall (2/50 * width, width/1.5, 0, 0);
+  point2Level3 = new PointBall (7/10 * width, width/1.5, 0, 0);
+  point3Level3 = new PointBall (47/50 * width, width/1.5, 0, 0);
 
   point1Level4 = new PointBall (width/1.5, width/1.5, 0, 0);
-  point2Level4 = new PointBall (150/500 * width, width/1.5, 0, 0);
-  point3Level4 = new PointBall (450/500 * width, width/1.5, 0, 0);
+  point2Level4 = new PointBall (3/10 * width, width/1.5, 0, 0);
+  point3Level4 = new PointBall (9/10 * width, width/1.5, 0, 0);
 
-  point1Level5 = new PointBall (50/500 * width, 30/500 * width, 0, 0);
-  point2Level5 = new PointBall (50/500 * width, 460/500 * width, 0, 0);
-  point3Level5 = new PointBall (460/500 * width, 250/500 * width, 0, 0);
+  point1Level5 = new PointBall (width/10, 3/50 * width, 0, 0);
+  point2Level5 = new PointBall (width/10, 23/25 * width, 0, 0);
+  point3Level5 = new PointBall (23/25 * width, width/2, 0, 0);
 
-  point1Level6 = new PointBall (30/500 * width, 30/500 * width, 0, 0);
-  point2Level6 = new PointBall (470/500 * width, 470/500 * width, 0, 0);
-  point3Level6 = new PointBall (250/500 * width, 250/500 * width, 0, 0);
+  point1Level6 = new PointBall (3/50 * width, 3/50 * width, 0, 0);
+  point2Level6 = new PointBall (47/50 * width, 47/50 * width, 0, 0);
+  point3Level6 = new PointBall (width/2, width/2, 0, 0);
 
-  point1Level7 = new PointBall (470/500 * width, 100/500 * width, 0, 0);
-  point2Level7 = new PointBall (30/500 * width, 100/500 * width, 0, 0);
-  point3Level7 = new PointBall (470/500 * width, width/1.5, 0, 0);
+  point1Level7 = new PointBall (47/50 * width, width/10, 0, 0);
+  point2Level7 = new PointBall (3/50 * width, width/10, 0, 0);
+  point3Level7 = new PointBall (47/50 * width, width/1.5, 0, 0);
 
-  point1Level8 = new PointBall (150/500 * width, 470/500 * width, 0, 0);
-  point2Level8 = new PointBall (350/500 * width, 470/500 * width, 0, 0);
-  point3Level8 = new PointBall (250/500 * width, 250/500 * width, 0, 5);
+  point1Level8 = new PointBall (3/10 * width, 47/50 * width, 0, 0);
+  point2Level8 = new PointBall (7/10 * width, 47/50 * width, 0, 0);
+  point3Level8 = new PointBall (width/2, width/2, 0, width/100);
 
-  point1Level9 = new PointBall (460/500 * width, 75/500 * width, 0, 0);
-  point2Level9 = new PointBall (460/500 * width, 275/500 * width, 0, 0);
-  point3Level9 = new PointBall (460/500 * width, 460/500 * width, 0, 0);
+  point1Level9 = new PointBall (46/50 * width, 3/20 * width, 0, 0);
+  point2Level9 = new PointBall (46/50 * width, 11/20 * width, 0, 0);
+  point3Level9 = new PointBall (46/50 * width, 46/50 * width, 0, 0);
 
-  point1Level10 = new PointBall (250/500 * width, 250/500 * width, -5/500 * width, 5/500 * width);
-  point2Level10 = new PointBall (25/500 * width, 25/500 * width, 0, 0);
-  point3Level10 = new PointBall (475/500 * width, 475/500 * width, 0, 0);
+  point1Level10 = new PointBall (width/2, width/2, -width/100, width/100);
+  point2Level10 = new PointBall (width/20, width/20, 0, 0);
+  point3Level10 = new PointBall (19/20 * width, 19/20 * width, 0, 0);
 
-  point1Level11 = new PointBall (width/3, 90/500 * width, 0, 0);
-  point2Level11 = new PointBall (width/3, 90/500 * width, 0, 0);
-  point3Level11 = new PointBall (450/500 * width, width/1.5, 0, 0);
+  point1Level11 = new PointBall (width/3, 9/50 * width, 0, 0);
+  point2Level11 = new PointBall (width/3, 9/50 * width, 0, 0);
+  point3Level11 = new PointBall (9/10 * width, width/1.5, 0, 0);
 
-  point1Level12 = new PointBall (25/500 * width, 260/500 * width, 0, 0);
-  point2Level12 = new PointBall (475/500 * width, 260/500 * width, 0, 0);
-  point3Level12 = new PointBall (250/500 * width, 60/500 * width, 0, 0);
+  point1Level12 = new PointBall (width/20, 13/25 * width, 0, 0);
+  point2Level12 = new PointBall (19/20 * width, 13/25 * width, 0, 0);
+  point3Level12 = new PointBall (width/2, width/6.75, 0, 0);
 }
   
 function draw() {
@@ -389,7 +389,7 @@ function checkStates(){
     imageMode(CORNERS);
     background(backgroundImage);
     imageMode(CENTER);
-    image(titleImage, 250/500 * width, 100/500 * width, 440/500 * width, 86/500 * width);
+    image(titleImage, width/2, width/5, 22/25 * width, 34/250 * width);
     displayMenu();
     checkCursor();
     restartPositions();
@@ -424,8 +424,8 @@ function writeText(){
   textSize(40/500 * width);
   fill("black")
   textAlign(CENTER, CENTER);
-  text(txt2, 250/500 * width, 130/500 * width)
-  text(txt, 250/500 * width, 190/500 * width);// "txt" is the variable which holds the string, followed by x and y coordinates
+  text(txt2, width/2, 13/50 * width)
+  text(txt, width/2, 19/50 * width);// "txt" is the variable which holds the string, followed by x and y coordinates
 }
 
 function displayEndScreen(){
@@ -443,10 +443,10 @@ function instructionsText(){
   textSize(21/500 * width);
   fill("black");
 
-  text (a, 250/500 * width, 100/500 * width);
-  text (b, 250/500 * width, 130/500 * width);
-  text (c, 250/500 * width, 160/500 * width);
-  text (d, 250/500 * width, 190/500 * width);
+  text (a, width/2, width/5);
+  text (b, width/2, 13/50 * width);
+  text (c, width/2, 8/25 * width);
+  text (d, width/2, 19/50 * width);
 }
 
 function displayInstructionsButton(){
@@ -459,11 +459,11 @@ function restartPositions() {
   player2.x = 31/500 * width;
   player2.y = width/1.5;
 
-  enemyball1Level2.x = 100/500 * width;
+  enemyball1Level2.x = width/5;
   enemyball1Level2.y = width/2;
   enemyball2Level2.x = width/2;
   enemyball2Level2.y = width/2;
-  enemyball3Level2.x = 400/500 * width;
+  enemyball3Level2.x = 4/5 * width;
   enemyball3Level2.y = width/2;
 
   enemyball1Level5.x = width/2;
@@ -474,52 +474,52 @@ function restartPositions() {
   lives = 15;
 
   point1Level1.x = width/1.5
-  point2Level1.x = 150/500 * width
-  point3Level1.x = 450/500 * width
+  point2Level1.x = 3/10 * width
+  point3Level1.x = 9/10 * width
   
-  point1Level2.x = 300/500 * width;
-  point2Level2.x = 150/500 * width;
-  point3Level2.x = 450/500 * width;
+  point1Level2.x = 3/5 * width;
+  point2Level2.x = 3/10 * width;
+  point3Level2.x = 9/10 * width;
 
-  point1Level3.x = 200/500 * width;
-  point2Level3.x = 350/500 * width;
-  point3Level3.x = 470/500 * width;
+  point1Level3.x = 2/5 * width;
+  point2Level3.x = 7/10 * width;
+  point3Level3.x = 47/50 * width;
 
   point1Level4.x = width/1.5;
-  point2Level4.x = 150/500 * width;
-  point3Level4.x = 450/500 * width;
+  point2Level4.x = 3/10 * width;
+  point3Level4.x = 9/10 * width;
 
-  point1Level5.x = 50/500 * width;
-  point2Level5.x = 50/500 * width;
-  point3Level5.x = 460/500 * width;
+  point1Level5.x = width/10;
+  point2Level5.x = width/10;
+  point3Level5.x = 23/25 * width;
 
-  point1Level6.x = 30/500 * width;
-  point2Level6.x = 470/500 * width;
-  point3Level6.x = 250/500 * width;
+  point1Level6.x = 3/50 * width;
+  point2Level6.x = 47/50 * width;
+  point3Level6.x = width/2;
 
-  point1Level7.x = 470/500 * width;
-  point2Level7.x = 30/500 * width;
-  point3Level7.x = 470/500 * width;
+  point1Level7.x = 47/50 * width;
+  point2Level7.x = 3/50 * width;
+  point3Level7.x = 47/50 * width;
 
-  point1Level8.x = 150/500 * width;
-  point2Level8.x = 350/500 * width;
-  point3Level8.x = 250/500 * width;
+  point1Level8.x = 3/10 * width;
+  point2Level8.x = 7/10 * width;
+  point3Level8.x = width/2;
 
-  point1Level9.x = 460/500 * width;
-  point2Level9.x = 460/500 * width;
-  point3Level9.x = 460/500 * width;
+  point1Level9.x = 23/25 * width;
+  point2Level9.x = 23/25 * width;
+  point3Level9.x = 23/25 * width;
 
-  point1Level10.x = 250/500 * width;
-  point2Level10.x = 25/500 * width;
-  point3Level10.x = 475/500 * width
+  point1Level10.x = width/2;
+  point2Level10.x = width/20;
+  point3Level10.x = 19/20 * width
 
   point1Level11.x = width/3;
   point2Level11.x = width * 2/3;
-  point3Level11.x = 450/500 * width;
+  point3Level11.x = 9/10 * width;
 
-  point1Level12.x = 25/500 * width;
-  point2Level12.x = 475/500 * width;
-  point3Level12.x = 250/500 * width;
+  point1Level12.x = width/20;
+  point2Level12.x = 19/20 * width;
+  point3Level12.x = width/2;
 
   timer = 0;
   currentTime = -500;
@@ -539,18 +539,18 @@ function displayGrid() {
   }
   //Pictures inside of the grid
   //imageMode(CENTER)
-  image(level1Picture, 5/500 * width, 5/500 * width, cellPictureWidth , cellPictureHeight);
-  image(level2Picture, 1*cellSize + 5/500 * width, 0*cellSize + 5/500 * width, cellPictureWidth, cellPictureHeight);
-  image(level3Picture, 2*cellSize + 5/500 * width, 0*cellSize + 5/500 * width, cellPictureWidth, cellPictureHeight);
-  image(level4Picture, 0*cellSize + 5/500 * width, 1*cellSize + 5/500 * width, cellPictureWidth , cellPictureHeight );
-  image(level5Picture, 1*cellSize + 5/500 * width, 1*cellSize + 5/500 * width, cellPictureWidth, cellPictureHeight);
-  image(level6Picture, 2*cellSize + 5/500 * width, 1*cellSize + 5/500 * width, cellPictureWidth, cellPictureHeight);
-  image(level7Picture, 0*cellSize + 5/500 * width, 2*cellSize + 5/500 * width, cellPictureWidth, cellPictureHeight);
-  image(level8Picture, 1*cellSize + 5/500 * width, 2*cellSize + 5/500 * width, cellPictureWidth, cellPictureHeight);
-  image(level9Picture, 2*cellSize + 5/500 * width, 2*cellSize + 5/500 * width, cellPictureWidth, cellPictureHeight);
-  image(level10Picture, 0*cellSize + 5/500 * width, 3*cellSize + 5/500 * width, cellPictureWidth, cellPictureHeight);
-  image(level11Picture, 1*cellSize + 5/500 * width, 3*cellSize + 5/500 * width, cellPictureWidth, cellPictureHeight);
-  image(level12Picture, 2*cellSize + 5/500 * width, 3*cellSize + 5/500 * width, cellPictureWidth, cellPictureHeight);
+  image(level1Picture, width/100, width/100, cellPictureWidth , cellPictureHeight);
+  image(level2Picture, 1*cellSize + width/100, 0*cellSize + width/100, cellPictureWidth, cellPictureHeight);
+  image(level3Picture, 2*cellSize + width/100, 0*cellSize + width/100, cellPictureWidth, cellPictureHeight);
+  image(level4Picture, 0*cellSize + width/100, 1*cellSize + width/100, cellPictureWidth , cellPictureHeight );
+  image(level5Picture, 1*cellSize + width/100, 1*cellSize + width/100, cellPictureWidth, cellPictureHeight);
+  image(level6Picture, 2*cellSize + width/100, 1*cellSize + width/100, cellPictureWidth, cellPictureHeight);
+  image(level7Picture, 0*cellSize + width/100, 2*cellSize + width/100, cellPictureWidth, cellPictureHeight);
+  image(level8Picture, 1*cellSize + width/100, 2*cellSize + width/100, cellPictureWidth, cellPictureHeight);
+  image(level9Picture, 2*cellSize + width/100, 2*cellSize + width/100, cellPictureWidth, cellPictureHeight);
+  image(level10Picture, 0*cellSize + width/100, 3*cellSize + width/100, cellPictureWidth, cellPictureHeight);
+  image(level11Picture, 1*cellSize + width/100, 3*cellSize + width/100, cellPictureWidth, cellPictureHeight);
+  image(level12Picture, 2*cellSize + width/100, 3*cellSize + width/100, cellPictureWidth, cellPictureHeight);
   
   
   pop();// Stop translating, and get canvas back to normal
@@ -573,7 +573,7 @@ function livesText(){
   fill("black");
   textAlign(CENTER);
   textSize(28/500 * width);
-  text("lives = " + str(lives), 430/500 * width, 50/500 * width)
+  text("lives = " + str(lives), 430/500 * width, width/10)
 }
 
 function checkLevelScreen() {
@@ -757,8 +757,8 @@ function nextLevelText(){
   fill("black");
   textAlign(CENTER);
   textSize(28);
-  text("Going to the Next Level", 250/500 * width, 200/500 * width);
-  text("in " + str(3 - (timer - currentTime)) + " second(s)", 250/500 * width, 270/500 * width);
+  text("Going to the Next Level", width/2, 2/5 * width);
+  text("in " + str(3 - (timer - currentTime)) + " second(s)", width/2, 27/50 * width);
 }
 
 function level1BallMovement() {
@@ -790,7 +790,7 @@ function switchLevel1to2(){
     if (3 - (timer - currentTime) === 0 ) {
       level = "two";
       score = 0;
-      player1.x = 25/500 * width;
+      player1.x = 31/500 * width;
       currentTime = -500;
     }
   }
@@ -827,7 +827,7 @@ function switchLevel2to3(){
 
      level = "three";
      score = 0;
-     player1.x = 25/500 * width;
+     player1.x = 31/500 * width;
      currentTime = -500;
     }
   }
@@ -866,7 +866,7 @@ function switchLevel3to4(){
     if (3 - (timer - currentTime) === 0 ) {
 
      level = "four";
-     score = 0/500 * width;
+     score = 0;
      player1.x = 31/500 * width;
      player2.x = 31/500 * width;
      player2.y = width/1.5;
@@ -1263,9 +1263,9 @@ function switchLevel12(){
 }
 
 function moveAgain(){
-  player1.dx = 4/500 * width;
-  player2.dx = 4/500 * width;
-  player2.dy = 4/500 * width;
+  player1.dx = width/125;
+  player2.dx = width/125;
+  player2.dy = width/125;
   
 }
 
@@ -1305,15 +1305,15 @@ function collectingPointsLevel1() {
   collectionDistance = (player1.radius + point1Level1.radius);
   
   if (ballDistanceToPoint1  <= collectionDistance )  {
-    point1Level1.x = -100/500 * width;
+    point1Level1.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
-    point2Level1.x = -100/500 * width;
+    point2Level1.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
-    point3Level1.x = -100/500 * width;
+    point3Level1.x = -width/5;
     score ++;
   }
 }
@@ -1335,11 +1335,11 @@ function itHitLevel2() {
         
         level = "three"
         level = "two"
-        enemyball1Level2.y = 30/500 * width;
-        enemyball2Level2.y = 30/500 * width;
-        enemyball3Level2.y = 30/500 * width;
-        enemyball1Level2.x = 100/500 * width;
-        enemyball2Level2.x = 250/500 * width;
+        enemyball1Level2.y = 3/50 * width;
+        enemyball2Level2.y = 3/50 * width;
+        enemyball3Level2.y = 3/50 * width;
+        enemyball1Level2.x = width/5;
+        enemyball2Level2.x = width/2;
         enemyball3Level2.x = 400/500 * width;
         enemyball1Level2.dx = 0;
         enemyball1Level2.dy = 0;
@@ -1361,12 +1361,12 @@ function itHitLevel2() {
 }
 
 function startLevel2(){
-  enemyball1Level2.dx = random(4/500 * width, 7/500 * width);
-  enemyball1Level2.dy = random(4/500 * width, 7/500 * width);
-  enemyball2Level2.dx = random(4/500 * width, 7/500 * width);
-  enemyball2Level2.dy = random(4/500 * width, 7/500 * width);
-  enemyball3Level2.dx = random(4/500 * width, 7/500 * width);
-  enemyball3Level2.dy = random(4/500 * width, 7/500 * width);
+  enemyball1Level2.dx = random(width/125, 7/500 * width);
+  enemyball1Level2.dy = random(width/125, 7/500 * width);
+  enemyball2Level2.dx = random(width/125, 7/500 * width);
+  enemyball2Level2.dy = random(width/125, 7/500 * width);
+  enemyball3Level2.dx = random(width/125, 7/500 * width);
+  enemyball3Level2.dy = random(width/125, 7/500 * width);
 
 }
 
@@ -1381,15 +1381,15 @@ function collectingPointsLevel2() {
   collectionDistance = (player1.radius + point1Level2.radius);
   
   if (ballDistanceToPoint1  <= collectionDistance )  {
-    point1Level2.x = -100/500 * width;
+    point1Level2.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
-    point2Level2.x = -100/500 * width;
+    point2Level2.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
-    point3Level2.x = -100/500 * width;
+    point3Level2.x = -width/5;
     score ++;
   }
   
@@ -1434,15 +1434,15 @@ function collectingPointsLevel3() {
   collectionDistance = (player1.radius + point1Level2.radius);
   
   if (ballDistanceToPoint1  <= collectionDistance )  {
-    point1Level3.x = -100/500 * width;
+    point1Level3.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
-    point2Level3.x = -100/500 * width;
+    point2Level3.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
-    point3Level3.x = -100/500 * width;
+    point3Level3.x = -width/5;
     score ++;
   }
   
@@ -1464,9 +1464,9 @@ function itHitLevel4() {
       lives --
       player1.x = 31/500 * width;
       player1.dx = 0;
-      enemyball1Level4.y = 30/500 * width;
-      enemyball2Level4.y = 30/500 * width;
-      enemyball3Level4.y = 30/500 * width;
+      enemyball1Level4.y = 3/50 * width;
+      enemyball2Level4.y = 3/50 * width;
+      enemyball3Level4.y = 3/50 * width;
       setTimeout(moveAgain, 1500)
     }
     else if (lives === 0){
@@ -1486,15 +1486,15 @@ function collectingPointsLevel4() {
   collectionDistance = (player1.radius + point1Level2.radius);
   
   if (ballDistanceToPoint1  <= collectionDistance )  {
-    point1Level4.x = -100/500 * width;
+    point1Level4.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
-    point2Level4.x = -100/500 * width;
+    point2Level4.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
-    point3Level4.x = -100/500 * width;
+    point3Level4.x = -width/5;
     score ++;
   }
   
@@ -1537,15 +1537,15 @@ function collectingPointsLevel5() {
   collectionDistance = (player2.radius + point1Level2.radius);
   
   if (ballDistanceToPoint1  <= collectionDistance )  {
-    point1Level5.x = -100/500 * width;
+    point1Level5.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
-    point2Level5.x = -100/500 * width;
+    point2Level5.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
-    point3Level5.x = -100/500 * width;
+    point3Level5.x = -width/5;
     score ++;
   }
   
@@ -1588,15 +1588,15 @@ function collectingPointsLevel6() {
   collectionDistance = (player2.radius + point1Level2.radius);
   
   if (ballDistanceToPoint1  <= collectionDistance )  {
-    point1Level6.x = -100/500 * width;
+    point1Level6.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
-    point2Level6.x = -100/500 * width;
+    point2Level6.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
-    point3Level6.x = -100/500 * width;
+    point3Level6.x = -width/5;
     score ++;
   }
   
@@ -1645,15 +1645,15 @@ function collectingPointsLevel7() {
   collectionDistance = (player1.radius + point1Level2.radius);
   
   if (ballDistanceToPoint1  <= collectionDistance )  {
-    point1Level7.x = -100/500 * width;
+    point1Level7.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
-    point2Level7.x = -100/500 * width;
+    point2Level7.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
-    point3Level7.x = -100/500 * width;
+    point3Level7.x = -width/5;
     score ++;
   }
   
@@ -1695,15 +1695,15 @@ function collectingPointsLevel8() {
   collectionDistance = (player1.radius + point1Level2.radius);
   
   if (ballDistanceToPoint1  <= collectionDistance )  {
-    point1Level8.x = -100/500 * width;
+    point1Level8.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
-    point2Level8.x = -100/500 * width;
+    point2Level8.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
-    point3Level8.x = -100/500 * width;
+    point3Level8.x = -width/5;
     score ++;
   }
   
@@ -1764,15 +1764,15 @@ function collectingPointsLevel9() {
   collectionDistance = (player1.radius + point1Level2.radius);
   
   if (ballDistanceToPoint1  <= collectionDistance )  {
-    point1Level9.x = -100/500 * width;
+    point1Level9.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
-    point2Level9.x = -100/500 * width;
+    point2Level9.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
-    point3Level9.x = -100/500 * width;
+    point3Level9.x = -width/5;
     score ++;
   }
   
@@ -1817,15 +1817,15 @@ function collectingPointsLevel10() {
   collectionDistance = (player1.radius + point1Level2.radius);
   
   if (ballDistanceToPoint1  <= collectionDistance )  {
-    point1Level10.x = -100/500 * width;
+    point1Level10.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
-    point2Level10.x = -100/500 * width;
+    point2Level10.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
-    point3Level10.x = -100/500 * width;
+    point3Level10.x = -width/5;
     score ++;
   }
   
@@ -1880,15 +1880,15 @@ function collectingPointsLevel11() {
   collectionDistance = (player1.radius + point1Level2.radius);
   
   if (ballDistanceToPoint1  <= collectionDistance )  {
-    point1Level11.x = -100/500 * width;
+    point1Level11.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
-    point2Level11.x = -100/500 * width;
+    point2Level11.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
-    point3Level11.x = -100/500 * width;
+    point3Level11.x = -width/5;
     score ++;
   }
   
@@ -1942,15 +1942,15 @@ function collectingPointsLevel12() {
   collectionDistance = (player1.radius + point1Level2.radius);
   
   if (ballDistanceToPoint1  <= collectionDistance )  {
-    point1Level12.x = -100/500 * width;
+    point1Level12.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
-    point2Level12.x = -100/500 * width;
+    point2Level12.x = -width/5;
     score ++;
   }
   if (ballDistanceToPoint3  <= collectionDistance)  {
-    point3Level12.x = -100/500 * width;
+    point3Level12.x = -width/5;
     score ++;
   }
   
@@ -2029,10 +2029,10 @@ function checkCursor(){
       image(gridButton.image2, gridButton.x, gridButton.y, gridButton.width , gridButton.height)
     }
 
-    else if ((mouseX > 30/500 * width ) && 
-    (mouseX < 330/500 * width) && 
-    (mouseY > 65/500 * width ) && 
-    (mouseY < 465/500 * width)){
+    else if ((mouseX > 3/50 * width ) && 
+    (mouseX < 33/50 * width) && 
+    (mouseY > 13/100 * width ) && 
+    (mouseY < 93/100 * width)){
       cursor ("pointer");
     }
 
