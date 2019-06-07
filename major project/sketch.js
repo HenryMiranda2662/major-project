@@ -146,6 +146,7 @@ function setup() {
 
   backgroundImage = loadImage("assets/bckimg.png");
   titleImage = loadImage("assets/title.png")
+  spaceImage = loadImage("assets/backgroundpic.png")
   
   level1Picture = loadImage("assets/1.png")
   level2Picture = loadImage("assets/2.png")
@@ -570,7 +571,7 @@ function displayMenu() {
 }
 
 function livesText(){
-  fill("black");
+  fill("white");
   textAlign(CENTER);
   textSize(28/500 * width);
   text("lives = " + str(lives), 430/500 * width, width/10)
@@ -647,7 +648,7 @@ function displayGridButton(){
 
 function level1(){
   level1BallMovement();
-  background(190, 192, 190);
+  background(spaceImage);
   level1BallDisplay();
   itHitLevel1();
   collectingPointsLevel1();
@@ -656,7 +657,7 @@ function level1(){
 
 function level2(){
   level2BallMovement();
-  background(190, 192, 190);
+  background(spaceImage);
   level2BallDisplay();
   itHitLevel2();
   collectingPointsLevel2();
@@ -665,7 +666,7 @@ function level2(){
 
 function level3(){
   Level3BallMovement();
-  background(190, 192, 190);
+  background(spaceImage);
   Level3BallDisplay();
   itHitLevel3();
   collectingPointsLevel3();
@@ -674,7 +675,7 @@ function level3(){
 
 function level4(){
   level4BallMovement();
-  background(190, 192, 190);
+  background(spaceImage);
   level4BallDisplay();
   itHitLevel4();
   collectingPointsLevel4();
@@ -683,7 +684,7 @@ function level4(){
 
 function level5(){
   level5BallMovement();
-  background(190, 192, 190);
+  background(spaceImage);
   level5BallDisplay();
   itHitLevel5();
   collectingPointsLevel5();
@@ -692,7 +693,7 @@ function level5(){
 
 function level6(){
   Level6BallMovement();
-  background(190, 192, 190);
+  background(spaceImage);
   Level6BallDisplay();
   itHitLevel6();
   collectingPointsLevel6();
@@ -701,7 +702,7 @@ function level6(){
 
 function level7(){
   Level7BallMovement();
-  background(190, 192, 190);
+  background(spaceImage);
   Level7BallDisplay();
   itHitLevel7();
   collectingPointsLevel7();
@@ -710,7 +711,7 @@ function level7(){
 
 function level8(){
   Level8BallMovement();
-  background(190, 192, 190);
+  background(spaceImage);
   Level8BallDisplay();
   itHitLevel8();
   collectingPointsLevel8();
@@ -719,7 +720,7 @@ function level8(){
 
 function level9(){
   Level9BallMovement();
-  background(190, 192, 190);
+  background(spaceImage);
   Level9BallDisplay();
   itHitLevel9();
   collectingPointsLevel9();
@@ -728,7 +729,7 @@ function level9(){
 
 function level10(){
   Level10BallMovement();
-  background(190, 192, 190);
+  background(spaceImage);
   Level10BallDisplay();
   itHitLevel10();
   collectingPointsLevel10();
@@ -737,7 +738,7 @@ function level10(){
 
 function level11(){
   Level11BallMovement();
-  background(190, 192, 190);
+  background(spaceImage);
   Level11BallDisplay();
   itHitLevel11();
   collectingPointsLevel11();
@@ -746,7 +747,7 @@ function level11(){
 
 function level12(){
   Level12BallMovement();
-  background(190, 192, 190);
+  background(spaceImage);
   Level12BallDisplay();
   itHitLevel12();
   collectingPointsLevel12();
@@ -754,7 +755,7 @@ function level12(){
 }
 
 function nextLevelText(){
-  fill("black");
+  fill("white");
   textAlign(CENTER);
   textSize(28);
   text("Going to the Next Level", width/2, 2/5 * width);
