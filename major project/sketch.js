@@ -135,14 +135,15 @@ function preload(){
   laugh = loadSound("assets/laugh.mp3")
   sound = loadSound("assets/sound.mp3")
   click = loadSound("assets/click.mp3")
-  whoosh = loadSound("assets/flyby.mp3")
+  music = loadSound("assets/backmusic.mp3")
+  fire = loadSound("assets/fire(1).mp3")
+  tada = loadSound("assets/tada.mp3")
 }
 
 function setup() {
-  sound.loop();
+  
   sound.setVolume(0.3);
-whoosh.setVolume(0.1);
-click.setVolume(0.6)
+  click.setVolume(0.6)
   if (windowWidth > windowHeight){
     createCanvas (windowHeight, windowHeight);
   }
@@ -377,6 +378,7 @@ function draw() {
   //Will Draw according to state
   checkStates();
   timeKeeping();
+  //playMusic();
 }
 
 function timeKeeping(){
@@ -570,7 +572,6 @@ function displayGrid() {
   displayGridButton();
   checkCursor()
 }
-
 
 function displayMenu() {
   // Creates a button during the first screen "menu"
@@ -1299,15 +1300,13 @@ function itHitLevel1() {
       laugh.play();
       player1.x = 31/500 * width;
       player1.dx = 0;
-      setTimeout(moveAgain, 1500)
+      setTimeout(moveAgain, 800)
     }
     else if (lives === 0){
       state = "main_menu"
     }
   }
 }
-
-
 
 function collectingPointsLevel1() {
   // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
@@ -1436,7 +1435,7 @@ function itHitLevel3() {
       laugh.play();
       player1.x = 31/500 * width;
       player1.dx = 0;
-      setTimeout(moveAgain, 1500)
+      setTimeout(moveAgain, 800)
     }
     else if (lives === 0){
       state = "main_menu"
@@ -1492,7 +1491,7 @@ function itHitLevel4() {
       enemyball1Level4.y = 3/50 * width;
       enemyball2Level4.y = 3/50 * width;
       enemyball3Level4.y = 3/50 * width;
-      setTimeout(moveAgain, 1500)
+      setTimeout(moveAgain, 800)
     }
     else if (lives === 0){
       state = "main_menu"
@@ -1547,7 +1546,7 @@ function itHitLevel5() {
       player2.y = width/1.5
       player2.dx = 0;
       player2.dy = 0;
-      setTimeout(moveAgain, 1500)
+      setTimeout(moveAgain, 800)
     }
     else if (lives === 0){
       state = "main_menu"
@@ -1602,7 +1601,7 @@ function itHitLevel6() {
           player2.y = width/1.5
           player2.dx = 0;
           player2.dy = 0;
-          setTimeout(moveAgain, 1500)
+          setTimeout(moveAgain, 800)
         }
         else if (lives === 0){
           state = "main_menu"
@@ -1663,7 +1662,7 @@ function itHitLevel7() {
           player2.y = width/1.5
           player2.dx = 0;
           player2.dy = 0;
-          setTimeout(moveAgain, 1500)
+          setTimeout(moveAgain, 800)
         }
         else if (lives === 0){
           state = "main_menu"
@@ -1716,7 +1715,7 @@ function itHitLevel8(){
           player2.y = width/1.5
           player2.dx = 0;
           player2.dy = 0;
-          setTimeout(moveAgain, 1500)
+          setTimeout(moveAgain, 800)
         }
         else if (lives === 0){
           state = "main_menu"
@@ -1790,7 +1789,7 @@ function itHitLevel9(){
           player2.y = width/1.5
           player2.dx = 0;
           player2.dy = 0;
-          setTimeout(moveAgain, 1500)
+          setTimeout(moveAgain, 800)
         }
         else if (lives === 0){
           state = "main_menu"
@@ -1847,7 +1846,7 @@ function itHitLevel10(){
           player2.y = width/1.5
           player2.dx = 0;
           player2.dy = 0;
-          setTimeout(moveAgain, 1500)
+          setTimeout(moveAgain, 800)
         }
         else if (lives === 0){
           state = "main_menu"
@@ -1914,7 +1913,7 @@ function itHitLevel11(){
           player2.y = width/1.5
           player2.dx = 0;
           player2.dy = 0;
-          setTimeout(moveAgain, 1500)
+          setTimeout(moveAgain, 800)
         }
         else if (lives === 0){
           state = "main_menu"
@@ -1980,7 +1979,7 @@ function itHitLevel12(){
           player2.y = width/1.5
           player2.dx = 0;
           player2.dy = 0;
-          setTimeout(moveAgain, 1500)
+          setTimeout(moveAgain, 800)
         }
         else if (lives === 0){
           state = "main_menu"
@@ -2066,8 +2065,8 @@ function checkCursor(){
       cursor("pointer");
       imageMode(CENTER);
       image(playButton.image2, playButton.x, playButton.y, playButton.width, playButton.height);
-      whoosh.play();
-      whoosh.stop();
+      
+     
     }
 
     else if ((mouseX > instructionButton.x - (instructionButton.width/2)) &&
@@ -2076,8 +2075,8 @@ function checkCursor(){
        (mouseY < instructionButton.y + (instructionButton.height/2))){
   
       cursor("pointer");
-      whoosh.play();
-      whoosh.stop();
+      
+      
       imageMode(CENTER);
       image(instructionButton.image2, instructionButton.x, instructionButton.y, instructionButton.width, instructionButton.height);
     }
@@ -2093,8 +2092,8 @@ function checkCursor(){
         (mouseY > gridButton.y ) && 
         (mouseY < gridButton.y + gridButton.height)){
       cursor("pointer");
-      whoosh.play();
-      whoosh.stop();
+      
+      
       imageMode(CORNER);
       image(gridButton.image2, gridButton.x, gridButton.y, gridButton.width , gridButton.height)
     }
@@ -2117,8 +2116,8 @@ function checkCursor(){
     (mouseY > levelButton.y - levelButton.height/2 ) && 
     (mouseY < levelButton.y + levelButton.height/2)){
       cursor("pointer");
-      whoosh.play();
-      whoosh.stop();
+      
+      
       imageMode(CENTER);
       image(levelButton.image2, levelButton.x, levelButton.y, levelButton.width , levelButton.height)
     }
@@ -2131,8 +2130,8 @@ function checkCursor(){
   if (state === "final_screen"){
     if ((mouseX > menuButton.x - (menuButton.width/2)) && (mouseX < menuButton.x + (menuButton.width/2)) && (mouseY > menuButton.y - (menuButton.height/2)) && (mouseY < menuButton.y + (menuButton.height/2))){
       cursor("pointer");
-      whoosh.play();
-      whoosh.stop();
+      
+      
       imageMode(CENTER);
       image(menuButton.image2, menuButton.x, menuButton.y, menuButton.width, menuButton.height);
    }
@@ -2241,4 +2240,25 @@ function clickedOnButtonMenu(x,y){
          x <= menuButton.x + menuButton.width/2 && 
          y >= menuButton.y - menuButton.height/2 && 
          y <= menuButton.y + menuButton.height/2;
+}
+
+function playMusic(){
+  if (state === "main_menu" && sound.play() === false){
+    sound.loop();
+  }
+  if (state === "main_menu" && sound.play() === true){
+    !sound.loop();
+  }
+  if (state === "menu" && sound.play() === false){
+    sound.loop();
+  }
+  if (state === "menu" && sound.play() === true){
+    !sound.loop();
+  }
+  if (state === "levels" && music.play() === false){
+    music.loop();
+  }
+  if (state === "levels" && sound.play() === true){
+    !music.loop();
+  }
 }
