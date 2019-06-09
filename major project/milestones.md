@@ -1,7 +1,10 @@
 # Major Project Milestones
 
-## February
 ## March
+- 4th: Idea for Game
+- 4th: Figured collition detection
+- 12th: Button and states logic implemented
+
 ## April
 - 17th: Finished Proposal 
 - 30th: Created Class to Store Enemy Balls
@@ -28,3 +31,5 @@
 - 5th: Added code which stops player to move after it died
 - 5th: Fixed bugs (live counter)
 - 5th: Added code so it can be scaled to screen
+- 6th: Added esthetic to game
+- 9th : Added background music and sound effects
