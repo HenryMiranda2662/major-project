@@ -136,7 +136,7 @@ function preload(){
   sound = loadSound("assets/sound.mp3")
   click = loadSound("assets/click.mp3")
   music = loadSound("assets/backmusic.mp3")
-  fire = loadSound("assets/fire(1).mp3")
+  fire = loadSound("assets/fire (1).mp3")
   tada = loadSound("assets/tada.mp3")
 }
 
@@ -144,6 +144,9 @@ function setup() {
   
   sound.setVolume(0.3);
   click.setVolume(0.6)
+  music.setVolume(0.2)
+  bell.setVolume(0.2)
+
   if (windowWidth > windowHeight){
     createCanvas (windowHeight, windowHeight);
   }
@@ -378,7 +381,7 @@ function draw() {
   //Will Draw according to state
   checkStates();
   timeKeeping();
-  //playMusic();
+  playMusic();
 }
 
 function timeKeeping(){
@@ -2243,22 +2246,25 @@ function clickedOnButtonMenu(x,y){
 }
 
 function playMusic(){
-  if (state === "main_menu" && sound.play() === false){
+  if ((state === "main_menu" || state === "menu" ) && !sound.isPlaying()) {
     sound.loop();
   }
-  if (state === "main_menu" && sound.play() === true){
-    !sound.loop();
+  if (state !== "main_menu" && state !== "menu" ){
+    sound.stop();
   }
-  if (state === "menu" && sound.play() === false){
-    sound.loop();
-  }
-  if (state === "menu" && sound.play() === true){
-    !sound.loop();
-  }
-  if (state === "levels" && music.play() === false){
+ 
+  if (state === "levels" && !music.isPlaying()){
     music.loop();
   }
-  if (state === "levels" && sound.play() === true){
-    !music.loop();
+  if (state !== "levels"){
+    music.stop();
+  }
+  if (state === "final_screen" && !fire.isPlaying() && !tada.isPlaying()){
+    fire.play();
+    tada.play();
+  }
+  if (state !== "final_screen"){
+    fire.stop();
+    tada.stop();
   }
 }
