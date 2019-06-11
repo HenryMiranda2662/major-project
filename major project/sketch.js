@@ -2132,7 +2132,10 @@ function checkCursor(){
   }
 
   if (state === "final_screen"){
-    if ((mouseX > menuButton.x - (menuButton.width/2)) && (mouseX < menuButton.x + (menuButton.width/2)) && (mouseY > menuButton.y - (menuButton.height/2)) && (mouseY < menuButton.y + (menuButton.height/2))){
+    if ((mouseX > menuButton.x - (menuButton.width/2)) 
+    && (mouseX < menuButton.x + (menuButton.width/2)) 
+    && (mouseY > menuButton.y - (menuButton.height/2)) 
+    && (mouseY < menuButton.y + (menuButton.height/2))){
       cursor("pointer");
       
       
