@@ -774,7 +774,7 @@ function level12(){
 function nextLevelText(){
   fill("white");
   textAlign(CENTER);
-  textSize(28);
+  textSize(7/125 * width);
   text("Going to the Next Level", width/2, 2/5 * width);
   text("in " + str(3 - (timer - currentTime)) + " second(s)", width/2, 27/50 * width);
 }
