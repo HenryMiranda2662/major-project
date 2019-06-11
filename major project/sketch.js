@@ -324,8 +324,9 @@ function setup() {
   enemyball4Level12 = new EnemyBall(7/20 * width, 27/50 * width, -3/500 * width, 0);
   enemyball5Level12 = new EnemyBall(11/20 * width, 27/50 * width, -3/500 * width, 0);
   enemyball6Level12 = new EnemyBall(13/20 * width, 27/50 * width, 3/500 * width, 0);
-  enemyball7Level12 = new EnemyBall(13/20 * width, 27/50 * width, -3/500 * width, 0);
+  enemyball7Level12 = new EnemyBall(15/20 * width, 27/50 * width, -3/500 * width, 0);
   enemyball8Level12 = new EnemyBall(17/20 * width, 27/50 * width, 3/500 * width, 0);
+
   enemyball9Level12 = new EnemyBall(width/2, width/2, 0, 9/500 * width);
 
   point1Level1 = new PointBall (width/1.5, width/1.5, 0, 0);
