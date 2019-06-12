@@ -599,61 +599,109 @@ function checkLevelScreen() {
   if (level === "one" ) {
     level1();
     livesText();
+    fill("white");
+    textAlign(CENTER);
+    textSize(28/500 * width);
+    text("level 1" , width/2, width/10)
     noCursor();
   }
   if (level === "two" ) {
     level2();
     livesText();
+    fill("white");
+    textAlign(CENTER);
+    textSize(28/500 * width);
+    text("level 2" , width/2, width/10)
     noCursor();
   }
   if (level === "three" ) {
     level3();
     livesText();
+    fill("white");
+    textAlign(CENTER);
+    textSize(28/500 * width);
+    text("level 3" , width/2, width/10)
     noCursor();
   }
   if (level === "four") {
     level4();
     livesText();
+    fill("white");
+    textAlign(CENTER);
+    textSize(28/500 * width);
+    text("level 4" , width/2, width/10)
     noCursor();
   }
   if (level === "five") {
     level5();
     livesText();
+    fill("white");
+    textAlign(CENTER);
+    textSize(28/500 * width);
+    text("level 5" , width/2, width/10)
     noCursor();
   }
   if (level === "six") {
     level6();
     livesText();
+    fill("white");
+    textAlign(CENTER);
+    textSize(28/500 * width);
+    text("level 6" , width/2, width/10)
     noCursor();
   }
   if (level === "seven") {
     level7();
     livesText();
+    fill("white");
+    textAlign(CENTER);
+    textSize(28/500 * width);
+    text("level 7" , width/2, width/10)
     noCursor();
   }
   if (level === "eight") {
     level8();
     livesText();
+    fill("white");
+    textAlign(CENTER);
+    textSize(28/500 * width);
+    text("level 8" , width/2, width/10)
     noCursor();
   }
   if (level === "nine") {
     level9();
     livesText();
+    fill("white");
+    textAlign(CENTER);
+    textSize(28/500 * width);
+    text("level 9" , width/2, width/10)
     noCursor();
   }
   if (level === "ten") {
     level10();
     livesText();
+    fill("white");
+    textAlign(CENTER);
+    textSize(28/500 * width);
+    text("level 10" , width/2, width/10)
     noCursor();
   }
   if (level === "eleven") {
     level11();
     livesText();
+    fill("white");
+    textAlign(CENTER);
+    textSize(28/500 * width);
+    text("level 11" , width/2, width/10)
     noCursor();
   }
   if (level === "twelve") {
     level12();
     livesText();
+    fill("white");
+    textAlign(CENTER);
+    textSize(28/500 * width);
+    text("level 12" , width/2, width/10)
     noCursor();
   }
 }
