@@ -1,30 +1,33 @@
 // MAJOR PROJECT
 // Henry Miranda
-// Date
+// June 17th, 2019
 //
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// - 
+
+//Code classes which I will need for the game
+// This class is creates the Enemies in the game
 class EnemyBall {
-  constructor(x, y, dxSomeSpeed, dySomeSpeed) {
-    this.x = x;
+  constructor(x, y, dxSomeSpeed, dySomeSpeed) {// Arguments which the constructor will use to create the
+    this.x = x;                                //Enemies.
     this.y = y;
     this.color = [255, 15, 30];
     this.radius = width/20;
     this.dx = dxSomeSpeed;
     this.dy = dySomeSpeed;
   }
-  display() {
+  display() { // Draws an ellipse with given x and y-coordinate and radius
     fill(this.color);
     noStroke();
     ellipse(this.x, this.y, this.radius * 2);
   }
-  move() {
+  move() { // Given a speed the ball will move until it hits a wall, then it will bounce back
 
     this.x += this.dx;
     this.y += this.dy;
 
     if (this.x + this.radius >= width || this.x - this.radius <= 0) {
-      this.dx = -1 * this.dx;
+      this.dx = -1 * this.dx; // Negative speed mean the ball bounces back after it hits window border
     }
 
     if (this.y + this.radius >= height || this.y - this.radius <= 0) {
@@ -34,6 +37,7 @@ class EnemyBall {
   }
 }
 
+//Creates Player
 class PlayerBall {
   constructor(x, y, dxSomeSpeed, dySomeSpeed){
     this.x = x;
@@ -49,8 +53,9 @@ class PlayerBall {
     ellipse(this.x, this.y, this.radius * 2);
   }
   move() {
+    // Only will move player if the player is within the winow borders
     if (keyIsDown(RIGHT_ARROW) && (this.x + this.radius <= width)) {
-      this.x += this.dx;
+      this.x += this.dx; 
     }
     
     if (keyIsDown(LEFT_ARROW) && (this.x - this.radius > 0)) {
@@ -66,6 +71,7 @@ class PlayerBall {
   }
 }
 
+//Builds point to collect
 class PointBall {
   constructor(x, y, dxSomeSpeed, dySomeSpeed) {
     this.x = x;
@@ -81,6 +87,7 @@ class PointBall {
     ellipse(this.x, this.y, this.radius * 2);
   }
   move() {
+    //Same movement logic as enemy balls
     this.x += this.dx;
     this.y += this.dy;
 
@@ -95,6 +102,7 @@ class PointBall {
   }
 }
 
+//Variables that I will use for the rest of the code
 let playerBall;
 let playerBall_2;
 let enemyball1Level1;
@@ -129,6 +137,8 @@ let cellPictureHeight;
 let timer;
 let currentTime;
 
+//Pre-load all the sound files I'll use in the code
+//Its better to preload, other wse the code might crash
 function preload(){
   soundFormats("mp3");
   bell = loadSound("assets/bell.mp3");
@@ -140,25 +150,21 @@ function preload(){
   tada = loadSound("assets/tada.mp3")
 }
 
+//Set up variable values, and class values
 function setup() {
   
-  sound.setVolume(0.3);
-  click.setVolume(0.6)
-  music.setVolume(0.2)
-  bell.setVolume(0.2)
+  sound.setVolume(0.3); //Set volume for each of the sounds
+  click.setVolume(0.6);
+  music.setVolume(0.2);
+  bell.setVolume(0.2);
 
+  //Creates the camvas as a square the height and width will be the same value
   if (windowWidth > windowHeight){
     createCanvas (windowHeight, windowHeight);
   }
   else {
     createCanvas (windowWidth, windowWidth);
   }
-
-  cellPictureWidth = 9/50 * width;
-  cellPictureHeight = 9/50 * width;
-
-  timer = 0;
-  currentTime = -500;
 
   backgroundImage = loadImage("assets/bckimg.png");
   titleImage = loadImage("assets/title.png")
@@ -190,9 +196,17 @@ function setup() {
   level11Picture2 = loadImage("assets/11-2.png")
   level12Picture2 = loadImage("assets/12-2.png")
   
+  //Set Initial value of variables
+  //Set value for width of a couple pictures
+  cellPictureWidth = 9/50 * width;
+  cellPictureHeight = 9/50 * width;
+
+  timer = 0; //Timer starts at zero
+  currentTime = -500;// Set a low value on current time, so the code will most likely never reach that value
+
   state = "main_menu";//Sets the first state as menu
   
-  score = 0;
+  score = 0;// Score starts at zero
   lives = 15;
 
   cellSize = width/5; // Cell size for the grid I'll use
@@ -201,6 +215,7 @@ function setup() {
   level = "one" //Variable which will change which power will be used
   txt = "You Finished the Game";  
 
+  //Objects for buttons in game
   playButton = {
     x : width/2,
     y : width/1.8,
@@ -246,10 +261,12 @@ function setup() {
     image2: loadImage("assets/menu2.png"),
   }
 
-  
+  //Every ob=bject created with the classes from above
+  //Players
   player1 = new PlayerBall(31/500 * width, width/1.5, width/125, 0);
   player2 = new PlayerBall(31/500 * width, width/1.5, width/125, width/125);
 
+  //Enemy Balls
   enemyball1Level1 = new EnemyBall(width/5, width/2, 0, 17/500 * width);
   enemyball2Level1 = new EnemyBall(width/2, width/2, 0, 9/500 * width);
   enemyball3Level1 = new EnemyBall(4/5 * width, width/2, 0, width/100);
@@ -326,9 +343,9 @@ function setup() {
   enemyball6Level12 = new EnemyBall(13/20 * width, 27/50 * width, 3/500 * width, 0);
   enemyball7Level12 = new EnemyBall(15/20 * width, 27/50 * width, -3/500 * width, 0);
   enemyball8Level12 = new EnemyBall(17/20 * width, 27/50 * width, 3/500 * width, 0);
-
   enemyball9Level12 = new EnemyBall(width/2, width/2, 0, 9/500 * width);
 
+  //Point Balls
   point1Level1 = new PointBall (width/1.5, width/1.5, 0, 0);
   point2Level1 = new PointBall (3/10 * width, width/1.5, 0, 0);
   point3Level1 = new PointBall (9/10 * width, width/1.5, 0, 0);
@@ -386,9 +403,12 @@ function draw() {
 }
 
 function timeKeeping(){
+  //For every 60 frames, it will add one
+  // it serves as a clock, since there is 60 frames in a second, it actually counts seconds 
   if (frameCount % 60 === 0) {
     timer++;
   }
+
 }
 
 // function windowResized(){
@@ -438,7 +458,7 @@ function checkStates(){
 }
 
 function writeText(){
-  // This function will write something on the scree, the text is already pre-determinate 
+  // This function will write something on the screen, the text is already pre-determinate 
   txt2 = "Congratulations"
   textSize(40/500 * width);
   fill("black")
@@ -448,11 +468,13 @@ function writeText(){
 }
 
 function displayEndScreen(){
+  //Display an image with given values. The image is for the menu
   imageMode(CENTER);
-  image(menuButton.image, menuButton.x, menuButton.y, menuButton.width, menuButton.height);// Super-imposes a picture over that rectangle
+  image(menuButton.image, menuButton.x, menuButton.y, menuButton.width, menuButton.height);
 }
 
 function instructionsText(){
+  //Creates a text for the instructions
   let a = "For levels 1 to 4,  you  can use the RIGHT and LEFT" 
   let b = "arrows to move. From level 5 onwards, you can "
   let c = "also use the UP and DOWN arrows. Collect all " 
@@ -469,11 +491,13 @@ function instructionsText(){
 }
 
 function displayInstructionsButton(){
+  //Displays Image
   imageMode(CENTER)
   image(levelButton.image, levelButton.x, levelButton.y, levelButton.width, levelButton.height);
 }
 
 function restartPositions() {
+  //Sets positions to their initial value after the player dies
   player1.x = 31/500 * width;
   player2.x = 31/500 * width;
   player2.y = width/1.5;
@@ -540,6 +564,7 @@ function restartPositions() {
   point2Level12.x = 19/20 * width;
   point3Level12.x = width/2;
 
+  //Timer also resets
   timer = 0;
   currentTime = -500;
 
@@ -557,7 +582,6 @@ function displayGrid() {
     }
   }
   //Pictures inside of the grid
-  //imageMode(CENTER)
   image(level1Picture, width/100, width/100, cellPictureWidth , cellPictureHeight);
   image(level2Picture, 1*cellSize + width/100, 0*cellSize + width/100, cellPictureWidth, cellPictureHeight);
   image(level3Picture, 2*cellSize + width/100, 0*cellSize + width/100, cellPictureWidth, cellPictureHeight);
@@ -570,8 +594,6 @@ function displayGrid() {
   image(level10Picture, 0*cellSize + width/100, 3*cellSize + width/100, cellPictureWidth, cellPictureHeight);
   image(level11Picture, 1*cellSize + width/100, 3*cellSize + width/100, cellPictureWidth, cellPictureHeight);
   image(level12Picture, 2*cellSize + width/100, 3*cellSize + width/100, cellPictureWidth, cellPictureHeight);
-  
-  
   pop();// Stop translating, and get canvas back to normal
   displayGridButton();
   checkCursor()
@@ -579,7 +601,6 @@ function displayGrid() {
 
 function displayMenu() {
   // Creates a button during the first screen "menu"
-  // rect(playButton.x, playButton.y, playButton.width, playButton.height);
   imageMode(CENTER)
   image(playButton.image, playButton.x, playButton.y, playButton.width, playButton.height);
 
@@ -588,6 +609,7 @@ function displayMenu() {
 }
 
 function livesText(){
+  //text which displays lives left
   fill("white");
   textAlign(CENTER);
   textSize(28/500 * width);
@@ -595,15 +617,16 @@ function livesText(){
 }
 
 function checkLevelScreen() {
-  //Depending on which power the user chooses, it displays the according screen
+  //Depending on which level the user chooses, it displays the according screen
   if (level === "one" ) {
-    level1();
+    level1(); // sets level in motion
     livesText();
+    //Text which shows the audience which level the user is currently on
     fill("white");
     textAlign(CENTER);
     textSize(28/500 * width);
     text("level 1" , width/2, width/10)
-    noCursor();
+    noCursor(); //the cursor disapears from the window
   }
   if (level === "two" ) {
     level2();
@@ -707,17 +730,18 @@ function checkLevelScreen() {
 }
 
 function displayGridButton(){
+  //Displays Image
   imageMode(CORNER)
   image(gridButton.image, gridButton.x, gridButton.y, gridButton.width, gridButton.height)
 }
 
 function level1(){
-  level1BallMovement();
+  level1BallMovement();// function which contains all the .move functions of the balls
   background(spaceImage);
-  level1BallDisplay();
-  itHitLevel1();
-  collectingPointsLevel1();
-  switchLevel1to2();
+  level1BallDisplay(); // function which contains all the .display functions of the balls
+  itHitLevel1();// Detects if player and enemy collide, player loses lives
+  collectingPointsLevel1();// detects if player and poits collide, thus the player gains points
+  switchLevel1to2();// if the score is 3, the next level will be displayed
 }
 
 function level2(){
@@ -820,14 +844,17 @@ function level12(){
 }
 
 function nextLevelText(){
+  //Writes text
   fill("white");
   textAlign(CENTER);
   textSize(7/125 * width);
   text("Going to the Next Level", width/2, 2/5 * width);
+  // The text will diplay a count down to when the next level will be displayed
   text("in " + str(3 - (timer - currentTime)) + " second(s)", width/2, 27/50 * width);
 }
 
 function level1BallMovement() {
+  // All the objects creted by the class will move
   point1Level1.move();
   point2Level1.move();
   point3Level1.move();
@@ -838,6 +865,7 @@ function level1BallMovement() {
 }
 
 function level1BallDisplay(){
+  //All the objects creted by the class will be actually displayed
   point1Level1.display();
   point2Level1.display();
   point3Level1.display();
@@ -848,19 +876,23 @@ function level1BallDisplay(){
 }
 
 function switchLevel1to2(){
+  //of the score is three the following code occurs
   if (score === 3) {
-    if (currentTime === -500) {
-      currentTime = timer;
+    if (currentTime === -500) {// if the current timer is the same value we set at the start
+      currentTime = timer;//the current timer will now have the same value of timer variable
     }
     nextLevelText();
-    if (3 - (timer - currentTime) === 0 ) {
+    if (3 - (timer - currentTime) === 0 ) {// if the count down goes to zero, the next level will be displayed
       level = "two";
+      //player positions are reset
       score = 0;
       player1.x = 31/500 * width;
       currentTime = -500;
     }
   }
 }
+
+//Similar logic from level 1 
 
 function level2BallMovement() {
   point1Level2.move();
@@ -1322,12 +1354,14 @@ function Level12BallDisplay(){
   player2.display();
 }
 
+//if user end level twelve the game ends
 function switchLevel12(){
   if (score === 3) {
     state = "final_screen"
   }
 }
 
+//Sets user in motion again by swithich values to originals 
 function moveAgain(){
   player1.dx = width/125;
   player2.dx = width/125;
@@ -1336,43 +1370,50 @@ function moveAgain(){
 }
 
 function itHitLevel1() {
-  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
-  // you lose and go back to the "menu"
+  // It checks the distance between the player and enemies
   distanceAwayFromCenter1 = int(dist(player1.x, player1.y, enemyball1Level1.x, enemyball1Level1.y));                   
   distanceAwayFromCenter2 = int(dist(player1.x, player1.y, enemyball2Level1.x, enemyball2Level1.y));
   distanceAwayFromCenter3 = int(dist(player1.x, player1.y, enemyball3Level1.x, enemyball3Level1.y));
   
+  //variable which add radius of player and enemy
   collitionDistance = (player1.radius + enemyball1Level1.radius);
   
-  if (distanceAwayFromCenter1  <= collitionDistance ||
-      distanceAwayFromCenter2 <= collitionDistance || 
+  if (distanceAwayFromCenter1  <= collitionDistance || // if the player is closer to the enemy than the sum
+      distanceAwayFromCenter2 <= collitionDistance || // of their radii the player loses a live
       distanceAwayFromCenter3  <= collitionDistance)  {
-    if (lives > 0 && score !== 3){
-      lives --
-      laugh.play();
-      player1.x = 31/500 * width;
-      player1.dx = 0;
-      setTimeout(moveAgain, 800)
+    if (lives > 0 && score !== 3){ // if the player has enough lives and hasn/t collected all the points
+      lives -- // player loses a live
+      laugh.play(); // sound effect
+      player1.x = 31/500 * width;// and player position resets
+      player1.dx = 0;// the player will not be able to move, after the timeout, the player will be
+      setTimeout(moveAgain, 800)// able to move again
+      // If the player was to spam the key and die, the ball will reset and stop, even if the user is
+      // pressing the key, fixing the issue brought during beta testing that if the user is always spaming
+      // the key they will keep on dying until they release the key
     }
     else if (lives === 0){
+      // if the player diesnt have enought lives, the game ends
       state = "main_menu"
     }
   }
 }
 
 function collectingPointsLevel1() {
-  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
-  // you lose and go back to the "menu"
+  // Just like the other level, it checks the distance between the player and points
   ballDistanceToPoint1 = int(dist(player1.x, player1.y, point1Level1.x, point1Level1.y));                   
   ballDistanceToPoint2 = int(dist(player1.x, player1.y,  point2Level1.x, point2Level1.y));
   ballDistanceToPoint3 = int(dist(player1.x, player1.y, point3Level1.x, point3Level1.y));
   
+  //adds radius of player and points balls
   collectionDistance = (player1.radius + point1Level1.radius);
   
+  //if the player is close enought to the points
   if (ballDistanceToPoint1  <= collectionDistance )  {
-    point1Level1.x = -width/5;
-    score ++;
-    bell.play();
+    point1Level1.x = -width/5; // the point ball will get out of the screen, if the points is not erased
+    // from screen the score will increase by a lot more due to the fact that the two objects are still
+    // touching
+    score ++; // the score increases by one
+    bell.play();// sound effect
   }
   if (ballDistanceToPoint2 <= collectionDistance )  {
     point2Level1.x = -width/5;
@@ -1386,9 +1427,9 @@ function collectingPointsLevel1() {
   }
 }
 
+//Same logic as level 1
 function itHitLevel2() {
-  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
-  // you lose and go back to the "menu"
+  
   distanceAwayFromCenter1 = int(dist(player1.x, player1.y, enemyball1Level2.x, enemyball1Level2.y));                   
   distanceAwayFromCenter2 = int(dist(player1.x, player1.y, enemyball2Level2.x, enemyball2Level2.y));
   distanceAwayFromCenter3 = int(dist(player1.x, player1.y, enemyball3Level2.x, enemyball3Level2.y));
@@ -1439,8 +1480,7 @@ function startLevel2(){
 }
 
 function collectingPointsLevel2() {
-  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
-  // you lose and go back to the "menu"
+  
   
   ballDistanceToPoint1 = int(dist(player1.x, player1.y, point1Level2.x, point1Level2.y));                   
   ballDistanceToPoint2 = int(dist(player1.x, player1.y,  point2Level2.x, point2Level2.y));
@@ -1467,8 +1507,7 @@ function collectingPointsLevel2() {
 }
 
 function itHitLevel3() {
-  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
-  // you lose and go back to the "menu"
+  
   distanceAwayFromCenter1 = int(dist(player1.x, player1.y, enemyball1Level3.x, enemyball1Level3.y));                   
   distanceAwayFromCenter2 = int(dist(player1.x, player1.y, enemyball2Level3.x, enemyball2Level3.y));
   distanceAwayFromCenter3 = int(dist(player1.x, player1.y, enemyball3Level3.x, enemyball3Level3.y));
@@ -1496,8 +1535,7 @@ function itHitLevel3() {
 }
 
 function collectingPointsLevel3() {
-  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
-  // you lose and go back to the "menu"
+  
   
   ballDistanceToPoint1 = int(dist(player1.x, player1.y, point1Level3.x, point1Level3.y));                   
   ballDistanceToPoint2 = int(dist(player1.x, player1.y,  point2Level3.x, point2Level3.y));
@@ -1524,8 +1562,7 @@ function collectingPointsLevel3() {
 }
 
 function itHitLevel4() {
-  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
-  // you lose and go back to the "menu"
+  
   distanceAwayFromCenter1 = int(dist(player1.x, player1.y, enemyball1Level4.x, enemyball1Level4.y));                   
   distanceAwayFromCenter2 = int(dist(player1.x, player1.y, enemyball2Level4.x, enemyball2Level4.y));
   distanceAwayFromCenter3 = int(dist(player1.x, player1.y, enemyball3Level4.x, enemyball3Level4.y));
@@ -1552,8 +1589,7 @@ function itHitLevel4() {
 }
 
 function collectingPointsLevel4() {
-  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
-  // you lose and go back to the "menu"
+  
   
   ballDistanceToPoint1 = int(dist(player1.x, player1.y, point1Level4.x, point1Level4.y));                   
   ballDistanceToPoint2 = int(dist(player1.x, player1.y,  point2Level4.x, point2Level4.y));
@@ -1580,8 +1616,7 @@ function collectingPointsLevel4() {
 }
 
 function itHitLevel5() {
-  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
-  // you lose and go back to the "menu"
+  
   distanceAwayFromCenter1 = int(dist(player2.x, player2.y, enemyball1Level5.x, enemyball1Level5.y));                   
   distanceAwayFromCenter2 = int(dist(player2.x, player2.y, enemyball2Level5.x, enemyball2Level5.y));
   distanceAwayFromCenter3 = int(dist(player2.x, player2.y, enemyball3Level5.x, enemyball3Level5.y));
@@ -1607,8 +1642,7 @@ function itHitLevel5() {
 }
 
 function collectingPointsLevel5() {
-  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
-  // you lose and go back to the "menu"
+  
   
   ballDistanceToPoint1 = int(dist(player2.x, player2.y, point1Level5.x, point1Level5.y));                   
   ballDistanceToPoint2 = int(dist(player2.x, player2.y,  point2Level5.x, point2Level5.y));
@@ -1635,8 +1669,7 @@ function collectingPointsLevel5() {
 }
 
 function itHitLevel6() {
-  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
-  // you lose and go back to the "menu"
+  
   distanceAwayFromCenter1 = int(dist(player2.x, player2.y, enemyball1Level6.x, enemyball1Level6.y));                   
   distanceAwayFromCenter2 = int(dist(player2.x, player2.y, enemyball2Level6.x, enemyball2Level6.y));
   distanceAwayFromCenter3 = int(dist(player2.x, player2.y, enemyball3Level6.x, enemyball3Level6.y));
@@ -1662,8 +1695,7 @@ function itHitLevel6() {
 }
 
 function collectingPointsLevel6() {
-  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
-  // you lose and go back to the "menu"
+  
   
   ballDistanceToPoint1 = int(dist(player2.x, player2.y, point1Level6.x, point1Level6.y));                   
   ballDistanceToPoint2 = int(dist(player2.x, player2.y,  point2Level6.x, point2Level6.y));
@@ -1690,8 +1722,7 @@ function collectingPointsLevel6() {
 }
 
 function itHitLevel7() {
-  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
-  // you lose and go back to the "menu"
+  
   distanceAwayFromCenter1 = int(dist(player2.x, player2.y, enemyball1Level7.x, enemyball1Level7.y));                   
   distanceAwayFromCenter2 = int(dist(player2.x, player2.y, enemyball2Level7.x, enemyball2Level7.y));
   distanceAwayFromCenter3 = int(dist(player2.x, player2.y, enemyball3Level7.x, enemyball3Level7.y));
@@ -1723,8 +1754,7 @@ function itHitLevel7() {
 }
 
 function collectingPointsLevel7() {
-  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
-  // you lose and go back to the "menu"
+  
   
   ballDistanceToPoint1 = int(dist(player2.x, player2.y, point1Level7.x, point1Level7.y));                   
   ballDistanceToPoint2 = int(dist(player2.x, player2.y,  point2Level7.x, point2Level7.y));
@@ -1777,8 +1807,7 @@ function itHitLevel8(){
 }
 
 function collectingPointsLevel8() {
-  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
-  // you lose and go back to the "menu"
+  
   
   ballDistanceToPoint1 = int(dist(player2.x, player2.y, point1Level8.x, point1Level8.y));                   
   ballDistanceToPoint2 = int(dist(player2.x, player2.y,  point2Level8.x, point2Level8.y));
@@ -1850,8 +1879,7 @@ function itHitLevel9(){
 }
 
 function collectingPointsLevel9() {
-  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
-  // you lose and go back to the "menu"
+  
   
   ballDistanceToPoint1 = int(dist(player2.x, player2.y, point1Level9.x, point1Level9.y));                   
   ballDistanceToPoint2 = int(dist(player2.x, player2.y,  point2Level9.x, point2Level9.y));
@@ -1907,8 +1935,7 @@ function itHitLevel10(){
 }
 
 function collectingPointsLevel10() {
-  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
-  // you lose and go back to the "menu"
+  
   
   ballDistanceToPoint1 = int(dist(player2.x, player2.y, point1Level10.x, point1Level10.y));                   
   ballDistanceToPoint2 = int(dist(player2.x, player2.y,  point2Level10.x, point2Level10.y));
@@ -1974,8 +2001,7 @@ function itHitLevel11(){
 }
 
 function collectingPointsLevel11() {
-  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
-  // you lose and go back to the "menu"
+  
   
   ballDistanceToPoint1 = int(dist(player2.x, player2.y, point1Level11.x, point1Level11.y));                   
   ballDistanceToPoint2 = int(dist(player2.x, player2.y,  point2Level11.x, point2Level11.y));
@@ -2040,8 +2066,7 @@ function itHitLevel12(){
 }
 
 function collectingPointsLevel12() {
-  // Just like the other level, it checks the distance between the player, and the enemies, if they're too close
-  // you lose and go back to the "menu"
+  
   
   ballDistanceToPoint1 = int(dist(player2.x, player2.y, point1Level12.x, point1Level12.y));                   
   ballDistanceToPoint2 = int(dist(player2.x, player2.y,  point2Level12.x, point2Level12.y));
@@ -2127,8 +2152,7 @@ function checkCursor(){
        (mouseY < instructionButton.y + (instructionButton.height/2))){
   
       cursor("pointer");
-      
-      
+      // A second image is diplayed, showing user that they can actually interact with it
       imageMode(CENTER);
       image(instructionButton.image2, instructionButton.x, instructionButton.y, instructionButton.width, instructionButton.height);
     }
@@ -2298,6 +2322,7 @@ function clickedOnButtonMenu(x,y){
 }
 
 function playMusic(){
+  // Checks state and whether a sound is playing, changes accordingly
   if ((state === "main_menu" || state === "menu" ) && !sound.isPlaying()) {
     sound.loop();
   }
