@@ -405,6 +405,7 @@ function draw() {
 function timeKeeping(){
   //For every 60 frames, it will add one
   // it serves as a clock, since there is 60 frames in a second, it actually counts seconds 
+  // Kyle Luo, helped implementing this code
   if (frameCount % 60 === 0) {
     timer++;
   }
@@ -435,6 +436,8 @@ function checkStates(){
   }
 
   if (state === "instructions"){
+    //Added instrcutions so user know the controls
+    //Issue brought up during beta testing
     instructionsText();
     displayInstructionsButton();
     checkCursor();
@@ -1381,7 +1384,9 @@ function itHitLevel1() {
   if (distanceAwayFromCenter1  <= collitionDistance || // if the player is closer to the enemy than the sum
       distanceAwayFromCenter2 <= collitionDistance || // of their radii the player loses a live
       distanceAwayFromCenter3  <= collitionDistance)  {
-    if (lives > 0 && score !== 3){ // if the player has enough lives and hasn/t collected all the points
+    if (lives > 0 && score !== 3){ // if the player has enough lives and hasn't collected all the points
+    //How ever if the player is hit after collecting all the points the player wont lose a live, issue brought 
+    //up during beta testing
       lives -- // player loses a live
       laugh.play(); // sound effect
       player1.x = 31/500 * width;// and player position resets
@@ -1390,6 +1395,7 @@ function itHitLevel1() {
       // If the player was to spam the key and die, the ball will reset and stop, even if the user is
       // pressing the key, fixing the issue brought during beta testing that if the user is always spaming
       // the key they will keep on dying until they release the key
+      // Wilson Li helped fix this issue
     }
     else if (lives === 0){
       // if the player diesnt have enought lives, the game ends
